@@ -7,9 +7,6 @@ function custom_shop_display_post_meta( $atts ) {
         // replace the custom field name with your own
         $catalog_description = get_post_meta( $product->id, 'catalog_description', true );
         
-        // (optional) cleans up custom field names: replace underscores with spaces
-        $location = str_replace( '_', ' ', $location );
-    
         // Add these fields to the shop loop if set
         if ( ! empty( $catalog_description ) ) {
             echo '<div class="box-excerpt is-small catalog-short">' . $catalog_description . '</div>';
