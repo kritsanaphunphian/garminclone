@@ -4,7 +4,7 @@ function custom_shop_display_post_meta( $atts ) {
     global $product;
 
     // replace the custom field name with your own
-    $catalog_description = get_post_meta( $product->id, 'catalog_description', true );
+    $catalog_description = get_post_meta( $product->get_id(), 'catalog_description', true );
 
     // Add these fields to the shop loop if set
     if ( ! empty( $catalog_description ) ) {
