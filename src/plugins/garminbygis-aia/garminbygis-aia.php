@@ -5,7 +5,7 @@
  * Version: 0.1
  * Author: GarminByGIS
  * Text Domain: garminbygis-aia
-**/
+ **/
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
@@ -41,6 +41,7 @@ class GarminByGISAIA {
     protected function initiate() {
         defined( 'GARMINBYGIS_AIA_PLUGIN_PATH' ) || define( 'GARMINBYGIS_AIA_PLUGIN_PATH', __DIR__ );
 
+        require_once GARMINBYGIS_AIA_PLUGIN_PATH . '/includes/AIA/class-aia-api.php';
         require_once GARMINBYGIS_AIA_PLUGIN_PATH . '/includes/class-user.php';
 
         add_filter( 'the_posts', array( $this, 'register_page_aia_users_verification' ) );
