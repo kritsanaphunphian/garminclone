@@ -316,3 +316,49 @@ function hook_flatsome_woocommerce_login_form_end() {
     }
 }
 add_action( 'woocommerce_login_form_end', 'hook_flatsome_woocommerce_login_form_end' );
+
+/**
+ * To remove filters from the Flatsome theme
+ * that we can do override at the child-theme by ourselves.
+ *
+ * @see wp-content/themes/flatsome/woocommerce/myaccount/form-login.php
+ */
+function hook_remove_faltsome_parent_filters() {
+    remove_filter( 'flatsome_footer','flatsome_page_footer', 10 );
+}
+add_action( 'after_setup_theme', 'hook_remove_faltsome_parent_filters' );
+
+/**
+ * Override 'flatsome_page_footer' function
+ * so we can dynamically handle the translated-block from Polylang.
+ *
+ * @see wp-content/themes/flatsome/inc/structure/structure-footer.php : flatsome_page_footer();
+ */
+function flatsomechild_page_footer() {
+    global $page;
+    $block = get_theme_mod( 'footer_block' );
+
+    if ( is_page() && ! $block ) {
+        // Custom Page footers
+        $page_footer = get_post_meta( get_the_ID(), '_footer', true );
+
+        if ( empty( $page_footer ) || 'normal' == $pagege_footer ) {
+            echo get_template_part( 'template-parts/footer/footer' );
+        } elseif ( ! empty( $page_footer ) && 'disabled' !== $page_footer ) {
+            echo get_template_part( 'template-parts/footer/footer', $page_footer );
+        }
+    } else {
+        // Global footer
+        if ( $block ) {
+            if ( '-lang-' . pll_default_language() === substr( $block, -8 ) ) {
+                $block = substr_replace($block, '-lang-' . pll_current_language(), -8);
+            }
+
+            echo do_shortcode( sprintf( '[block id="%s"]', $block ) );
+            echo get_template_part( 'template-parts/footer/footer-absolute' );
+        } else {
+            echo get_template_part( 'template-parts/footer/footer' );
+        }
+    }
+}
+add_filter( 'flatsome_footer','flatsomechild_page_footer', 10 );
