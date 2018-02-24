@@ -289,3 +289,30 @@ function cart_update_qty_script() {
         <?php
     endif;
 }
+
+/**
+ * To add 'login by Google' and 'login by Facebook' to the WooCommerce's form-login page.
+ *
+ * @see wp-content/themes/flatsome/woocommerce/myaccount/form-login.php
+ */
+function hook_flatsome_woocommerce_login_form_end() {
+    echo '
+    <a  href="' . wp_login_url() . '?loginFacebook=1&redirect=' . get_permalink() . '"
+        class="button social-button large facebook circle"
+        onclick="window.location=\'' . wp_login_url() . '?loginFacebook=1&redirect=\'+window.location.href; return false;">
+        <i class="icon-facebook"></i>
+        <span>' . __( 'Login with <strong>Facebook</strong>', 'flatsome' ) . '</span>
+    </a>
+
+    <a  href="' . wp_login_url() . '?loginGoogle=1&redirect=' . get_permalink() . '"
+        class="button social-button large google-plus circle"
+        onclick="window.location = \'' . wp_login_url() . '?loginGoogle=1&redirect=\'+window.location.href; return false;">
+        <i class="icon-google-plus"></i>
+        <span>' . __( 'Login with <strong>Google +</strong>', 'flatsome' ) . '</span></a>
+    ';
+
+    if ( isset( $login_text ) && $login_text ) {
+        echo '<p>' . do_shortcode( $login_text ) . '</p>';
+    }
+}
+add_action( 'woocommerce_login_form_end', 'hook_flatsome_woocommerce_login_form_end' );
