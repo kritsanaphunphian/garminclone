@@ -362,3 +362,18 @@ function flatsomechild_page_footer() {
     }
 }
 add_filter( 'flatsome_footer','flatsomechild_page_footer', 10 );
+
+/**
+ * To add a custom element to YITH WooCommerce Wishlist plugin's 'added_to_cart_message'.
+ *
+ * @return string
+ *
+ * @see    wp-content/plugins/yith-woocommerce-wishlist/includes/class.yith-wcwl-init.php
+ */
+function hook_yith_wcwl_added_to_cart_message() {
+    return '
+    <div style="padding-bottom: 0.5em;" class="message-container container success-color medium-text-center">'
+        . __( 'Product correctly added to cart', 'yith-woocommerce-wishlist' ) .
+    '</div>';
+}
+add_filter( 'yith_wcwl_added_to_cart_message','hook_yith_wcwl_added_to_cart_message', 10 );
