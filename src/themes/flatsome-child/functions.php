@@ -1,6 +1,13 @@
 <?php
 // Add custom Theme Functions here
 
+/**
+ * Register strings to Polylang so we can translate it
+ * at the Polylang 'Strings translations' page.
+ */
+pll_register_string( 'login-form-login-with-fb-button', 'Login with <strong>Facebook</strong>', 'garminbygis' );
+pll_register_string( 'login-form-login-with-gplus-button', 'Login with <strong>Google +</strong>', 'garminbygis' );
+
 //Verify Email
 //require_once('wp-verify-email.php');
 
@@ -301,14 +308,14 @@ function hook_flatsome_woocommerce_login_form_end() {
         class="button social-button large facebook circle"
         onclick="window.location=\'' . wp_login_url() . '?loginFacebook=1&redirect=\'+window.location.href; return false;">
         <i class="icon-facebook"></i>
-        <span>' . __( 'Login with <strong>Facebook</strong>', 'flatsome' ) . '</span>
+        <span>' . pll__( 'Login with <strong>Facebook</strong>' ) . '</span>
     </a>
 
     <a  href="' . wp_login_url() . '?loginGoogle=1&redirect=' . get_permalink() . '"
         class="button social-button large google-plus circle"
         onclick="window.location = \'' . wp_login_url() . '?loginGoogle=1&redirect=\'+window.location.href; return false;">
         <i class="icon-google-plus"></i>
-        <span>' . __( 'Login with <strong>Google +</strong>', 'flatsome' ) . '</span></a>
+        <span>' . pll__( 'Login with <strong>Google +</strong>' ) . '</span></a>
     ';
 
     if ( isset( $login_text ) && $login_text ) {
