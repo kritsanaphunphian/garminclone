@@ -1,0 +1,31 @@
+ul.jcaa_attr_select, ul.jcaa_attr_select li{
+	margin:0;
+	padding:0;
+}
+
+ul.jcaa_attr_select{
+	overflow: hidden;
+	margin-bottom: -5px;
+}
+
+.jcaa_attr_variable_select .jcaa_attr_option:hover{
+	cursor: pointer;
+}
+
+.jcaa_attr_variable_select .jcaa_attr_option.jcass_attr_disable:hover{
+	cursor: default;
+}
+
+.jcaa_attr_select li{
+	display: inline-block;
+	width: auto !important;
+}
+
+.jcaa_attr_option{
+	display: block;
+	margin: 0 !important;
+}
+
+.jcaa_attr_select li img{
+	margin-bottom: 0 !important;
+}

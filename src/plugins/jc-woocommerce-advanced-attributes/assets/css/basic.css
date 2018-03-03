@@ -1,0 +1,41 @@
+/**
+ * Optional styles
+ */
+
+.jcaa_attr_select.jcaa_rounded_corners li, .jcaa_attr_select.jcaa_rounded_corners li .jcaa_attr_option{
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+ul.jcaa_attr_variable_select{
+	margin-bottom: 5px;
+}
+
+a.jcaa_attr_option {
+	padding-left: 5px;
+	padding-right: 5px;	
+}
+
+a.jcaa_attr_option:hover{
+	text-decoration: inherit;
+}
+
+.variations ul.jcaa_attr_select{
+	margin-bottom: -	5px;
+}
+
+ul.jcaa_attr_select li{
+	float:left;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	/*border: 1px solid #333;*/
+}
+
+ul.jcaa_attr_select li:first-child{
+	margin-left: 0;
+}
+
+.shop_attributes td{
+	vertical-align: middle;
+}
