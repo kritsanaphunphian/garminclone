@@ -16,4 +16,11 @@ class User {
 
         return $result->IsSuccess;
     }
+
+    /**
+     * Check if a user is existed on WordPress DB.
+     */
+    public function is_user_exist_on_wp() {
+        // ..
+    }
 }

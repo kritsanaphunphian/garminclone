@@ -1,0 +1,43 @@
+FROM php:7.1-apache
+
+LABEL maintainer "Guzzilar"
+
+ENV APACHE_RUN_USER www-data
+ENV APACHE_RUN_GROUP www-data
+ENV APACHE_LOG_DIR /var/log/apache2
+ENV APACHE_PID_FILE /var/run/apache2.pid
+ENV APACHE_RUN_DIR /var/run/apache2
+ENV APACHE_LOCK_DIR /var/lock/apache2
+
+RUN echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
+RUN echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections
+
+RUN apt-get update && apt-get install -y --force-yes \
+    unzip \
+    vim \
+    mysql-client \
+    mysql-server \
+    && rm -rf /var/lib/apt
+
+RUN docker-php-ext-install mysqli
+
+# Add INSTALL.sh.
+COPY ./bin/install /var/www/bin/install
+RUN chmod +x /var/www/bin/install
+
+# Download WP-CLI
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN chmod +x wp-cli.phar
+RUN mv wp-cli.phar /usr/local/bin/wp
+
+# Add source files
+ADD ./tmp /tmp
+ADD ./env/php.ini /usr/local/etc/php/
+
+# Apache configuration
+RUN mkdir -p $APACHE_RUN_DIR $APACHE_LOCK_DIR $APACHE_LOG_DIR
+RUN a2enmod rewrite
+RUN usermod -u 1000 www-data
+RUN chown www-data:www-data -R /var/www
+
+EXPOSE 80

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ -d "./docker/tmp" ]; then
+    rm -R ./docker/tmp
+fi
+
+mkdir ./docker/tmp
+
+cp -R ./src/plugins ./docker/tmp
+
+docker-compose -f ./docker/docker-compose.yml up --build
