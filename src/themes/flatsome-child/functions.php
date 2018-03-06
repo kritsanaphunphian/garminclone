@@ -316,3 +316,30 @@ function hook_flatsome_woocommerce_login_form_end() {
     }
 }
 add_action( 'woocommerce_login_form_end', 'hook_flatsome_woocommerce_login_form_end' );
+
+/**
+ * To add a custom code before the rest of Flatsome's header files are loaded.
+ *
+ * @see wp-content/themes/flatsome/header.php
+ */
+function hook_flatsome_before_header() {
+    echo '
+    <div class="ajax-loader">
+        <div class="c">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+        </div>
+    </div>
+    ';
+}
+add_action( 'flatsome_before_header', 'hook_flatsome_before_header' );
