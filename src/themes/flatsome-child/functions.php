@@ -7,6 +7,8 @@
  */
 pll_register_string( 'login-form-login-with-fb-button', 'Login with <strong>Facebook</strong>', 'garminbygis' );
 pll_register_string( 'login-form-login-with-gplus-button', 'Login with <strong>Google +</strong>', 'garminbygis' );
+pll_register_string( 'register-form-input-confirm-password-field', 'Confirm Password', 'garminbygis' );
+pll_register_string( 'register-form-validation-confirm-password-not-match', 'Passwords do not match.', 'garminbygis' );
 
 //Verify Email
 //require_once('wp-verify-email.php');
