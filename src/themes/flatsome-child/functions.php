@@ -1,6 +1,15 @@
 <?php
 // Add custom Theme Functions here
 
+/**
+ * Register strings to Polylang so we can translate it
+ * at the Polylang 'Strings translations' page.
+ */
+pll_register_string( 'login-form-login-with-fb-button', 'Login with <strong>Facebook</strong>', 'garminbygis' );
+pll_register_string( 'login-form-login-with-gplus-button', 'Login with <strong>Google +</strong>', 'garminbygis' );
+pll_register_string( 'register-form-input-confirm-password-field', 'Confirm Password', 'garminbygis' );
+pll_register_string( 'register-form-validation-confirm-password-not-match', 'Passwords do not match.', 'garminbygis' );
+
 //Verify Email
 //require_once('wp-verify-email.php');
 
@@ -301,14 +310,14 @@ function hook_flatsome_woocommerce_login_form_end() {
         class="button social-button large facebook circle"
         onclick="window.location=\'' . wp_login_url() . '?loginFacebook=1&redirect=\'+window.location.href; return false;">
         <i class="icon-facebook"></i>
-        <span>' . __( 'Login with <strong>Facebook</strong>', 'flatsome' ) . '</span>
+        <span>' . pll__( 'Login with <strong>Facebook</strong>' ) . '</span>
     </a>
 
     <a  href="' . wp_login_url() . '?loginGoogle=1&redirect=' . get_permalink() . '"
         class="button social-button large google-plus circle"
         onclick="window.location = \'' . wp_login_url() . '?loginGoogle=1&redirect=\'+window.location.href; return false;">
         <i class="icon-google-plus"></i>
-        <span>' . __( 'Login with <strong>Google +</strong>', 'flatsome' ) . '</span></a>
+        <span>' . pll__( 'Login with <strong>Google +</strong>' ) . '</span></a>
     ';
 
     if ( isset( $login_text ) && $login_text ) {
@@ -316,3 +325,64 @@ function hook_flatsome_woocommerce_login_form_end() {
     }
 }
 add_action( 'woocommerce_login_form_end', 'hook_flatsome_woocommerce_login_form_end' );
+
+/**
+ * To remove filters from the Flatsome theme
+ * that we can do override at the child-theme by ourselves.
+ *
+ * @see wp-content/themes/flatsome/woocommerce/myaccount/form-login.php
+ */
+function hook_remove_faltsome_parent_filters() {
+    remove_filter( 'flatsome_footer','flatsome_page_footer', 10 );
+}
+add_action( 'after_setup_theme', 'hook_remove_faltsome_parent_filters' );
+
+/**
+ * Override 'flatsome_page_footer' function
+ * so we can dynamically handle the translated-block from Polylang.
+ *
+ * @see wp-content/themes/flatsome/inc/structure/structure-footer.php : flatsome_page_footer();
+ */
+function flatsomechild_page_footer() {
+    global $page;
+    $block = get_theme_mod( 'footer_block' );
+
+    if ( is_page() && ! $block ) {
+        // Custom Page footers
+        $page_footer = get_post_meta( get_the_ID(), '_footer', true );
+
+        if ( empty( $page_footer ) || 'normal' == $pagege_footer ) {
+            echo get_template_part( 'template-parts/footer/footer' );
+        } elseif ( ! empty( $page_footer ) && 'disabled' !== $page_footer ) {
+            echo get_template_part( 'template-parts/footer/footer', $page_footer );
+        }
+    } else {
+        // Global footer
+        if ( $block ) {
+            if ( '-lang-' . pll_default_language() === substr( $block, -8 ) ) {
+                $block = substr_replace($block, '-lang-' . pll_current_language(), -8);
+            }
+
+            echo do_shortcode( sprintf( '[block id="%s"]', $block ) );
+            echo get_template_part( 'template-parts/footer/footer-absolute' );
+        } else {
+            echo get_template_part( 'template-parts/footer/footer' );
+        }
+    }
+}
+add_filter( 'flatsome_footer','flatsomechild_page_footer', 10 );
+
+/**
+ * To add a custom element to YITH WooCommerce Wishlist plugin's 'added_to_cart_message'.
+ *
+ * @return string
+ *
+ * @see    wp-content/plugins/yith-woocommerce-wishlist/includes/class.yith-wcwl-init.php
+ */
+function hook_yith_wcwl_added_to_cart_message() {
+    return '
+    <div style="padding-bottom: 0.5em;" class="message-container container success-color medium-text-center">'
+        . __( 'Product correctly added to cart', 'yith-woocommerce-wishlist' ) .
+    '</div>';
+}
+add_filter( 'yith_wcwl_added_to_cart_message','hook_yith_wcwl_added_to_cart_message', 10 );
