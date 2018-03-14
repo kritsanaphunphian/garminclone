@@ -445,4 +445,13 @@ if ( class_exists( 'YITH_Woocompare' ) && is_plugin_active( 'yith-woocommerce-co
 
         printf( '<a href="%s" class="compare %s" data-product_id="%s" rel="nofollow">%s</a>', $link, $class, $product_id, $button_text );
     }
+
+    // Check if Compare button is in Product page
+    if ( 'yes' == get_option( 'yith_woocompare_compare_button_in_products_list' ) ) {
+        global $yith_woocompare;
+
+        remove_action( 'woocommerce_after_shop_loop_item', array( $yith_woocompare->obj, 'add_compare_link' ), 20 );
+        add_action( 'garminbygis_after_the_flatsome_product_box_after_action', array( $yith_woocompare->obj, 'add_compare_link' ), 20 );
+        add_action( 'garminbygis_additional_data_button_area_before', 'add_yith_woocommerce_compare_link' );
+    }
 }
