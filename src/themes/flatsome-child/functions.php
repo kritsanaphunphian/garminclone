@@ -386,3 +386,63 @@ function hook_yith_wcwl_added_to_cart_message() {
     '</div>';
 }
 add_filter( 'yith_wcwl_added_to_cart_message','hook_yith_wcwl_added_to_cart_message', 10 );
+
+
+/**
+ * Note, that because YITH WooCommerce Compare Premium plugin doesn't provide
+ * a way to 'add' a comapre link manually, so it is always be hooked under
+ * 'woocommerce_after_shop_loop_item' action.
+ *
+ * In order to custom it, we have to duplicate its code here so we can modify,
+ * and execute this function in a specific place.
+ */
+if ( class_exists( 'YITH_Woocompare' ) && is_plugin_active( 'yith-woocommerce-compare-premium/init.php' ) ) {
+    /**
+     * @see wp-content/plugins/yith-woocommerce-compare-premium/includes/class.yith-woocompare-frontend-premium.php (v2.2.1)
+     */
+    function add_yith_woocommerce_compare_link( $product_id = false, $args = array() ) {
+        global $yith_woocompare;
+
+        extract( $args );
+
+        if ( ! $product_id ) {
+            global $product;
+            $product_id = ! is_null( $product ) ? yit_get_prop( $product, 'id', true ) : 0;
+        }
+
+        // return if product doesn't exist
+        if ( empty( $product_id ) || apply_filters( 'yith_woocompare_remove_compare_link_by_cat', false, $product_id ) ) {
+            return;
+        }
+
+        if ( ! isset( $button_text ) || 'default' == $button_text ) {
+            $button_text = get_option( 'yith_woocompare_button_text', __( 'Compare', 'yith-woocommerce-compare' ) );
+        }
+
+        // set class
+        $class        = '';
+        $product_list = $yith_woocompare->obj->get_products_list();
+
+        if ( isset( $product_list[ $product_id ] ) ) {
+            $categories = get_the_terms( $product_id, 'product_cat' );
+            $cat = array();
+
+            if( ! empty( $categories ) ) {
+                foreach( $categories as $category ) {
+                    $cat[] = $category->term_id;
+                }
+            }
+
+            $link        = $yith_woocompare->obj->view_table_url( $product_id );
+            $class       = 'added';
+            $button_text = get_option( 'yith_woocompare_button_text_added', __( 'View Compare', 'yith-woocommerce-compare' ) );
+        } else {
+            $link        = $yith_woocompare->obj->add_product_url( $product_id );
+        }
+
+        // add button class
+        $class = $class . ' ' . 'button';
+
+        printf( '<a href="%s" class="compare %s" data-product_id="%s" rel="nofollow">%s</a>', $link, $class, $product_id, $button_text );
+    }
+}
