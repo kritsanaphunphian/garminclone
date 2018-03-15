@@ -243,7 +243,7 @@ border-radius: 100%;
     font-size: .7em;
     margin: 0;
     border-radius: 4px;
-    padding: 0 10px;
+    padding: 0 5px;
 }
 .garminbygis-additional-data-action-button .add-to-cart-button {
     display: inline-block;
@@ -252,7 +252,7 @@ border-radius: 100%;
 .garminbygis-additional-data-action-button .ajax_add_to_cart {
     width: auto;
     margin: 0;
-    padding: 0 10px;
+    padding: 0 5px;
     font-size: 0.7em;
     border-radius: 4px;
 }
