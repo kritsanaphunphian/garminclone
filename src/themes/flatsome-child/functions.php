@@ -393,65 +393,73 @@ add_filter( 'yith_wcwl_added_to_cart_message','hook_yith_wcwl_added_to_cart_mess
  * a way to 'add' a comapre link manually, so it is always be hooked under
  * 'woocommerce_after_shop_loop_item' action.
  *
- * In order to custom it, we have to duplicate its code here so we can modify,
- * and execute this function in a specific place.
+ * In order to custom it as designed, we are going to play some trick here.
  */
-if ( class_exists( 'YITH_Woocompare' ) && is_plugin_active( 'yith-woocommerce-compare-premium/init.php' ) ) {
-    /**
-     * @see wp-content/plugins/yith-woocommerce-compare-premium/includes/class.yith-woocompare-frontend-premium.php (v2.2.1)
-     */
-    function add_yith_woocommerce_compare_link( $product_id = false, $args = array() ) {
-        global $yith_woocompare;
+function hook_reposition_compare_button_if_switch_grid_list() {
+    if ( 'yes' == get_option( 'yith_woocompare_compare_button_in_products_list' ) && ( is_shop() || is_product_category() ) ) :
+    ?>
+        <script>
+            jQuery(document).ready(function() {
+                var br_lgv_stat_cookie = set_get_lgv_cookie( 0 );
 
-        extract( $args );
+                if ( br_lgv_stat_cookie && 'list' == br_lgv_stat_cookie ) {
+                    jQuery( '.box-text-products' ).addClass( 'hide-from-screen' );
 
-        if ( ! $product_id ) {
-            global $product;
-            $product_id = ! is_null( $product ) ? yit_get_prop( $product, 'id', true ) : 0;
-        }
+                    var compare_buttons = jQuery( '.shop-container' ).find( 'a.compare' );
 
-        // return if product doesn't exist
-        if ( empty( $product_id ) || apply_filters( 'yith_woocompare_remove_compare_link_by_cat', false, $product_id ) ) {
-            return;
-        }
+                    jQuery.each( compare_buttons, function( key, button ) {
+                        var button         = jQuery( button ),
+                            parent_element = button.parents( '.product-small.berocket_lgv_list_grid' );
 
-        if ( ! isset( $button_text ) || 'default' == $button_text ) {
-            $button_text = get_option( 'yith_woocompare_button_text', __( 'Compare', 'yith-woocommerce-compare' ) );
-        }
-
-        // set class
-        $class        = '';
-        $product_list = $yith_woocompare->obj->get_products_list();
-
-        if ( isset( $product_list[ $product_id ] ) ) {
-            $categories = get_the_terms( $product_id, 'product_cat' );
-            $cat = array();
-
-            if( ! empty( $categories ) ) {
-                foreach( $categories as $category ) {
-                    $cat[] = $category->term_id;
+                        button.addClass( 'button' )
+                              .detach()
+                              .appendTo( parent_element.find( '.garminbygis-additional-data-compare-button-wrapper' ) );
+                    });
                 }
-            }
 
-            $link        = $yith_woocompare->obj->view_table_url( $product_id );
-            $class       = 'added';
-            $button_text = get_option( 'yith_woocompare_button_text_added', __( 'View Compare', 'yith-woocommerce-compare' ) );
-        } else {
-            $link        = $yith_woocompare->obj->add_product_url( $product_id );
-        }
+                jQuery(document).on( 'click', '.berocket_lgv_widget a.berocket_lgv_set', function ( event ) {
+                    event.preventDefault();
 
-        // add button class
-        $class = $class . ' ' . 'button';
+                    var compare_buttons         = jQuery( '.shop-container' ).find( 'a.compare' ),
+                        berocket_list_grid_type = jQuery( this ).data( 'type' );
 
-        printf( '<a href="%s" class="compare %s" data-product_id="%s" rel="nofollow">%s</a>', $link, $class, $product_id, $button_text );
-    }
+                    if ( 0 >= compare_buttons.length ) {
+                        return;
+                    }
 
-    // Check if Compare button is in Product page
-    if ( 'yes' == get_option( 'yith_woocompare_compare_button_in_products_list' ) ) {
-        global $yith_woocompare;
+                    if ( br_lgv_stat_cookie && berocket_list_grid_type === br_lgv_stat_cookie ) {
+                        return;
+                    }
 
-        remove_action( 'woocommerce_after_shop_loop_item', array( $yith_woocompare->obj, 'add_compare_link' ), 20 );
-        add_action( 'garminbygis_after_the_flatsome_product_box_after_action', array( $yith_woocompare->obj, 'add_compare_link' ), 20 );
-        add_action( 'garminbygis_additional_data_button_area_before', 'add_yith_woocommerce_compare_link' );
-    }
+                    if ( 'list' === berocket_list_grid_type ) {
+                        jQuery.each( compare_buttons, function( key, button ) {
+                            var button         = jQuery( button ),
+                                parent_element = button.parents( '.product-small.berocket_lgv_list_grid' );
+
+                            button.addClass( 'button' )
+                                  .detach()
+                                  .appendTo( parent_element.next().find( '.garminbygis-additional-data-compare-button-wrapper' ) );
+                        });
+
+                        jQuery( '.box-text-products' ).addClass( 'hide-from-screen' );
+                    } else {
+                        jQuery.each( compare_buttons, function( key, button ) {
+                            var button         = jQuery( button ),
+                                parent_element = button.parents( '.berocket_lgv_additional_data' );
+
+                            button.removeClass( 'button' )
+                                  .detach()
+                                  .appendTo( parent_element.prev().find( '.box-text-products' ) );
+                        });
+
+                        jQuery( '.box-text-products' ).removeClass( 'hide-from-screen' );
+                    }
+
+                    br_lgv_stat_cookie = berocket_list_grid_type;
+                });
+            });
+        </script>
+    <?php
+    endif;
 }
+add_action( 'flatsome_before_header', 'hook_reposition_compare_button_if_switch_grid_list' );
