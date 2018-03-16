@@ -399,7 +399,7 @@ function hook_reposition_compare_button_if_switch_grid_list() {
     if ( 'yes' == get_option( 'yith_woocompare_compare_button_in_products_list' ) && ( is_shop() || is_product_category() ) ) :
     ?>
         <script>
-            jQuery(document).ready(function() {
+            jQuery( document ).ready(function() {
                 var br_lgv_stat_cookie = set_get_lgv_cookie( 0 );
 
                 if ( br_lgv_stat_cookie && 'list' == br_lgv_stat_cookie ) {
@@ -417,7 +417,7 @@ function hook_reposition_compare_button_if_switch_grid_list() {
                     });
                 }
 
-                jQuery(document).on( 'click', '.berocket_lgv_widget a.berocket_lgv_set', function ( event ) {
+                jQuery( document ).on( 'click', '.berocket_lgv_widget a.berocket_lgv_set', function( event ) {
                     event.preventDefault();
 
                     var compare_buttons         = jQuery( '.shop-container' ).find( 'a.compare' ),

@@ -1,6 +1,6 @@
 <?php
 global $wp_query;
-$options = get_option('br_lgv_liststyle_option');
+$options = get_option( 'br_lgv_liststyle_option' );
 ?>
 <div class="berocket_lgv_additional_data">
 
@@ -35,7 +35,7 @@ $options = get_option('br_lgv_liststyle_option');
     </div>
     <?php do_action( 'lgv_simple_after' ); ?>
     <script>
-        jQuery(document).ready( function () {
+        jQuery( document ).ready(function() {
             br_lgv_style_set();
         });
     </script>

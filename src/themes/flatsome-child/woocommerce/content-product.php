@@ -74,12 +74,6 @@ if ( $out_of_stock ) $classes[] = 'out-of-stock';
 
                 <?php do_action( 'flatsome_product_box_after' ); ?>
 
-                <?php 
-                /**
-                 * @hooked add_yith_woocommerce_compare_link - 20
-                 */
-                do_action( 'garminbygis_after_the_flatsome_product_box_after_action' );
-                ?>
             </div><!-- box-text -->
         </div><!-- box -->
 
