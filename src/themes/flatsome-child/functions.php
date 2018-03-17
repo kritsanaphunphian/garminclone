@@ -449,7 +449,7 @@ function hook_reposition_compare_button_if_switch_grid_list() {
 
                             button.removeClass( 'button' )
                                   .detach()
-                                  .appendTo( parent_element.prev().find( '.box-text-products' ) );
+                                  .appendTo( parent_element.prev() );
                         });
 
                         jQuery( '.box-text-products' ).removeClass( 'hide-from-screen' );
