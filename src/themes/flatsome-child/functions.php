@@ -472,6 +472,8 @@ add_action( 'flatsome_before_header', 'hook_reposition_compare_button_if_switch_
  * So here we hooked "flatsome_ajax_search_function" so we can alter the 'orderby' parameter
  * to 'relevance' (see garminbygis_search_products() function below).
  *
+ * @hook   flatsome_ajax_search_function
+ *
  * @param  string $search_query
  * @param  array  $args
  * @param  array  $defaults
@@ -484,7 +486,7 @@ add_action( 'flatsome_before_header', 'hook_reposition_compare_button_if_switch_
 function hook_flatsome_ajax_search_function( $type, $search_query, $args, $defaults ) {
     return 'garminbygis_search_products';
 }
-add_filter( 'flatsome_ajax_search_function','hook_flatsome_ajax_search_function', 10, 4 );
+add_filter( 'flatsome_ajax_search_function', 'hook_flatsome_ajax_search_function', 10, 4 );
 
 /**
  * This function will be used only with 'hook_flatsome_ajax_search_function()' function.
@@ -494,10 +496,12 @@ add_filter( 'flatsome_ajax_search_function','hook_flatsome_ajax_search_function'
  * @param  array  $args
  * @param  array  $defaults
  *
- * @return string
+ * @see    wp-content/themes/flatsome/inc/extensions/flatsome-live-search/flatsome-live-search.php
+ * @see    flatsome_ajax_search_products()
+ *
+ * @return array
  */
-function garminbygis_search_products( $search_query, $args, $defaults )
-{
+function garminbygis_search_products( $search_query, $args, $defaults ) {
     $args['orderby'] = 'relevance';
     return get_posts( $args );
 }
