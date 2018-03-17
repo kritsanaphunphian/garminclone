@@ -8,6 +8,12 @@ Version: 3.0
 
 /*************** ADD CUSTOM CSS HERE.   ***************/
 
+a.showlogin {
+    color: #005395;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
 .hide-from-screen {
     display: none;
 }
@@ -267,4 +273,9 @@ border-radius: 100%;
 }
 .garminbygis-additional-data-price .amount {
     font-size: 1.4em;
+}
+
+.garminbygis-wc-checkout-must-be-logged-in-message {
+    text-align: center;
+    padding-bottom: 6px;
 }
