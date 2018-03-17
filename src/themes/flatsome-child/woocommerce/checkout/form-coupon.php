@@ -1,12 +1,7 @@
 <?php
 /**
- * Checkout coupon form
- *
- * @author      WooThemes
- * @package     WooCommerce/Templates
- * @version     2.2
+ * @see wp-content/themes/flatsome/woocommerce/checkout/form-coupon.php
  */
-
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
@@ -16,7 +11,7 @@ if ( ! WC()->cart->coupons_enabled() ) {
 }
 
 $info_message = apply_filters( 'woocommerce_checkout_coupon_message', __( 'Have a coupon?', 'woocommerce' ) . ' <a href="#" class="showcoupon">' . __( 'Click here to enter your code', 'woocommerce' ) . '</a>' );
-wc_print_notice( '<span class="widget-title"><i class="icon-tag"></i></span>'.$info_message, 'notice' );
+wc_print_notice( '<span class="widget-title"><i class="icon-tag"></i></span>' . $info_message, 'notice' );
 ?>
 
 <form class="checkout_coupon has-border is-dashed" method="post" style="display:none">
