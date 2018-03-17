@@ -387,7 +387,6 @@ function hook_yith_wcwl_added_to_cart_message() {
 }
 add_filter( 'yith_wcwl_added_to_cart_message','hook_yith_wcwl_added_to_cart_message', 10 );
 
-
 /**
  * Note, that because YITH WooCommerce Compare Premium plugin doesn't provide
  * a way to 'add' a comapre link manually, so it is always be hooked under
@@ -463,3 +462,46 @@ function hook_reposition_compare_button_if_switch_grid_list() {
     endif;
 }
 add_action( 'flatsome_before_header', 'hook_reposition_compare_button_if_switch_grid_list' );
+
+/**
+ * Originally, Flatsome always set 'orderby' parameter to 'title', causing that
+ * a search result, kinda irrelevant with the keyword that user searches with,
+ * and there is no way we can alter that parameter.
+ *
+ * Fortunately, we can still hook our function at the very last step of its function.
+ * So here we hooked "flatsome_ajax_search_function" so we can alter the 'orderby' parameter
+ * to 'relevance' (see garminbygis_search_products() function below).
+ *
+ * @hook   flatsome_ajax_search_function
+ *
+ * @param  string $search_query
+ * @param  array  $args
+ * @param  array  $defaults
+ *
+ * @see    wp-content/themes/flatsome/inc/extensions/flatsome-live-search/flatsome-live-search.php
+ * @see    flatsome_ajax_search_products()
+ *
+ * @return string
+ */
+function hook_flatsome_ajax_search_function( $type, $search_query, $args, $defaults ) {
+    return 'garminbygis_search_products';
+}
+add_filter( 'flatsome_ajax_search_function', 'hook_flatsome_ajax_search_function', 10, 4 );
+
+/**
+ * This function will be used only with 'hook_flatsome_ajax_search_function()' function.
+ * To alter the original 'orderby' parameter.
+ *
+ * @param  string $search_query
+ * @param  array  $args
+ * @param  array  $defaults
+ *
+ * @see    wp-content/themes/flatsome/inc/extensions/flatsome-live-search/flatsome-live-search.php
+ * @see    flatsome_ajax_search_products()
+ *
+ * @return array
+ */
+function garminbygis_search_products( $search_query, $args, $defaults ) {
+    $args['orderby'] = 'relevance';
+    return get_posts( $args );
+}
