@@ -10,6 +10,10 @@ if ( ! WC()->cart->coupons_enabled() ) {
     return;
 }
 
+if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_user_logged_in() ) {
+    return;
+}
+
 $info_message = apply_filters( 'woocommerce_checkout_coupon_message', __( 'Have a coupon?', 'woocommerce' ) . ' <a href="#" class="showcoupon">' . __( 'Click here to enter your code', 'woocommerce' ) . '</a>' );
 wc_print_notice( '<span class="widget-title"><i class="icon-tag"></i></span>' . $info_message, 'notice' );
 ?>
