@@ -386,3 +386,80 @@ function hook_yith_wcwl_added_to_cart_message() {
     '</div>';
 }
 add_filter( 'yith_wcwl_added_to_cart_message','hook_yith_wcwl_added_to_cart_message', 10 );
+
+
+/**
+ * Note, that because YITH WooCommerce Compare Premium plugin doesn't provide
+ * a way to 'add' a comapre link manually, so it is always be hooked under
+ * 'woocommerce_after_shop_loop_item' action.
+ *
+ * In order to custom it as designed, we are going to play some trick here.
+ */
+function hook_reposition_compare_button_if_switch_grid_list() {
+    if ( 'yes' == get_option( 'yith_woocompare_compare_button_in_products_list' ) && ( is_shop() || is_product_category() ) ) :
+    ?>
+        <script>
+            jQuery( document ).ready(function() {
+                var br_lgv_stat_cookie = set_get_lgv_cookie( 0 );
+
+                if ( br_lgv_stat_cookie && 'list' == br_lgv_stat_cookie ) {
+                    jQuery( '.box-text-products' ).addClass( 'hide-from-screen' );
+
+                    var compare_buttons = jQuery( '.shop-container' ).find( 'a.compare' );
+
+                    jQuery.each( compare_buttons, function( key, button ) {
+                        var button         = jQuery( button ),
+                            parent_element = button.parents( '.product-small.berocket_lgv_list_grid' );
+
+                        button.addClass( 'button' )
+                              .detach()
+                              .appendTo( parent_element.find( '.garminbygis-additional-data-compare-button-wrapper' ) );
+                    });
+                }
+
+                jQuery( document ).on( 'click', '.berocket_lgv_widget a.berocket_lgv_set', function( event ) {
+                    event.preventDefault();
+
+                    var compare_buttons         = jQuery( '.shop-container' ).find( 'a.compare' ),
+                        berocket_list_grid_type = jQuery( this ).data( 'type' );
+
+                    if ( 0 >= compare_buttons.length ) {
+                        return;
+                    }
+
+                    if ( br_lgv_stat_cookie && berocket_list_grid_type === br_lgv_stat_cookie ) {
+                        return;
+                    }
+
+                    if ( 'list' === berocket_list_grid_type ) {
+                        jQuery.each( compare_buttons, function( key, button ) {
+                            var button         = jQuery( button ),
+                                parent_element = button.parents( '.product-small.berocket_lgv_list_grid' );
+
+                            button.addClass( 'button' )
+                                  .detach()
+                                  .appendTo( parent_element.next().find( '.garminbygis-additional-data-compare-button-wrapper' ) );
+                        });
+
+                        jQuery( '.box-text-products' ).addClass( 'hide-from-screen' );
+                    } else {
+                        jQuery.each( compare_buttons, function( key, button ) {
+                            var button         = jQuery( button ),
+                                parent_element = button.parents( '.berocket_lgv_additional_data' );
+
+                            button.removeClass( 'button' )
+                                  .detach()
+                                  .appendTo( parent_element.prev() );
+                        });
+
+                        jQuery( '.box-text-products' ).removeClass( 'hide-from-screen' );
+                    }
+
+                    br_lgv_stat_cookie = berocket_list_grid_type;
+                });
+            });
+        </script>
+    <?php
+    endif;
+}
+add_action( 'flatsome_before_header', 'hook_reposition_compare_button_if_switch_grid_list' );

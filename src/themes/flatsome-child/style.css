@@ -8,6 +8,10 @@ Version: 3.0
 
 /*************** ADD CUSTOM CSS HERE.   ***************/
 
+.hide-from-screen {
+    display: none;
+}
+
 .catalog-short {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -209,4 +213,58 @@ border-radius: 100%;
 	vertical-align: middle;
 }
 
+.product_meta > span {
+    padding: 7px 0;
+}
 
+/**
+ * Custom style.
+ * Only for 'flatsome-child/woocommmerce-list-grid/additional_product_data.php'
+ */
+.berocket_lgv_additional_data {
+    margin-bottom: 3.5em;
+}
+.berocket_lgv_additional_data .lgv_description {
+    padding-top: 16px;
+    padding-bottom: 20px;
+    line-height: 1.35em;
+}
+
+.garminbygis-additional-data-price-n-button-area:after {
+    clear: both;
+}
+
+.garminbygis-additional-data-action-button {
+    float: left;
+    width: 55.9%;
+}
+.garminbygis-additional-data-action-button .compare.button {
+    color: #fff;
+    font-size: .7em;
+    margin: 0;
+    border-radius: 4px;
+    padding: 0 5px;
+}
+.garminbygis-additional-data-action-button .add-to-cart-button {
+    display: inline-block;
+}
+.garminbygis-additional-data-action-button .add_to_cart_button,
+.garminbygis-additional-data-action-button .ajax_add_to_cart {
+    width: auto;
+    margin: 0;
+    padding: 0 5px;
+    font-size: 0.7em;
+    border-radius: 4px;
+}
+
+.garminbygis-additional-data-price {
+    float: right;
+    width: 43.9%;
+    text-align: right;
+}
+.garminbygis-additional-data-price.lgv_price {
+    padding-top: 5px;
+}
+.garminbygis-additional-data-price .amount {
+    font-size: 1.4em;
+}
