@@ -279,3 +279,19 @@ border-radius: 100%;
     text-align: center;
     padding-bottom: 6px;
 }
+
+/**
+ * Note, it is because we are attempting to override the WooCommerce-Multiple-Customer-Addresses style.
+ * That is why we specify a specific page's class, to make sure that this fix will not affect to another pages.
+ *
+ * @see wp-content/plugins/woocommerce-multiple-customer-addresses/classes/com/WCMCA_Html.php
+ * @see WCMCA_Html::render_addresses_list()
+ */
+.woocommerce-MyAccount-content .u-columns.woocommerce-Addresses.col2-set.addresses:after,
+.woocommerce-MyAccount-content .col2-set.addresses:after {
+    content: '.';
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
