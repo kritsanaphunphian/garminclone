@@ -505,3 +505,21 @@ function garminbygis_search_products( $search_query, $args, $defaults ) {
     $args['orderby'] = 'relevance';
     return get_posts( $args );
 }
+
+/**
+ * Note that the plugin "WooCommerce Multiple Customer Addresses" also hooks this action
+ * and replace the string by a custom title from its plugin.
+ *
+ * So, that is why we have to set the priority to 12 instead of 10 (default).
+ *
+ * @hook   woocommerce_my_account_my_address_description -- 12
+ *
+ * @see    wp-content/plugins/woocommerce-multiple-customer-addresses/classes/frontend/WCMCA_MyAccountPage.php
+ * @see    wp-content/plugins/woocommerce/templates/myaccount/my-address.php
+ *
+ * @return string
+ */
+function hook_woocommerce_my_account_my_address_description() {
+    return __( 'My Address', 'garminbygis' );
+}
+add_action( 'woocommerce_my_account_my_address_description', 'hook_woocommerce_my_account_my_address_description', 12);
