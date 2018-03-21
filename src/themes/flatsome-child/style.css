@@ -8,7 +8,8 @@ Version: 3.0
 
 /*************** ADD CUSTOM CSS HERE.   ***************/
 
-a.showlogin {
+a.showlogin,
+a.showcoupon {
     color: #005395;
     font-weight: 700;
     text-decoration: underline;
