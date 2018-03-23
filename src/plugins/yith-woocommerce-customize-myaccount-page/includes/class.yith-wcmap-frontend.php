@@ -473,6 +473,13 @@ if ( ! class_exists( 'YITH_WCMAP_Frontend' ) ) {
 			if( ! isset( $_FILES['ywcmap_user_avatar'] ) || ! wp_verify_nonce( $_POST['_nonce'], 'wp_handle_upload' ) )
 				return;
 
+			// -- START [CUSTOM CODE BY GARMINBYGIS]
+			if ( ! getimagesize( $_FILES['ywcmap_user_avatar']['tmp_name'] ) ) {
+				wc_add_notice( __( 'This is not an allowed file type. Only JPG, PNG and GIF files are allowed.', 'garminbygis' ), 'error' );
+				return;
+			}
+			// -- END [CUSTOM CODE BY GARMINBYGIS]
+
 			// required file
 			if ( ! function_exists( 'media_handle_upload' )  ) {
 				require_once( ABSPATH . 'wp-admin/includes/media.php' );
