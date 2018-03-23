@@ -303,3 +303,43 @@ border-radius: 100%;
 #yith-wcmap-avatar-form {
     z-index: 31;
 }
+
+#wcmca_custom_addresses {
+    padding-top: 20px;
+}
+
+/**
+ * -- START [Custom style only for WooCommerce Multiple Customer Addresses plugin]
+ */
+.woocommerce-Addresses address {
+    font-size: 0.95em;
+}
+
+.wcmca_additional_addresses_list_title {
+    margin-top: 40px;
+}
+
+.wcmca_default_address_badge {
+    font-size: .8em;
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 400px) {
+    .button.wcmca_add_new_address_button {
+        font-size: .935em;
+        line-height: 2em;
+        padding: 10px;
+    }
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 401px) and (max-width: 960px) {
+  .button.wcmca_add_new_address_button {
+        font-size: .75em;
+        line-height: 2em;
+        padding: 10px;
+    }
+}
+/**
+ * -- END [Custom style only for WooCommerce Multiple Customer Addresses plugin]
+ */
