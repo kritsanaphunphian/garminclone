@@ -296,3 +296,10 @@ border-radius: 100%;
     height: 0;
     clear: both;
 }
+
+#yith-wcmap-avatar-form-overlay {
+    z-index: 30;
+}
+#yith-wcmap-avatar-form {
+    z-index: 31;
+}
