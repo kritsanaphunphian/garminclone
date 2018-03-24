@@ -557,3 +557,22 @@ function hook_woocommerce_default_address_fields( $fields ) {
     return $fields;
 }
 add_filter( 'woocommerce_default_address_fields', 'hook_woocommerce_default_address_fields' );
+
+/**
+ * Thailand postcode has to be 'all-number' only.
+ *
+ * @see woocommerce/includes/class-wc-validation.php
+ * @see WC_Validation::is_postcode()
+ */
+function hook_woocommerce_validate_th_postcode( $valid, $postcode, $country ) {
+    if ( $country !== 'TH' ) {
+        return $valid;
+    }
+
+    if ( preg_match("/^[0-9]+$/", $postcode ) ) {
+        return true;
+    }
+
+    return false;
+}
+add_filter( 'woocommerce_validate_postcode', 'hook_woocommerce_validate_th_postcode', 10, 3 );
