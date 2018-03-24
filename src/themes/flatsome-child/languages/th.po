@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Flatsome Child\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-24 11:23+0000\n"
-"PO-Revision-Date: 2018-03-24 11:25+0000\n"
+"POT-Creation-Date: 2018-03-24 18:14+0000\n"
+"PO-Revision-Date: 2018-03-24 18:16+0000\n"
 "Last-Translator: GarminByGis <kritsana.phunpian@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -13,13 +13,53 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/"
 
-#: functions.php:524
+#: functions.php:530
 msgid "My Address"
 msgstr ""
 
-#: functions.php:532
+#: functions.php:545
 msgid "Wishlist"
 msgstr "รายการโปรด"
+
+#: wp-additional-field-account.php:22
+msgctxt "myaccount additional information fields"
+msgid "Birth date"
+msgstr "วันเกิด"
+
+#: wp-additional-field-account.php:24
+msgctxt "myaccount additional information fields"
+msgid "(Birth date format: DD-MM-YYYY. eg: 01/12/1990)"
+msgstr "(รูปแบบวันเกิด : วว-ดด-ปปปป. เช่น: 01/12/1990)"
+
+#: wp-additional-field-account.php:28
+msgctxt "myaccount additional information fields"
+msgid "Gender"
+msgstr "เพศ"
+
+#: wp-additional-field-account.php:30
+msgctxt "myaccount additional information fields"
+msgid "male"
+msgstr "ชาย"
+
+#: wp-additional-field-account.php:31
+msgctxt "myaccount additional information fields"
+msgid "female"
+msgstr "หญิง"
+
+#: wp-additional-field-account.php:33
+msgctxt "myaccount additional information fields"
+msgid "(Gender format: male/female)"
+msgstr "(เพศ : ชาย/หญิง)"
+
+#: wp-additional-field-account.php:37
+msgctxt "myaccount additional information fields"
+msgid "Phone no"
+msgstr "เบอร์โทรศัพท์"
+
+#: wp-additional-field-account.php:39
+msgctxt "myaccount additional information fields"
+msgid "(Phone no. format: 088-664-4321)"
+msgstr "(รูปแบบการกรอกเบอร์โทร : 088-664-4321)"
 
 #: woocommerce/myaccount/account-links.php:36
 msgid "Log out"

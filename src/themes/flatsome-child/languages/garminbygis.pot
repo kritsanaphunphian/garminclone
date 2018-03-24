@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Flatsome Child\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-24 11:23+0000\n"
+"POT-Creation-Date: 2018-03-24 18:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -14,12 +14,52 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/"
 
-#: functions.php:524
+#: functions.php:530
 msgid "My Address"
 msgstr ""
 
-#: functions.php:532
+#: functions.php:545
 msgid "Wishlist"
+msgstr ""
+
+#: wp-additional-field-account.php:22
+msgctxt "myaccount additional information fields"
+msgid "Birth date"
+msgstr ""
+
+#: wp-additional-field-account.php:24
+msgctxt "myaccount additional information fields"
+msgid "(Birth date format: DD-MM-YYYY. eg: 01/12/1990)"
+msgstr ""
+
+#: wp-additional-field-account.php:28
+msgctxt "myaccount additional information fields"
+msgid "Gender"
+msgstr ""
+
+#: wp-additional-field-account.php:30
+msgctxt "myaccount additional information fields"
+msgid "male"
+msgstr ""
+
+#: wp-additional-field-account.php:31
+msgctxt "myaccount additional information fields"
+msgid "female"
+msgstr ""
+
+#: wp-additional-field-account.php:33
+msgctxt "myaccount additional information fields"
+msgid "(Gender format: male/female)"
+msgstr ""
+
+#: wp-additional-field-account.php:37
+msgctxt "myaccount additional information fields"
+msgid "Phone no"
+msgstr ""
+
+#: wp-additional-field-account.php:39
+msgctxt "myaccount additional information fields"
+msgid "(Phone no. format: 088-664-4321)"
 msgstr ""
 
 #: woocommerce/myaccount/account-links.php:36

@@ -14,29 +14,29 @@ function my_woocommerce_edit_account_form() {
  
     ?>
     <fieldset>
-        <legend><?php _e( 'Additional Information', 'woocommerce' ); ?></legend>
+        <legend><?php _e( 'Additional information', 'woocommerce' ); ?></legend>
 
         <?php wp_enqueue_script( 'jquery-ui-datepicker' ); ?>
 
         <p class="form-row form-row-thirds">
-            <label for="birthday"><?php _e( 'Birth date : ', 'woocommerce' ); ?><span class="required">*</span></label>
+            <label for="birthday"><?php _ex( 'Birth date', 'myaccount additional information fields', 'garminbygis' ); ?> : <span class="required">*</span></label>
             <input type="text" id="birth-date" name="birthday" value="<?php echo esc_attr( $birthday ); ?>" required/>
-            <span style="font-size: 12px;"><?php _e( '(Birth date format: DD-MM-YYYY. eg: 01/12/1990)', 'woocommerce' ); ?></span>
+            <span style="font-size: 12px;"><?php _ex( '(Birth date format: DD-MM-YYYY. eg: 01/12/1990)', 'myaccount additional information fields', 'garminbygis' ); ?></span>
         </p>
 
         <p class="form-row form-row-thirds">
-            <label for="gender"><?php _e( 'Gender : ', 'woocommerce' ); ?></label>
+            <label for="gender"><?php _ex( 'Gender', 'myaccount additional information fields', 'garminbygis' ); ?> : </label>
             <select name="gender" class="input-text" value="<?php echo esc_attr( $gender ); ?>">
-                <option value="male" <?php if ( $gender == 'male' ) echo 'selected="selected"'; ?>><?php _e( 'male','woocommerce') ?></option>
-                <option value="female" <?php if ( $gender == 'female' ) echo 'selected="selected"'; ?>><?php _e( 'female','woocommerce') ?></option>
+                <option value="male" <?php if ( $gender == 'male' ) echo 'selected="selected"'; ?>><?php _ex( 'male', 'myaccount additional information fields', 'garminbygis' ); ?></option>
+                <option value="female" <?php if ( $gender == 'female' ) echo 'selected="selected"'; ?>><?php _ex( 'female', 'myaccount additional information fields', 'garminbygis' ); ?></option>
             </select>
-            <span style="font-size: 12px;"><?php _e( '(Gender format: male/female)', 'woocommerce' ); ?></span>
+            <span style="font-size: 12px;"><?php _ex( '(Gender format: male/female)', 'myaccount additional information fields', 'garminbygis' ); ?></span>
         </p>
 
         <p class="form-row form-row-thirds">
-            <label for="phoneno"><?php _e( 'Phone no : ', 'woocommerce' ); ?></label>
+            <label for="phoneno"><?php _ex( 'Phone no', 'myaccount additional information fields', 'garminbygis' ); ?> : </label>
             <input type="text" id="ssn" name="billing_phone" value="<?php echo esc_attr( $phoneno ); ?>"/>
-            <span style="font-size: 12px;"><?php _e( '(Phone no. format: 088-664-4321)', 'woocommerce' ); ?></span>
+            <span style="font-size: 12px;"><?php _ex( '(Phone no. format: 088-664-4321)', 'myaccount additional information fields', 'garminbygis' ); ?></span>
         </p>
     </fieldset>
 
