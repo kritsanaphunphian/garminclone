@@ -329,11 +329,18 @@ add_action( 'woocommerce_login_form_end', 'hook_flatsome_woocommerce_login_form_
 /**
  * To remove filters from the Flatsome theme
  * that we can do override at the child-theme by ourselves.
- *
- * @see wp-content/themes/flatsome/woocommerce/myaccount/form-login.php
  */
 function hook_remove_faltsome_parent_filters() {
+    /**
+     * @see wp-content/themes/flatsome/woocommerce/myaccount/form-login.php
+     */
     remove_filter( 'flatsome_footer','flatsome_page_footer', 10 );
+
+    /**
+     * @see flatsome/inc/integrations/wc-yith-wishlist/yith-wishlist.php
+     * @see flatsome_wishlist_account_item()
+     */
+    remove_filter( 'flatsome_account_links', 'flatsome_wishlist_account_item' );
 }
 add_action( 'after_setup_theme', 'hook_remove_faltsome_parent_filters' );
 
@@ -523,3 +530,19 @@ function hook_woocommerce_my_account_my_address_description() {
     return __( 'My Address', 'garminbygis' );
 }
 add_action( 'woocommerce_my_account_my_address_description', 'hook_woocommerce_my_account_my_address_description', 12);
+
+/**
+ * Note that the reason we need to hook it because we cannot translate the original string.
+ * The original string is a dynamic-variable which is not support for WordPress translation system.
+ *
+ * @see flatsome/inc/integrations/wc-yith-wishlist/yith-wishlist.php
+ * @see flatsome_wishlist_account_item()
+ */
+function hook_flatsome_wishlist_account_item() {
+    $wishlist_page = yith_wcwl_object_id( get_option( 'yith_wcwl_wishlist_page_id' ) );
+
+    echo '  <li class="wishlist-account-element' . ( is_page( $wishlist_page ) ? ' active' : '' ) . '">';
+    echo '      <a href="' . YITH_WCWL()->get_wishlist_url() . '">' . __( 'Wishlist', 'garminbygis' ) . '</a>';
+    echo '  </li>';
+}
+add_filter( 'flatsome_account_links', 'hook_flatsome_wishlist_account_item' );
