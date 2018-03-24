@@ -546,3 +546,14 @@ function hook_flatsome_wishlist_account_item() {
     echo '  </li>';
 }
 add_filter( 'flatsome_account_links', 'hook_flatsome_wishlist_account_item' );
+
+/**
+ * @see woocommerce/includes/class-wc-countries.php
+ * @see WC_Countries::get_default_address_fields()
+ */
+function hook_woocommerce_default_address_fields( $fields ) {
+    $fields['postcode']['maxlength'] = 5;
+
+    return $fields;
+}
+add_filter( 'woocommerce_default_address_fields', 'hook_woocommerce_default_address_fields' );
