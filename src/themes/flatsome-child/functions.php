@@ -552,6 +552,10 @@ add_filter( 'flatsome_account_links', 'hook_flatsome_wishlist_account_item' );
  * @see WC_Countries::get_default_address_fields()
  */
 function hook_woocommerce_default_address_fields( $fields ) {
+    $fields['address_1']['placeholder']      = esc_attr__( 'e.g. 111/1 M.1 Soi 1 Silom road.', 'garminbygis' );
+    $fields['address_2']['label']            = __( 'Sub District', 'garminbygis' );
+    $fields['city']['label']                 = __( 'District / City', 'garminbygis' );
+    $fields['state']['label']                = __( 'Province', 'woocommerce' );
     $fields['postcode']['maxlength']         = 5;
     $fields['postcode']['custom_attributes'] = array(
         'onkeyup' => 'this.value=this.value.replace( /[^\d]/, "" )'
