@@ -344,3 +344,13 @@ border-radius: 100%;
 /**
  * -- END [Custom style only for WooCommerce Multiple Customer Addresses plugin]
  */
+
+#wrapper > .message-wrapper {
+    padding-top: 30px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+#wrapper > .message-wrapper li:last-child {
+    margin-bottom: 0;
+}
