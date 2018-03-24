@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Flatsome Child\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-24 10:51+0000\n"
-"PO-Revision-Date: 2018-03-24 10:52+0000\n"
+"POT-Creation-Date: 2018-03-24 11:23+0000\n"
+"PO-Revision-Date: 2018-03-24 11:25+0000\n"
 "Last-Translator: GarminByGis <kritsana.phunpian@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -20,6 +20,10 @@ msgstr ""
 #: functions.php:532
 msgid "Wishlist"
 msgstr "รายการโปรด"
+
+#: woocommerce/myaccount/account-links.php:36
+msgid "Log out"
+msgstr "ออกจากระบบ"
 
 #. Name of the theme
 msgid "Flatsome Child"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Flatsome Child\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-24 10:51+0000\n"
+"POT-Creation-Date: 2018-03-24 11:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -20,6 +20,10 @@ msgstr ""
 
 #: functions.php:532
 msgid "Wishlist"
+msgstr ""
+
+#: woocommerce/myaccount/account-links.php:36
+msgid "Log out"
 msgstr ""
 
 #. Name of the theme
