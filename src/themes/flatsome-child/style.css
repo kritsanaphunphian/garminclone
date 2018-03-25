@@ -399,6 +399,16 @@ border-radius: 100%;
  */
 
 /**
+ * -- START [Custom jc-woocommerce-advanced-attributes plugin]
+ */
+ .jcaa_attr_select .jcaa_active_attr {
+    border-width: 3px;
+ }
+/**
+ * -- END [Custom jc-woocommerce-advanced-attributes plugin]
+ */
+
+/**
  * Media Queries ==============================================================
  */
 @media all and (min-width: 52em) {
