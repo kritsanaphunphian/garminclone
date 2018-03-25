@@ -43,36 +43,19 @@ require_once('wp-addtional-info-catalog-page.php');
 //Add checkbox require tax field
 require_once('wp-checkbox-field-checkout.php');
 
-//shop dealer
-require_once('wp-shortcode-dealers.php');
-
-//shop dealerTH
-require_once('wp-shortcode-dealersTH.php');
-
-//shop retailer
-require_once('wp-shortcode-retailers.php');
-
-//shop retailerTH
-require_once('wp-shortcode-retailersTH.php');
-
-//shop dealerMB
-require_once('wp-shortcode-dealersMB.php');
-
-//shop dealerTH-MB
-require_once('wp-shortcode-dealersTH-MB.php');
-
-//shop retailerMB
-require_once('wp-shortcode-retailersMB.php');
-
-//shop retailerTH-MB
-require_once('wp-shortcode-retailersTH-MB.php');
-
-//product register
-require_once('wp-shortcode-product-register.php');
-
-//map register
-require_once('wp-shortcode-map-register.php');
-
+function include_shortcodes() {
+    require_once( 'shortcodes/wp-shortcode-dealers.php' );          // shop dealer
+    require_once( 'shortcodes/wp-shortcode-dealersMB.php' );        // shop dealerMB
+    require_once( 'shortcodes/wp-shortcode-dealersTH-MB.php' );     // shop dealerTH-MB
+    require_once( 'shortcodes/wp-shortcode-dealersTH.php' );        // shop dealerTH
+    require_once( 'shortcodes/wp-shortcode-map-register.php' );     // map register
+    require_once( 'shortcodes/wp-shortcode-product-register.php' ); // product register
+    require_once( 'shortcodes/wp-shortcode-retailers.php' );        // shop retailer
+    require_once( 'shortcodes/wp-shortcode-retailersMB.php' );      // shop retailerMB
+    require_once( 'shortcodes/wp-shortcode-retailersTH-MB.php' );   // shop retailerTH-MB
+    require_once( 'shortcodes/wp-shortcode-retailersTH.php' );      // shop retailerTH
+}
+include_shortcodes();
 
 // Hooks near the bottom of profile page (if current user) 
 add_action('show_user_profile', 'custom_user_profile_fields');
@@ -552,6 +535,12 @@ add_filter( 'flatsome_account_links', 'hook_flatsome_wishlist_account_item' );
  * @see WC_Countries::get_default_address_fields()
  */
 function hook_woocommerce_default_address_fields( $fields ) {
+    $fields['address_1']['placeholder']      = esc_attr__( 'e.g. 111/1 M.1 Soi 1 Silom road.', 'garminbygis' );
+    $fields['address_2']['label']            = __( 'Sub District', 'garminbygis' );
+    $fields['address_2']['placeholder']      = esc_attr__( 'e.g. Silom', 'garminbygis' );
+    $fields['city']['label']                 = __( 'District / City', 'garminbygis' );
+    $fields['city']['placeholder']           = esc_attr__( 'e.g. Bangrak', 'garminbygis' );
+    $fields['state']['label']                = __( 'Province', 'woocommerce' );
     $fields['postcode']['maxlength']         = 5;
     $fields['postcode']['custom_attributes'] = array(
         'onkeyup' => 'this.value=this.value.replace( /[^\d]/, "" )'
