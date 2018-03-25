@@ -60,7 +60,7 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 							<?php elseif ( 'order-total' === $column_id ) : ?>
 								<?php
 								/* translators: 1: formatted order total 2: total order items */
-								printf( _n( '%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce' ), $order->get_formatted_order_total(), $item_count );
+								printf( _n( '%1$s<br/><small>for %2$s item</small>', '%1$s<br/><small>for %2$s items</small>', $item_count, 'woocommerce' ), $order->get_formatted_order_total(), $item_count );
 								?>
 
 							<?php elseif ( 'order-actions' === $column_id ) : ?>
@@ -77,6 +77,20 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 						</td>
 					<?php endforeach; ?>
 				</tr>
+				<tr class="woocommerce-orders-table__row order garminbygis-action-buttons--mobile">
+					<td class="woocommerce-orders-table__cell--mobile woocommerce-orders-table__cell-order-actions--mobile" colspan="<?php echo ( count( wc_get_account_orders_columns() ) - 1 ); ?>">
+						<?php
+						$actions = wc_get_account_orders_actions( $order );
+
+						if ( ! empty( $actions ) ) {
+							foreach ( $actions as $key => $action ) {
+								echo '<a href="' . esc_url( $action['url'] ) . '" class="woocommerce-button button ' . sanitize_html_class( $key ) . '">' . esc_html( $action['name'] ) . '</a>';
+							}
+						}
+						?>
+					</td>
+				</tr>
+
 			<?php endforeach; ?>
 		</tbody>
 	</table>
