@@ -554,7 +554,9 @@ add_filter( 'flatsome_account_links', 'hook_flatsome_wishlist_account_item' );
 function hook_woocommerce_default_address_fields( $fields ) {
     $fields['address_1']['placeholder']      = esc_attr__( 'e.g. 111/1 M.1 Soi 1 Silom road.', 'garminbygis' );
     $fields['address_2']['label']            = __( 'Sub District', 'garminbygis' );
+    $fields['address_2']['placeholder']      = esc_attr__( 'e.g. Silom', 'garminbygis' );
     $fields['city']['label']                 = __( 'District / City', 'garminbygis' );
+    $fields['city']['placeholder']           = esc_attr__( 'e.g. Bangrak', 'garminbygis' );
     $fields['state']['label']                = __( 'Province', 'woocommerce' );
     $fields['postcode']['maxlength']         = 5;
     $fields['postcode']['custom_attributes'] = array(
