@@ -9,6 +9,17 @@ Version: 3.0
 
 /*************** ADD CUSTOM CSS HERE.   ***************/
 
+/**
+ * 1. Generic stylesheet --------------------------------------------------
+ */
+th {
+    font-size: .6em;
+}
+
+.uppercase, h6, th, span.widget-title {
+    letter-spacing: 0;
+}
+
 a.showlogin,
 a.showcoupon {
     color: #005395;
@@ -353,4 +364,84 @@ border-radius: 100%;
 
 #wrapper > .message-wrapper li:last-child {
     margin-bottom: 0;
+}
+
+
+/**
+ * -- START [Custom table class' styles only for WooCommerce plugin]
+ *
+ * This may appears in various places, such as:
+ * - 'My Account > My Orders' page.
+ *
+ */
+.woocommerce-orders-table__cell-order-actions--mobile {
+    box-shadow: 0 1px 1px 1px #ffffff;
+}
+.woocommerce-orders-table__cell-order-actions--mobile .button {
+    min-height: 1em;
+    margin: 0 .35em 0 0;
+    padding: .6em .4em;
+    font-size: .725em;
+    font-weight: 400;
+    line-height: 1em;
+    border: 1px solid #00447b;
+}
+.woocommerce-orders-table__cell-order-actions--mobile .button:last-child {
+    margin: 0;
+}
+
+.woocommerce-orders-table__header.woocommerce-orders-table__header-order-actions,
+.woocommerce-orders-table__cell.woocommerce-orders-table__cell-order-actions {
+    display: none;
+}
+/**
+ * -- END [Custom table class' styles only for WooCommerce plugin]
+ */
+
+/**
+ * Media Queries ==============================================================
+ */
+@media all and (min-width: 52em) {
+    /**
+     * 1. Generic stylesheet --------------------------------------------------
+     */
+    th {
+        font-size: .9em;
+    }
+
+    .uppercase, h6, th, span.widget-title {
+        letter-spacing: .05em;
+    }
+
+    /**
+     * 2. Specific area stylesheet --------------------------------------------
+     */
+
+    /**
+     * -- START [Custom table class' styles only for WooCommerce plugin]
+     *
+     * This may appears in various places, such as:
+     * - 'My Account > My Orders' page.
+     *
+     */
+    .woocommerce-orders-table__row.garminbygis-action-buttons--mobile {
+        display: none;
+    }
+
+    .woocommerce-orders-table__header.woocommerce-orders-table__header-order-actions,
+    .woocommerce-orders-table__cell.woocommerce-orders-table__cell-order-actions {
+        display: table-cell;
+    }
+
+    .woocommerce-orders-table__cell.woocommerce-orders-table__cell-order-actions .button {
+        min-height: auto;
+        padding: .6em .35em;
+        font-size: .75em;
+        font-weight: 400;
+        line-height: 1em;
+        border: 1px solid #00447b;
+    }
+    /**
+     * -- END [Custom table class' styles only for WooCommerce plugin]
+     */
 }
