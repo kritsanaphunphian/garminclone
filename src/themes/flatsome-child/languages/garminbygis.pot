@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Flatsome Child\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-24 18:14+0000\n"
+"POT-Creation-Date: 2018-03-25 05:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -20,6 +20,26 @@ msgstr ""
 
 #: functions.php:545
 msgid "Wishlist"
+msgstr ""
+
+#: functions.php:555
+msgid "e.g. 111/1 M.1 Soi 1 Silom road."
+msgstr ""
+
+#: functions.php:556
+msgid "Sub District"
+msgstr ""
+
+#: functions.php:557
+msgid "e.g. Silom"
+msgstr ""
+
+#: functions.php:558
+msgid "District / City"
+msgstr ""
+
+#: functions.php:559
+msgid "e.g. Bangrak"
 msgstr ""
 
 #: wp-additional-field-account.php:22
@@ -60,6 +80,43 @@ msgstr ""
 #: wp-additional-field-account.php:39
 msgctxt "myaccount additional information fields"
 msgid "(Phone no. format: 088-664-4321)"
+msgstr ""
+
+#: wp-checkbox-field-checkout.php:3 wp-checkbox-field-checkout.php:84
+#: wp-checkbox-field-checkout.php:87 wp-checkbox-field-checkout.php:91
+msgctxt "additional checkout fields"
+msgid "Require Tax Invoice"
+msgstr ""
+
+#: wp-checkbox-field-checkout.php:10
+msgctxt "additional checkout fields"
+msgid "I want tax invoice"
+msgstr ""
+
+#: wp-checkbox-field-checkout.php:18
+msgctxt "additional checkout fields"
+msgid "Tax Information"
+msgstr ""
+
+#: wp-checkbox-field-checkout.php:25 wp-checkbox-field-checkout.php:85
+#: wp-checkbox-field-checkout.php:88
+msgctxt "additional checkout fields"
+msgid "Tax Id"
+msgstr ""
+
+#: wp-checkbox-field-checkout.php:36 wp-checkbox-field-checkout.php:89
+msgctxt "additional checkout fields"
+msgid "Head Office/Branch"
+msgstr ""
+
+#: wp-checkbox-field-checkout.php:84 wp-checkbox-field-checkout.php:87
+msgctxt "additional checkout fields"
+msgid "Yes"
+msgstr ""
+
+#: wp-checkbox-field-checkout.php:87
+msgctxt "additional checkout fields"
+msgid "(For Company)"
 msgstr ""
 
 #: woocommerce/myaccount/account-links.php:36

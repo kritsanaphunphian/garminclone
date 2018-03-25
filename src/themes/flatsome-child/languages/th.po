@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Flatsome Child\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-24 18:14+0000\n"
-"PO-Revision-Date: 2018-03-24 18:16+0000\n"
+"POT-Creation-Date: 2018-03-25 05:51+0000\n"
+"PO-Revision-Date: 2018-03-25 05:53+0000\n"
 "Last-Translator: GarminByGis <kritsana.phunpian@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -15,11 +15,31 @@ msgstr ""
 
 #: functions.php:530
 msgid "My Address"
-msgstr ""
+msgstr "ที่อยู่ของฉัน"
 
 #: functions.php:545
 msgid "Wishlist"
 msgstr "รายการโปรด"
+
+#: functions.php:555
+msgid "e.g. 111/1 M.1 Soi 1 Silom road."
+msgstr "ต.ย. 111/1 หมู่ 1 ซอย 1 ถนน สีลม"
+
+#: functions.php:556
+msgid "Sub District"
+msgstr "ตำบล / แขวง"
+
+#: functions.php:557
+msgid "e.g. Silom"
+msgstr "ต.ย. สีลม"
+
+#: functions.php:558
+msgid "District / City"
+msgstr "อำเภอ / เขต"
+
+#: functions.php:559
+msgid "e.g. Bangrak"
+msgstr "ต.ย. บางรัก"
 
 #: wp-additional-field-account.php:22
 msgctxt "myaccount additional information fields"
@@ -60,6 +80,43 @@ msgstr "เบอร์โทรศัพท์"
 msgctxt "myaccount additional information fields"
 msgid "(Phone no. format: 088-664-4321)"
 msgstr "(รูปแบบการกรอกเบอร์โทร : 088-664-4321)"
+
+#: wp-checkbox-field-checkout.php:3 wp-checkbox-field-checkout.php:84
+#: wp-checkbox-field-checkout.php:87 wp-checkbox-field-checkout.php:91
+msgctxt "additional checkout fields"
+msgid "Require Tax Invoice"
+msgstr "ต้องการใบกำกับภาษีหรือไม่"
+
+#: wp-checkbox-field-checkout.php:10
+msgctxt "additional checkout fields"
+msgid "I want tax invoice"
+msgstr "ฉันต้องการใบกำกับภาษี"
+
+#: wp-checkbox-field-checkout.php:18
+msgctxt "additional checkout fields"
+msgid "Tax Information"
+msgstr ""
+
+#: wp-checkbox-field-checkout.php:25 wp-checkbox-field-checkout.php:85
+#: wp-checkbox-field-checkout.php:88
+msgctxt "additional checkout fields"
+msgid "Tax Id"
+msgstr ""
+
+#: wp-checkbox-field-checkout.php:36 wp-checkbox-field-checkout.php:89
+msgctxt "additional checkout fields"
+msgid "Head Office/Branch"
+msgstr ""
+
+#: wp-checkbox-field-checkout.php:84 wp-checkbox-field-checkout.php:87
+msgctxt "additional checkout fields"
+msgid "Yes"
+msgstr "ใช่"
+
+#: wp-checkbox-field-checkout.php:87
+msgctxt "additional checkout fields"
+msgid "(For Company)"
+msgstr "(รูปแบบบริษัท)"
 
 #: woocommerce/myaccount/account-links.php:36
 msgid "Log out"
