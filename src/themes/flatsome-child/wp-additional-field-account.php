@@ -20,7 +20,7 @@ function my_woocommerce_edit_account_form() {
 
         <p class="form-row form-row-thirds">
             <label for="birthday"><?php _ex( 'Birth date', 'myaccount additional information fields', 'garminbygis' ); ?> : <span class="required">*</span></label>
-            <input type="text" id="birth-date" name="birthday" value="<?php echo esc_attr( $birthday ); ?>" required/>
+            <input type="text" id="birth-date" name="birthday" value="<?php echo esc_attr( $birthday ); ?>" />
             <span style="font-size: 12px;"><?php _ex( '(Birth date format: DD-MM-YYYY. eg: 01/12/1990)', 'myaccount additional information fields', 'garminbygis' ); ?></span>
         </p>
 
@@ -40,6 +40,7 @@ function my_woocommerce_edit_account_form() {
         </p>
     </fieldset>
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.12.0/validate.min.js"></script>
     <script type="text/javascript">
         jQuery( document ).ready(function( $ ) {
 
@@ -70,6 +71,63 @@ function my_woocommerce_edit_account_form() {
                 changeYear  : true,
                 dateFormat  : 'dd/mm/yy',
                 maxDate     : new Date
+            });
+
+            // Just do basic validation here.
+            // We could move or use a 3rd-party lib to handle a form validation
+            // later if we need to repeat this code again and again.
+            jQuery( '.woocommerce-EditAccountForm' ).submit(function( e ) {
+                var isValid   = true,
+                    firstname = jQuery( '#account_first_name' ),
+                    lastname  = jQuery( '#account_last_name' ),
+                    email     = jQuery( '#account_email' ),
+                    birthdate = jQuery( '#birth-date' );
+
+                firstname.removeClass( 'input-field-invalid' );
+                lastname.removeClass( 'input-field-invalid' );
+                email.removeClass( 'input-field-invalid' );
+                birthdate.removeClass( 'input-field-invalid' );
+
+                jQuery( '.validation-message' ).remove();
+
+                if ( validate.isEmpty( firstname.val() ) || ! validate.isString( firstname.val() ) ) {
+                    firstname.addClass( 'input-field-invalid' );
+                    firstname.parent().append( '<span class="validation-message text-warning">First name field cannot be blank.</span>' );
+
+                    if ( isValid ) firstname.focus();
+
+                    isValid = false;
+                }
+
+                if ( validate.isEmpty( lastname.val() ) || ! validate.isString( lastname.val() ) ) {
+                    lastname.addClass( 'input-field-invalid' );
+                    lastname.parent().append( '<span class="validation-message text-warning">Last name field cannot be blank.</span>' );
+
+                    if ( isValid ) lastname.focus();
+
+                    isValid = false;
+                }
+
+                if ( validate.isEmpty( email.val() ) || ! validate.isString( email.val() ) ) {
+                    email.addClass( 'input-field-invalid' );
+                    email.parent().append( '<span class="validation-message text-warning">Email field cannot be blank.</span>' );
+                    email.focus();
+
+                    if ( isValid ) email.focus();
+
+                    isValid = false;
+                }
+
+                if ( validate.isEmpty( birthdate.val() ) || ! validate.isString( birthdate.val() ) ) {
+                    birthdate.addClass( 'input-field-invalid' );
+                    birthdate.parent().append( '<span class="validation-message text-warning">Birth date field cannot be blank.</span>' );
+
+                    if ( isValid ) birthdate.focus();
+
+                    isValid = false;
+                }
+
+                return isValid;
             });
         });
     </script>
