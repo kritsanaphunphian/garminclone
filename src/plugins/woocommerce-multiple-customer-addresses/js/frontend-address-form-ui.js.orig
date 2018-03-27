@@ -90,7 +90,6 @@ function toggle_reset_product_address_for_guest_button(id)
 function wcma_highlight_empty_field(field)
 {
 	//console.log(jQuery(field));
-	var validation_message = '';
 	var original_border = jQuery(field).css('border');
 	var original_border_width = jQuery(field).css('border-width');
 
@@ -107,60 +106,7 @@ function wcma_highlight_empty_field(field)
 							borderLeftColor: '#FF0000',
 							borderRightColor: '#FF0000'}, 'slow'); */
 
-	switch ( field.name ) {
-		case 'wcmca_billing_state':
-			jQuery( '#wcmca_billing_state_field' ).find( '.select2-selection' ).css( { 'border': '1px #FF0000 solid' } );
-			validation_message = 'You must select a province.';
-
-		case 'wcmca_shipping_state':
-			jQuery( '#wcmca_shipping_state_field' ).find( '.select2-selection' ).css( { 'border': '1px #FF0000 solid' } );
-			validation_message = 'You must select a province.';
-			break;
-
-		case 'wcmca_address_internal_name':
-			validation_message = 'Identifier / Name field cannot be blank.';
-			break;
-
-		case 'wcmca_billing_first_name':
-		case 'wcmca_shipping_first_name':
-			validation_message = 'First name field cannot be blank.';
-			break;
-
-		case 'wcmca_billing_last_name':
-		case 'wcmca_shipping_last_name':
-			validation_message = 'Last name field cannot be blank.';
-			break;
-
-		case 'wcmca_billing_address_1':
-		case 'wcmca_shipping_address_1':
-			validation_message = 'Street address field cannot be blank.';
-			break;
-
-		case 'wcmca_billing_address_2':
-		case 'wcmca_shipping_address_2':
-			validation_message = 'Sub District field cannot be blank.';
-			break;
-
-		case 'wcmca_billing_city':
-		case 'wcmca_shipping_city':
-			validation_message = 'District / City field cannot be blank.';
-			break;
-
-		case 'wcmca_billing_postcode':
-		case 'wcmca_shipping_postcode':
-			validation_message = 'Postcode field cannot be blank.';
-			break;
-
-		case 'wcmca_billing_phone':
-			validation_message = 'Phone number field cannot be blank.';
-			break;
-
-		case 'wcmca_billing_email':
-			validation_message = 'Email address field cannot be blank.';
-			break;
-	}
-
-	jQuery( field ).parent().append( '<span class="validation-message text-warning">' + validation_message + '</span>' );
+	setTimeout(function(){ jQuery(field).css({ 'border': original_border })/* .animate({borderWidth: original_border_width}, 500) */; }, 3000);
 }
 function wcmca_show_address_form()
 {

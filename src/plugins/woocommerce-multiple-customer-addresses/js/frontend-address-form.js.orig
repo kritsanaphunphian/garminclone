@@ -108,11 +108,6 @@ function wcmca_init_add_new_addresses_button()
 } */
 function wcmca_reset_input_text_fields()
 {
-	jQuery( '.wcmca_error' ).fadeOut();
-	jQuery( '.validation-message' ).remove();
-	jQuery( '.wcmca_input_field' ).css( { 'border': '1px solid #ddd' } );
-	jQuery( '.select2-selection' ).css( { 'border': '1px solid #ddd' } );
-
 	jQuery("#wcmca_billing_country").val("");
 	wcmca_end_loading_state_field('billing');
 	wcmca_end_loading_state_field('shipping');
@@ -338,17 +333,10 @@ function wcmca_validate_fields_before_sending(type)
 {
 	//UI
 	jQuery(".wcmca_error").fadeOut();
-	jQuery( '#wcmca_address_form_container_' + type + ' .validation-message' ).remove();
-
-	jQuery( '#wcmca_address_form_container_' + type + ' .wcmca_input_field' ).css( { 'border': '1px solid #ddd' } );
-	jQuery( '#wcmca_address_form_container_' + type + ' .select2-selection' ).css( { 'border': '1px solid #ddd' } );
-
 	var empty_fields_error = false;
 	var exists_any_error = false;
 	jQuery('div#wcmca_address_form_'+type+' input, div#wcmca_address_form_'+type+' select').each(function(index, obj)
 	{
-		jQuery( this ).css( { 'border': '1px solid #ddd' } );
-
 		if(jQuery(this).hasClass('not_empty') && (!this.value || this.value=="") && jQuery(this).is(":visible"))
 		{
 			wcma_highlight_empty_field(this);
