@@ -31,6 +31,31 @@ a.showcoupon {
     display: none;
 }
 
+.required {
+    color: red;
+}
+
+input[type='email'].input-field-invalid,
+input[type='date'].input-field-invalid,
+input[type='search'].input-field-invalid,
+input[type='number'].input-field-invalid,
+input[type='text'].input-field-invalid,
+input[type='tel'].input-field-invalid,
+input[type='url'].input-field-invalid,
+input[type='password'].input-field-invalid,
+textarea.input-field-invalid,
+select.input-field-invalid, .select2-container .select2-choice, .select2-container .select2-selection.input-field-invalid,
+.input-field-invalid {
+    border: 1px solid #d1002a;
+}
+
+.validation-message.text-warning {
+    display: inline-block;
+    margin-bottom: 1em;
+    font-size: .9em;
+    color: #d1002a;
+}
+
 .catalog-short {
     overflow: hidden;
     text-overflow: ellipsis;
