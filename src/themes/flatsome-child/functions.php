@@ -568,3 +568,56 @@ function hook_woocommerce_validate_th_postcode( $valid, $postcode, $country ) {
     return false;
 }
 add_filter( 'woocommerce_validate_postcode', 'hook_woocommerce_validate_th_postcode', 10, 3 );
+
+/**
+ * @param  string $hint
+ *
+ * @see    plugins/wc-password-strength-settings/wc-password-strength-settings.php
+ * @see    wcpss_change_password_hint( $hint )
+ *
+ * @return string
+ */
+function hook_wcpss_change_password_hint( $hint ) {
+    if ( ! empty( get_option( 'woocommerce_disable_hint_text' ) ) ) {
+        if ( 'th' === pll_current_language() ) {
+            $hint = 'คำแนะนำ : รหัสผ่าน ควรมีอย่างน้อย 6 ตัวอักษร ประกอบด้วย เลข 0-9, Aa-Zz, เป็นคำที่ไม่มีรูปแบบ หรือ มีความหมาย(เช่น 3Cfe170c หรือดีกว่านี้ เป็นต้น)';
+        } else {
+            $hint = get_option( 'woocommerce_hint_text' );
+        }
+    }
+
+    return $hint;
+}
+add_filter( 'password_hint', 'hook_wcpss_change_password_hint', 12 );
+
+/**
+ * Override 'wc-password-strength-settings's wcpss_load_scripts()' function
+ * by adding our function at a position 100.
+ *
+ * @see plugins/wc-password-strength-settings/wc-password-strength-settings.php
+ * @see wcpss_load_scripts()
+ */
+function hook_wcpss_load_scripts() {
+    if ( 'th' === pll_current_language() ) {
+        $strings = array(
+            'empty'    => __( get_option( 'woocommerce_password_strength_label_1', null ) ),
+            'short'    => __( 'ระดับความปลอดภัยของรหัสผ่าน : ต่ำมาก', 'garminbygis' ),
+            'bad'      => __( 'ระดับความปลอดภัยของรหัสผ่าน : ต่ำ', 'garminbygis' ),
+            'good'     => __( 'ระดับความปลอดภัยของรหัสผ่าน : ปลอดภัย', 'garminbygis' ),
+            'strong'   => __( 'ระดับความปลอดภัยของรหัสผ่าน : ปลอดภัยมาก', 'garminbygis' ),
+            'mismatch' => __( 'Your passwords do not match, please re-enter them.' )
+        );
+    } else {
+        $strings = array(
+            'empty'    => __( get_option( 'woocommerce_password_strength_label_1', null ) ),
+            'short'    => __( get_option( 'woocommerce_password_strength_label_2', null ) ),
+            'bad'      => __( get_option( 'woocommerce_password_strength_label_3', null ) ),
+            'good'     => __( get_option( 'woocommerce_password_strength_label_4', null ) ),
+            'strong'   => __( get_option( 'woocommerce_password_strength_label_5', null ) ),
+            'mismatch' => __( 'Your passwords do not match, please re-enter them.' )
+        );
+    }
+
+    wp_localize_script( 'wc-password-strength-meter', 'pwsL10n', $strings );
+}
+add_action( 'wp_enqueue_scripts', 'hook_wcpss_load_scripts', 100 );
