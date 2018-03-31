@@ -627,3 +627,88 @@ function hook_wcpss_load_scripts() {
     wp_localize_script( 'wc-password-strength-meter', 'pwsL10n', $strings );
 }
 add_action( 'wp_enqueue_scripts', 'hook_wcpss_load_scripts', 100 );
+
+global $sbwucv;
+remove_action( 'woocommerce_before_customer_login_form', array( $sbwucv, 'sb_reg_success_message' ) );
+remove_action( 'woocommerce_before_customer_login_form', array( $sbwucv, 'sb_resend_message' ) );
+remove_filter( 'woocommerce_before_customer_login_form', array( $sbwucv, 'sb_verification_message' ), 10 );
+remove_filter( 'wp_authenticate_user', array( $sbwucv, 'sb_check_user_status_before_login' ), 10 );
+
+/**
+ * @see plugins/sb-woocommerce-email-verification/sb-woocommerce-email-verification.php
+ * @see sb_reg_success_message()
+ */
+function hook_sb_reg_success_message() {
+    if ( isset( $_GET['registered'] ) && 'true' == $_GET['registered'] ) {
+        echo '  <div class="woocommerce-message message-wrapper page-notice-message">';
+        echo '      <div class="message-container container success-color medium-text-center sb-custom-alert">';
+        echo '          <i class="icon-checkmark"></i>' . __( '<strong>Success:</strong> Account created successfully. Please check your email address to verify account.', 'garminbygis' );
+        echo '      </div>';
+        echo '  </div>';
+    }
+}
+add_action( 'woocommerce_before_customer_login_form', 'hook_sb_reg_success_message' );
+
+/**
+ * @see plugins/sb-woocommerce-email-verification/sb-woocommerce-email-verification.php
+ * @see sb_verification_message()
+ */
+function hook_sb_verification_message() {
+    if ( isset( $_GET['verify'] ) ) {
+        if ( 'false' == $_GET['verify'] ) {
+            echo '  <div class="woocommerce-error message-wrapper page-notice-message">';
+            echo '      <div class="message-container container alert-color medium-text-center sb-custom-alert">';
+            echo            __( '<strong>Error:</strong> Invalid verification credentials. Try login to get new verificaton key.', 'garminbygis' );
+            echo '      </div>';
+            echo '  </div>';
+        }
+
+        if ( 'true' == $_GET['verify'] ) {
+            echo '  <div class="woocommerce-message message-wrapper page-notice-message">';
+            echo '      <div class="message-container container success-color medium-text-center sb-custom-alert">';
+            echo '          <i class="icon-checkmark"></i> ' . __( '<strong>Success:</strong> Your account is verified. Try login now.', 'garminbygis' );
+            echo '      </div>';
+            echo '  </div>';
+        }
+    }
+}
+add_filter( 'woocommerce_before_customer_login_form', 'hook_sb_verification_message', 12, 3 );
+
+/**
+ * @see plugins/sb-woocommerce-email-verification/sb-woocommerce-email-verification.php
+ * @see sb_check_user_status_before_login()
+ */
+function hook_sb_check_user_status_before_login( $userdata ) {
+    global $sbwucv;
+    $settings      = $sbwucv->sb_admin->get_settings();
+    $common_values = array_intersect( $settings['restrict_roles'], $userdata->roles );
+
+    if ( 0 == count( $common_values ) ) {
+        $is_approved = get_user_meta( $userdata->ID, 'sbwev-approve-user', true );
+        if ( ! $is_approved || 0 == $is_approved ) {
+            $regenerate_link = get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) . '?action=resend_key&user_login=' . $userdata->user_login . '&nonce=' . wp_create_nonce( 'resend_key' . $userdata->user_login );
+            $userdata = new WP_Error(
+                'sb_confirmation_error',
+                str_replace( '{{resend_verification_link}}', '<a href="' . $regenerate_link . '">' . __( 'Resend Verification Link.', 'garminbygis' ) . '</a>', __( '<strong>Error:</strong> Please verify your account before login. {{resend_verification_link}}', 'garminbygis' ) )
+            );
+        }
+    }
+
+    return $userdata;
+}
+add_filter( 'wp_authenticate_user', 'hook_sb_check_user_status_before_login', 12, 3 );
+
+/**
+ * @see plugins/sb-woocommerce-email-verification/sb-woocommerce-email-verification.php
+ * @see sb_resend_message()
+ */
+function hook_sb_resend_message() {
+    if ( isset( $_GET['resend'] ) && 'true' == $_GET['resend'] ) {
+        echo '  <div class="woocommerce-message message-wrapper page-notice-message">';
+        echo '      <div class="message-container container success-color medium-text-center sb-custom-alert">';
+        echo '          <i class="icon-checkmark"></i> ' . __( '<strong>Success:</strong> Check email for new verification link.', 'garminbygis' );
+        echo '      </div>';
+        echo '  </div>';
+    }
+}
+add_action( 'woocommerce_before_customer_login_form', 'hook_sb_resend_message' );
