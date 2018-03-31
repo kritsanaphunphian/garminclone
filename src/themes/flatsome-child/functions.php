@@ -1,5 +1,11 @@
 <?php
-// Add custom Theme Functions here
+/**
+ * Initiate localization file after theme is loaded
+ */
+function initiate_garminbygis_theme() {
+    load_theme_textdomain( 'garminbygis', get_stylesheet_directory() . '/languages' );
+}
+add_action( 'after_setup_theme', 'initiate_garminbygis_theme' );
 
 /**
  * Register strings to Polylang so we can translate it
