@@ -266,6 +266,25 @@ border-radius: 100%;
 }
 
 /**
+ * -- START [Custom for product list page]
+ */
+.products .product.has-post-thumbnail .box-image img {
+    height: 170px;
+}
+
+.products .product .name.product-title {
+    height: 2.8em;
+    overflow-y: hidden;
+}
+
+.products .product .price-wrapper {
+    height: 2em;
+}
+/**
+ * -- END [Custom for product list page]
+ */
+
+/**
  * Custom style.
  * Only for 'flatsome-child/woocommmerce-list-grid/additional_product_data.php'
  */
@@ -440,6 +459,58 @@ border-radius: 100%;
 /**
  * Media Queries ==============================================================
  */
+@media all and (min-width: 34em) {
+    /**
+     * -- START [Custom for product list page]
+     */
+    .products .product.has-post-thumbnail .box-image img {
+        height: 200px;
+    }
+    /**
+     * -- END [Custom for product list page]
+     */
+}
+
+@media all and (min-width: 38em) {
+    /**
+     * -- START [Custom for product list page]
+     */
+    .products .product.has-post-thumbnail .box-image img {
+        height: 230px;
+    }
+    /**
+     * -- END [Custom for product list page]
+     */
+}
+
+@media all and (min-width: 44em) {
+    /**
+     * -- START [Custom for product list page]
+     */
+    .products .product.has-post-thumbnail .box-image img {
+        height: 290px;
+    }
+
+    .products .product .price-wrapper {
+        height: auto;
+    }
+    /**
+     * -- END [Custom for product list page]
+     */
+}
+
+@media all and (min-width: 50em) {
+    /**
+     * -- START [Custom for product list page]
+     */
+    .products .product.has-post-thumbnail .box-image img {
+        height: 275px;
+    }
+    /**
+     * -- END [Custom for product list page]
+     */
+}
+
 @media all and (min-width: 52em) {
     /**
      * 1. Generic stylesheet --------------------------------------------------
@@ -454,6 +525,20 @@ border-radius: 100%;
 
     /**
      * 2. Specific area stylesheet --------------------------------------------
+     */
+
+    /**
+     * -- START [Custom for product list page]
+     */
+    .products .product.has-post-thumbnail .box-image img {
+        min-height: 230px;
+    }
+
+    .products .product .name.product-title {
+        height: 3.2em;
+    }
+    /**
+     * -- END [Custom for product list page]
      */
 
     /**
@@ -482,5 +567,29 @@ border-radius: 100%;
     }
     /**
      * -- END [Custom table class' styles only for WooCommerce plugin]
+     */
+}
+
+@media all and (min-width: 56em) {
+    /**
+     * -- START [Custom for product list page]
+     */
+    .products .product.has-post-thumbnail .box-image img {
+        height: 250px;
+    }
+    /**
+     * -- END [Custom for product list page]
+     */
+}
+
+@media all and (min-width: 66em) {
+    /**
+     * -- START [Custom for product list page]
+     */
+    .products .product.has-post-thumbnail .box-image img {
+        height: 300px;
+    }
+    /**
+     * -- END [Custom for product list page]
      */
 }
