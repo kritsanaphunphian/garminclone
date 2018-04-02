@@ -137,7 +137,15 @@ foreach($grouped_attributes as $grouped):
 					}
 				}
 
-				echo apply_filters( 'woocommerce_attribute', wpautop( wptexturize( implode( ', ', $values ) ) ), $attribute, $values );
+				if ( is_array( $values ) && 1 < count( $values ) ) {
+					echo '<ul style="margin-bottom: 0;">';
+						foreach ( $values as $attribute_value ) {
+							echo '<li>' . wptexturize( $attribute_value ) . '</li>';
+						}
+					echo '</ul>';
+				} else {
+					echo apply_filters( 'woocommerce_attribute', wpautop( wptexturize( implode( ', ', $values ) ) ), $attribute, $values );
+				}
 			?></td>
 		</tr>
 
