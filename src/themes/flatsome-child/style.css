@@ -457,6 +457,16 @@ border-radius: 100%;
  */
 
 /**
+ * -- START [Custom single-product page]
+ */
+table.shop_attributes {
+    display: table;
+}
+/**
+ * -- END [Custom single-product page]
+ */
+
+/**
  * Media Queries ==============================================================
  */
 @media all and (min-width: 34em) {
