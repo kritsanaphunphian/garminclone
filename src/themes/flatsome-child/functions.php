@@ -60,6 +60,7 @@ function include_shortcodes() {
     require_once( 'shortcodes/wp-shortcode-retailersMB.php' );      // shop retailerMB
     require_once( 'shortcodes/wp-shortcode-retailersTH-MB.php' );   // shop retailerTH-MB
     require_once( 'shortcodes/wp-shortcode-retailersTH.php' );      // shop retailerTH
+    require_once( 'shortcodes/wp-shortcode-searchbox-faq.php' );
 }
 include_shortcodes();
 
