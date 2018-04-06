@@ -60,6 +60,7 @@ function include_shortcodes() {
     require_once( 'shortcodes/wp-shortcode-retailersMB.php' );      // shop retailerMB
     require_once( 'shortcodes/wp-shortcode-retailersTH-MB.php' );   // shop retailerTH-MB
     require_once( 'shortcodes/wp-shortcode-retailersTH.php' );      // shop retailerTH
+    require_once( 'shortcodes/wp-shortcode-searchbox-faq.php' );
 }
 include_shortcodes();
 
@@ -712,3 +713,23 @@ function hook_sb_resend_message() {
     }
 }
 add_action( 'woocommerce_before_customer_login_form', 'hook_sb_resend_message' );
+
+/**
+ * Hook into pre_get_posts to do the main product query.
+ *
+ * @param object $query  query object
+ */
+function hook_pre_get_posts( $query ) {
+    if ( ! $query->is_main_query() ) {
+        return;
+    }
+
+    if ( ! isset( $query->query['post_type'] ) || 'faq' !== $query->query['post_type'] ) {
+        return;
+    }
+
+    $query->set( 'orderby', 'relevance' );
+    $query->set( 'order', 'DESC' );
+    $query->set( 'post_type', array( 'faq' ) );
+}
+add_action( 'pre_get_posts', 'hook_pre_get_posts' );
