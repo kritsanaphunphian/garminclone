@@ -341,6 +341,12 @@ border-radius: 100%;
     padding-bottom: 6px;
 }
 
+.widget.yith-woocompare-widget a.remove {
+    padding: 0;
+    top: 10px;
+    line-height: .85em !important;
+}
+
 /**
  * Note, it is because we are attempting to override the WooCommerce-Multiple-Customer-Addresses style.
  * That is why we specify a specific page's class, to make sure that this fix will not affect to another pages.
