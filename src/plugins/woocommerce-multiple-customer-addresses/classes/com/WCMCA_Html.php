@@ -157,6 +157,24 @@ class WCMCA_Html
 		);
 
 		wp_localize_script( 'wcmca-additional-addresses', 'wcmca_address_form', $additional_js_options );
+		// -- START [CUSTOM CODE BY GARMINBYGIS]
+		wp_localize_script(
+			'wcmca-additional-addresses-ui',
+			'objectL10n',
+			array(
+				'validation_state'        => __( 'You must select a province.', 'garminbygis' ),
+				'validation_internalname' => __( 'Identifier / Name field cannot be blank.', 'garminbygis' ),
+				'validation_firstname'    => __( 'First name field cannot be blank.', 'garminbygis' ),
+				'validation_lastname'     => __( 'Last name field cannot be blank.', 'garminbygis' ),
+				'validation_address1'     => __( 'Street address field cannot be blank.', 'garminbygis' ),
+				'validation_address2'     => __( 'Sub District field cannot be blank.', 'garminbygis' ),
+				'validation_city'         => __( 'District / City field cannot be blank.', 'garminbygis' ),
+				'validation_postcode'     => __( 'Postcode field cannot be blank.', 'garminbygis' ),
+				'validation_phone'        => __( 'Phone number field cannot be blank.', 'garminbygis' ),
+				'validation_email'        => __( 'Email address field cannot be blank.', 'garminbygis' )
+			)
+		);
+		// -- END [CUSTOM CODE BY GARMINBYGIS]
 		wp_enqueue_script( 'wcmca-additional-addresses' );
 
 		wp_enqueue_script('wcmca-magnific-popup', WCMCA_PLUGIN_PATH.'/js/vendor/jquery.magnific-popup.js', array('jquery'));
@@ -471,6 +489,24 @@ class WCMCA_Html
 			'user_id' => get_current_user_id()
 		);
 		wp_localize_script( 'wcmca-address-form', 'wcmca_address_form', $additional_js_options );
+		// -- START [CUSTOM CODE BY GARMINBYGIS]
+		wp_localize_script(
+			'wcmca-additional-addresses-ui',
+			'objectL10n',
+			array(
+				'validation_state'        => __( 'You must select a province.', 'garminbygis' ),
+				'validation_internalname' => __( 'Identifier / Name field cannot be blank.', 'garminbygis' ),
+				'validation_firstname'    => __( 'First name field cannot be blank.', 'garminbygis' ),
+				'validation_lastname'     => __( 'Last name field cannot be blank.', 'garminbygis' ),
+				'validation_address1'     => __( 'Street address field cannot be blank.', 'garminbygis' ),
+				'validation_address2'     => __( 'Sub District field cannot be blank.', 'garminbygis' ),
+				'validation_city'         => __( 'District / City field cannot be blank.', 'garminbygis' ),
+				'validation_postcode'     => __( 'Postcode field cannot be blank.', 'garminbygis' ),
+				'validation_phone'        => __( 'Phone number field cannot be blank.', 'garminbygis' ),
+				'validation_email'        => __( 'Email address field cannot be blank.', 'garminbygis' )
+			)
+		);
+		// -- END [CUSTOM CODE BY GARMINBYGIS]
 		wp_enqueue_script( 'wcmca-address-form' );
 
 		$addresses = $wcmca_customer_model->get_addresses(get_current_user_id());

@@ -110,53 +110,53 @@ function wcma_highlight_empty_field(field)
 	switch ( field.name ) {
 		case 'wcmca_billing_state':
 			jQuery( '#wcmca_billing_state_field' ).find( '.select2-selection' ).css( { 'border': '1px #FF0000 solid' } );
-			validation_message = 'You must select a province.';
+			validation_message = objectL10n.validation_state;
 
 		case 'wcmca_shipping_state':
 			jQuery( '#wcmca_shipping_state_field' ).find( '.select2-selection' ).css( { 'border': '1px #FF0000 solid' } );
-			validation_message = 'You must select a province.';
+			validation_message = objectL10n.validation_state;
 			break;
 
 		case 'wcmca_address_internal_name':
-			validation_message = 'Identifier / Name field cannot be blank.';
+			validation_message = objectL10n.validation_internalname;
 			break;
 
 		case 'wcmca_billing_first_name':
 		case 'wcmca_shipping_first_name':
-			validation_message = 'First name field cannot be blank.';
+			validation_message = objectL10n.validation_firstname;
 			break;
 
 		case 'wcmca_billing_last_name':
 		case 'wcmca_shipping_last_name':
-			validation_message = 'Last name field cannot be blank.';
+			validation_message = objectL10n.validation_lastname;
 			break;
 
 		case 'wcmca_billing_address_1':
 		case 'wcmca_shipping_address_1':
-			validation_message = 'Street address field cannot be blank.';
+			validation_message = objectL10n.validation_address1;
 			break;
 
 		case 'wcmca_billing_address_2':
 		case 'wcmca_shipping_address_2':
-			validation_message = 'Sub District field cannot be blank.';
+			validation_message = objectL10n.validation_address2;
 			break;
 
 		case 'wcmca_billing_city':
 		case 'wcmca_shipping_city':
-			validation_message = 'District / City field cannot be blank.';
+			validation_message = objectL10n.validation_city;
 			break;
 
 		case 'wcmca_billing_postcode':
 		case 'wcmca_shipping_postcode':
-			validation_message = 'Postcode field cannot be blank.';
+			validation_message = objectL10n.validation_postcode;
 			break;
 
 		case 'wcmca_billing_phone':
-			validation_message = 'Phone number field cannot be blank.';
+			validation_message = objectL10n.validation_phone;
 			break;
 
 		case 'wcmca_billing_email':
-			validation_message = 'Email address field cannot be blank.';
+			validation_message = objectL10n.validation_email;
 			break;
 	}
 
