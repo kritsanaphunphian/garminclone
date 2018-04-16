@@ -4,6 +4,19 @@
  */
 function initiate_garminbygis_theme() {
     load_theme_textdomain( 'garminbygis', get_stylesheet_directory() . '/languages' );
+
+    // Need to leave these lines just like this so Loco translation plugin can translate these strings.
+    // Also, these strings will be used at "plugins/woocommerce-multiple-customer-addresses/classes/com/WCMCA_Html.php".
+    __( 'You must select a province.', 'garminbygis' );
+    __( 'Identifier / Name field cannot be blank.', 'garminbygis' );
+    __( 'First name field cannot be blank.', 'garminbygis' );
+    __( 'Last name field cannot be blank.', 'garminbygis' );
+    __( 'Street address field cannot be blank.', 'garminbygis' );
+    __( 'Sub District field cannot be blank.', 'garminbygis' );
+    __( 'District / City field cannot be blank.', 'garminbygis' );
+    __( 'Postcode field cannot be blank.', 'garminbygis' );
+    __( 'Phone number field cannot be blank.', 'garminbygis' );
+    __( 'Email address field cannot be blank.', 'garminbygis' );
 }
 add_action( 'after_setup_theme', 'initiate_garminbygis_theme' );
 
@@ -733,3 +746,31 @@ function hook_pre_get_posts( $query ) {
     $query->set( 'post_type', array( 'faq' ) );
 }
 add_action( 'pre_get_posts', 'hook_pre_get_posts' );
+
+/**
+ * Polylang does not handle 'querystring' by default.
+ * Means that every requests that have 'querystring' in a url will be replace with
+ * a without-querystring translation url.
+ * i.e.
+ * https://garminbygis.com/somepage?querystring=18 will be replaced to
+ * https://garminbygis.com/th/somepage if you switch the language to TH at the language switcher.
+ *
+ * This hook handles it by adding a querystring back to the translation url.
+ *
+ * @param  string $url
+ * @param  string $lang Language slug
+ *
+ * @return string
+ */
+function hook_pll_translation_url( $url, $lang ) {
+    // global $wp_query;
+    if ( ! isset( $_GET ) ) {
+        return $url;
+    }
+
+    $querystring = $_GET;
+    unset( $querystring['requesturi'] );
+
+    return add_query_arg( $querystring, $url );
+}
+add_filter( 'pll_translation_url', 'hook_pll_translation_url', 10, 2 );

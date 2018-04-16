@@ -92,7 +92,7 @@ function my_woocommerce_edit_account_form() {
 
                 if ( validate.isEmpty( firstname.val() ) || ! validate.isString( firstname.val() ) ) {
                     firstname.addClass( 'input-field-invalid' );
-                    firstname.parent().append( '<span class="validation-message text-warning">First name field cannot be blank.</span>' );
+                    firstname.parent().append( '<span class="validation-message text-warning"><?php _e( 'First name field cannot be blank.', 'garminbygis' ) ?></span>' );
 
                     if ( isValid ) firstname.focus();
 
@@ -101,7 +101,7 @@ function my_woocommerce_edit_account_form() {
 
                 if ( validate.isEmpty( lastname.val() ) || ! validate.isString( lastname.val() ) ) {
                     lastname.addClass( 'input-field-invalid' );
-                    lastname.parent().append( '<span class="validation-message text-warning">Last name field cannot be blank.</span>' );
+                    lastname.parent().append( '<span class="validation-message text-warning"><?php _e( 'Last name field cannot be blank.', 'garminbygis' ) ?></span>' );
 
                     if ( isValid ) lastname.focus();
 
@@ -110,7 +110,7 @@ function my_woocommerce_edit_account_form() {
 
                 if ( validate.isEmpty( email.val() ) || ! validate.isString( email.val() ) ) {
                     email.addClass( 'input-field-invalid' );
-                    email.parent().append( '<span class="validation-message text-warning">Email field cannot be blank.</span>' );
+                    email.parent().append( '<span class="validation-message text-warning"><?php _e( 'Email field cannot be blank.', 'garminbygis' ) ?></span>' );
                     email.focus();
 
                     if ( isValid ) email.focus();
@@ -120,7 +120,7 @@ function my_woocommerce_edit_account_form() {
 
                 if ( validate.isEmpty( birthdate.val() ) || ! validate.isString( birthdate.val() ) ) {
                     birthdate.addClass( 'input-field-invalid' );
-                    birthdate.parent().append( '<span class="validation-message text-warning">Birth date field cannot be blank.</span>' );
+                    birthdate.parent().append( '<span class="validation-message text-warning"><?php _e( 'Birth date field cannot be blank.', 'garminbygis' ) ?></span>' );
 
                     if ( isValid ) birthdate.focus();
 
