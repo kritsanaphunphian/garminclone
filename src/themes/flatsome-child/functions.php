@@ -746,3 +746,31 @@ function hook_pre_get_posts( $query ) {
     $query->set( 'post_type', array( 'faq' ) );
 }
 add_action( 'pre_get_posts', 'hook_pre_get_posts' );
+
+/**
+ * Polylang does not handle 'querystring' by default.
+ * Means that every requests that have 'querystring' in a url will be replace with
+ * a without-querystring translation url.
+ * i.e.
+ * https://garminbygis.com/somepage?querystring=18 will be replaced to
+ * https://garminbygis.com/th/somepage if you switch the language to TH at the language switcher.
+ *
+ * This hook handles it by adding a querystring back to the translation url.
+ *
+ * @param  string $url
+ * @param  string $lang Language slug
+ *
+ * @return string
+ */
+function hook_pll_translation_url( $url, $lang ) {
+    // global $wp_query;
+    if ( ! isset( $_GET ) ) {
+        return $url;
+    }
+
+    $querystring = $_GET;
+    unset( $querystring['requesturi'] );
+
+    return add_query_arg( $querystring, $url );
+}
+add_filter( 'pll_translation_url', 'hook_pll_translation_url', 10, 2 );
