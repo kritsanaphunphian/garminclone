@@ -1,0 +1,153 @@
+# Translation of Development (trunk) in Chinese (China)
+# This file is distributed under the same license as the Development (trunk) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2015-10-07 23:39:59+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/1.0-alpha-1100\n"
+"Project-Id-Version: Development (trunk)\n"
+
+#: simple-login-log.php:79 simple-login-log.php:826
+msgid "#"
+msgstr "#"
+
+#: simple-login-log.php:893
+msgid "All"
+msgstr "全部"
+
+#: simple-login-log.php:87 simple-login-log.php:834
+msgid "Data"
+msgstr "相关数据"
+
+#: simple-login-log.php:607
+msgid "Export Current Results to CSV"
+msgstr "当前结果导出为CSV格式"
+
+#: simple-login-log.php:75 simple-login-log.php:895
+msgid "Failed"
+msgstr "失败"
+
+#: simple-login-log.php:639
+msgid "Filter"
+msgstr "确定"
+
+#: simple-login-log.php:558
+msgid "Filter User"
+msgstr "搜索"
+
+#: simple-login-log.php:793
+msgid "Filter log by User Role"
+msgstr "按用户角色显示日志"
+
+#: simple-login-log.php:779
+msgid "Filter log by this name"
+msgstr "按用户名显示日志"
+
+#: simple-login-log.php:85 simple-login-log.php:832
+msgid "IP Address"
+msgstr "IP地址"
+
+#: simple-login-log.php:400
+msgid "Leave empty or enter 0 if you don't want the log to be truncated."
+msgstr "如果不想日志被截断请留空或输入0。"
+
+#: simple-login-log.php:377
+msgid "Log Failed Attempts"
+msgstr "登录失败的尝试"
+
+#: simple-login-log.php:76
+msgid "Login"
+msgstr "登录"
+
+#: simple-login-log.php:385 simple-login-log.php:542
+msgid "Login Log"
+msgstr "登录日志"
+
+#: simple-login-log.php:78
+msgid "Login Redirect"
+msgstr "登录重定向"
+
+#: simple-login-log.php:86 simple-login-log.php:833
+msgid "Login Result"
+msgstr "登录结果"
+
+#: simple-login-log.php:893
+msgid "Login Results"
+msgstr "登录结果"
+
+#: simple-login-log.php:413
+msgid "Logs failed attempts where user name and password are entered. Will not log if at least one of the mentioned fields is empty."
+msgstr "勾选后仅记录用户同时填写用户名和密码时的登录失败尝试，不记录用户名或密码为空时的登录失败尝试。"
+
+#. Author of the plugin/theme
+msgid "Max Chirkov"
+msgstr "Max Chirkov"
+
+#: simple-login-log.php:83 simple-login-log.php:830
+msgid "Name"
+msgstr "名称"
+
+#: simple-login-log.php:144
+msgid "Records"
+msgstr "记录"
+
+#. #-#-#-#-#  tmp-simple-login-log.pot (Simple Login Log 1.1.0)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: simple-login-log.php:375 simple-login-log.php:385
+msgid "Simple Login Log"
+msgstr "登录日志"
+
+#: simple-login-log.php:74 simple-login-log.php:894
+msgid "Successful"
+msgstr "成功"
+
+#. Description of the plugin/theme
+msgid "This plugin keeps a log of WordPress user logins. Offers user filtering and export features."
+msgstr "该插件记录WordPress用户登录行为日志。并提供按用户搜索日志和日志导出功能。"
+
+#: simple-login-log.php:84 simple-login-log.php:831
+msgid "Time"
+msgstr "登录时间"
+
+#: simple-login-log.php:376
+msgid "Truncate Log Entries"
+msgstr "截断日志条目"
+
+#: simple-login-log.php:77
+msgid "User Agent"
+msgstr "用户代理"
+
+#: simple-login-log.php:80 simple-login-log.php:827
+msgid "User ID"
+msgstr "ID"
+
+#: simple-login-log.php:82 simple-login-log.php:829
+msgid "User Role"
+msgstr "角色"
+
+#: simple-login-log.php:81 simple-login-log.php:828
+msgid "Username"
+msgstr "用户名"
+
+#: simple-login-log.php:558
+msgid "Username:"
+msgstr "用户名："
+
+#: simple-login-log.php:638
+msgid "View All"
+msgstr "浏览全部"
+
+#: simple-login-log.php:398
+msgid "days and older."
+msgstr "天以上。"
+
+#. Author URI of the plugin/theme
+msgid "http://SimpleRealtyTheme.com"
+msgstr "http://SimpleRealtyTheme.com"
+
+#. Plugin URI of the plugin/theme
+msgid "http://simplerealtytheme.com"
+msgstr "http://simplerealtytheme.com"
