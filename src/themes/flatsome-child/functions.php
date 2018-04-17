@@ -774,3 +774,14 @@ function hook_pll_translation_url( $url, $lang ) {
     return add_query_arg( $querystring, $url );
 }
 add_filter( 'pll_translation_url', 'hook_pll_translation_url', 10, 2 );
+
+function add_faq_search_page( $template ) {
+    global $wp_query;
+    $query = get_query_var( 'post_type' );
+    if ( $wp_query->is_search && is_array( $query ) && 'faq' === $query[0] ) {
+        return locate_template('faq-search.php');
+    }
+
+    return $template;
+}
+add_filter( 'template_include', 'add_faq_search_page' );

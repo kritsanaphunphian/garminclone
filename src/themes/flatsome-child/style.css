@@ -472,6 +472,10 @@ table.shop_attributes {
  * -- END [Custom single-product page]
  */
 
+.faqsearch-searchbox {
+    margin-bottom: 1em;
+}
+
 /**
  * Media Queries ==============================================================
  */
