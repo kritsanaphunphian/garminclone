@@ -35,6 +35,10 @@ a.showcoupon {
     color: red;
 }
 
+.badge-inner {
+    text-transform: uppercase;
+}
+
 input[type='email'].input-field-invalid,
 input[type='date'].input-field-invalid,
 input[type='search'].input-field-invalid,
