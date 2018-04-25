@@ -53,6 +53,10 @@ select.input-field-invalid, .select2-container .select2-choice, .select2-contain
     border: 1px solid #d1002a;
 }
 
+select {
+    padding: 0 1.75em 0 .75em;
+}
+
 .page-notice-message {
     padding-bottom: 1.9em;
 }
