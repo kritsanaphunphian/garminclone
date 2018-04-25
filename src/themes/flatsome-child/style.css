@@ -533,6 +533,24 @@ section #huge_it_videogallery li:hover img {
     position: initial;
 }
 
+.garminbygis-label-icon img {
+    width: 60%;
+}
+.garminbygis-label-desc .col-inner {
+    padding-left: 4px;
+}
+.garminbygis-label-desc {
+    margin-bottom: 1em;
+}
+.garminbygis-label-desc h3 {
+    font-size: 1em;
+    margin-bottom: 0;
+}
+.garminbygis-label-desc p {
+    font-size: .85em;
+}
+
+
 /**
  * ============================================================================
  * Media Queries
