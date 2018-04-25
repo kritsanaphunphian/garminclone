@@ -294,6 +294,8 @@ border-radius: 100%;
  */
 .berocket_lgv_additional_data {
     margin-bottom: 3.5em;
+    max-width: 100%;
+    padding: 0 .5rem;
 }
 .berocket_lgv_additional_data .lgv_description {
     padding-top: 16px;
@@ -311,7 +313,7 @@ border-radius: 100%;
 }
 .garminbygis-additional-data-action-button .compare.button {
     color: #fff;
-    font-size: .7em;
+    font-size: .6em;
     margin: 0;
     border-radius: 4px;
     padding: 0 5px;
@@ -324,7 +326,7 @@ border-radius: 100%;
     width: auto;
     margin: 0;
     padding: 0 5px;
-    font-size: 0.7em;
+    font-size: 0.6em;
     border-radius: 4px;
 }
 
@@ -337,7 +339,7 @@ border-radius: 100%;
     padding-top: 5px;
 }
 .garminbygis-additional-data-price .amount {
-    font-size: 1.4em;
+    font-size: 1.1em;
 }
 
 .garminbygis-wc-checkout-must-be-logged-in-message {
@@ -481,18 +483,50 @@ table.shop_attributes {
 }
 
 /**
- * Media Queries ==============================================================
+ * ============================================================================
+ * Media Queries
+ * ============================================================================
+ */
+
+/**
+ * About width: 544;
+ * ============================================================================
  */
 @media all and (min-width: 34em) {
+    /**
+     * Custom style.
+     * Only for 'flatsome-child/woocommmerce-list-grid/additional_product_data.php'
+     */
+    .garminbygis-additional-data-action-button .compare.button,
+    .garminbygis-additional-data-action-button .add_to_cart_button,
+    .garminbygis-additional-data-action-button .ajax_add_to_cart {
+        font-size: 0.7em;
+    }
+
     /**
      * -- START [Custom for product list page]
      */
     .products .product.has-post-thumbnail .box-image img {
         height: 200px;
     }
+
+    .garminbygis-additional-data-price .amount {
+       font-size: 1.4em;
+    }
     /**
      * -- END [Custom for product list page]
      */
+}
+
+/**
+ * About width: 576;
+ * ============================================================================
+ */
+@media all and (min-width: 36em) {
+    .berocket_lgv_additional_data {
+        max-width: 66%;
+        padding: 0 0 0 1rem;
+    }
 }
 
 @media all and (min-width: 38em) {
