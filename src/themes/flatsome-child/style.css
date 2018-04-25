@@ -478,9 +478,21 @@ table.shop_attributes {
  * -- END [Custom single-product page]
  */
 
+/**
+ * -- START [Custom faq page]
+ */
 .faqsearch-searchbox {
     margin-bottom: 1em;
 }
+
+.arconix-faq-term-title,
+#tab_ask-your-question h2,
+#tab_ask-your-question .divider {
+    display: none;
+}
+/**
+ * -- END [Custom faq page]
+ */
 
 /**
  * ============================================================================
@@ -557,6 +569,10 @@ table.shop_attributes {
      */
 }
 
+/**
+ * About width: 800px;
+ * ============================================================================
+ */
 @media all and (min-width: 50em) {
     /**
      * -- START [Custom for product list page]
@@ -625,6 +641,18 @@ table.shop_attributes {
     }
     /**
      * -- END [Custom table class' styles only for WooCommerce plugin]
+     */
+
+    /**
+     * -- START [Custom faq page]
+     */
+    .arconix-faq-term-title,
+    #tab_ask-your-question h2,
+    #tab_ask-your-question .divider {
+        display: inherit;
+    }
+    /**
+     * -- END [Custom faq page]
      */
 }
 
