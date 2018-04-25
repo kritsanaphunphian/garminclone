@@ -495,6 +495,41 @@ table.shop_attributes {
  */
 
 /**
+ * -- START [Custom th/support/vdo-tutorial page]
+ */
+.flickity-viewport {
+    margin-top: -1.5em;
+    margin-bottom: 2.5em;
+}
+.flickity-viewport .col {
+    padding: 0;
+}
+
+#huge_it_videogallery .huge_it_big_li {
+    max-width: 48% !important;
+    height: 95px !important;
+}
+
+#huge_it_videogallery li img {
+    height: auto !important;
+}
+
+section #huge_it_videogallery li:hover img {
+    border-radius: 4px;
+}
+/**
+ * -- END [Custom th/support/vdo-tutorial page]
+ */
+
+.page-template-default div.img div.image-cover {
+    padding-top: 0 !important;
+}
+
+.page-template-default div.img  div.image-cover img {
+    position: initial;
+}
+
+/**
  * ============================================================================
  * Media Queries
  * ============================================================================
@@ -527,6 +562,17 @@ table.shop_attributes {
     }
     /**
      * -- END [Custom for product list page]
+     */
+
+    /**
+     * -- START [Custom th/support/vdo-tutorial page]
+     */
+    #huge_it_videogallery .huge_it_big_li {
+        max-width: 23.7% !important;
+        height: 120px !important;
+    }
+    /**
+     * -- END [Custom th/support/vdo-tutorial page]
      */
 }
 
@@ -582,6 +628,16 @@ table.shop_attributes {
     }
     /**
      * -- END [Custom for product list page]
+     */
+
+    /**
+     * -- START [Custom th/support/vdo-tutorial page]
+     */
+    #huge_it_videogallery .huge_it_big_li {
+        height: 135px !important;
+    }
+    /**
+     * -- END [Custom th/support/vdo-tutorial page]
      */
 }
 
@@ -677,5 +733,22 @@ table.shop_attributes {
     }
     /**
      * -- END [Custom for product list page]
+     */
+
+    /**
+     * -- START [Custom th/support/vdo-tutorial page]
+     */
+    #huge_it_videogallery .huge_it_big_li {
+        max-width: 24.38% !important;
+        height: 150px !important;
+    }
+    section #huge_it_videogallery li a,
+    section #huge_it_videogallery li .overLayer,
+    section #huge_it_videogallery li .infoLayer,
+    #huge_it_videogallery li img {
+        max-width: none !important;
+    }
+    /**
+     * -- END [Custom th/support/vdo-tutorial page]
      */
 }
