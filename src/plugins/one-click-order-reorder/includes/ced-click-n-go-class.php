@@ -356,11 +356,14 @@ if( ! class_exists( 'Ced_Click_n_Go' ) ) {
 				$variation_id = ( int ) $product_info[ 'variation_id' ];
 				$cart_product_data = apply_filters ( 'woocommerce_order_again_cart_item_data', array (), $product_info, $order );
 				foreach ( $product_info ['item_meta'] as $product_meta_name => $product_meta_value ) {
+					$fix_product_meta_name  = str_replace( 'attribute_', '', $product_meta_name);
+					$fix_product_meta_value = is_array( $product_meta_value ) ? $product_meta_value[0] : $product_meta_value;
+
 					if ( taxonomy_is_product_attribute( $product_meta_name ) ) {
-						$all_variations [$product_meta_name] = $product_meta_value[0];
+						$all_variations [ 'attribute_' . $fix_product_meta_name] = $fix_product_meta_value;
 					} else {
-						if ( meta_is_product_attribute( $product_meta_name, $product_meta_value[0], $product_id ) ) {
-							$all_variations[ $product_meta_name ] = $product_meta_value[0];
+						if ( meta_is_product_attribute( $product_meta_name, $fix_product_meta_value, $product_id ) ) {
+							$all_variations[ 'attribute_' . $fix_product_meta_name ] = $fix_product_meta_value;
 						}
 					}
 				}
