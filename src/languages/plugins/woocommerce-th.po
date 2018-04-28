@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - WooCommerce - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-03-25 05:57+0000\n"
+"PO-Revision-Date: 2018-04-23 02:21+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -8243,7 +8243,7 @@ msgstr "โทรศัพท์"
 #: templates/myaccount/form-edit-account.php:40
 #: templates/myaccount/form-login.php:91
 msgid "Email address"
-msgstr "ที่อยู่อีเมล"
+msgstr "อีเมล"
 
 #: includes/admin/class-wc-admin-profile.php:94
 #: includes/admin/settings/views/settings-tax.php:31
@@ -15257,7 +15257,7 @@ msgstr ""
 #: includes/api/class-wc-rest-customers-controller.php:158
 #: includes/api/v1/class-wc-rest-customers-controller.php:650
 msgid "The email address for the customer."
-msgstr "ที่อยู่อีเมลสำหรับลูกค้า"
+msgstr "อีเมลสำหรับลูกค้า"
 
 #: includes/api/class-wc-rest-customers-controller.php:164
 #: includes/api/v1/class-wc-rest-customers-controller.php:656
@@ -15367,7 +15367,7 @@ msgstr "รหัส ISO สำหรับประเทศ"
 #: includes/api/v1/class-wc-rest-customers-controller.php:773
 #: includes/api/v1/class-wc-rest-orders-controller.php:1073
 msgid "Email address."
-msgstr "ที่อยู่อีเมล"
+msgstr "อีเมล"
 
 #: includes/api/class-wc-rest-customers-controller.php:255
 #: includes/api/class-wc-rest-orders-controller.php:1003
@@ -18554,7 +18554,7 @@ msgstr ""
 
 #: includes/api/v1/class-wc-rest-customers-controller.php:408
 msgid "Email address is invalid."
-msgstr "ที่อยู่อีเมลล์ไม่ถูกต้อง"
+msgstr "อีเมลไม่ถูกต้อง"
 
 #: includes/api/v1/class-wc-rest-customers-controller.php:412
 msgid "Username isn't editable."
@@ -22179,12 +22179,12 @@ msgstr "บัญชีของฉัน"
 
 #: includes/shortcodes/class-wc-shortcode-my-account.php:242
 msgid "Enter a username or email address."
-msgstr "กรุณากรอกบัญชีผู้ใช้หรือที่อยู่อีเมล"
+msgstr "กรุณากรอกบัญชีผู้ใช้หรืออีเมล"
 
 #: includes/shortcodes/class-wc-shortcode-my-account.php:265
 #: includes/shortcodes/class-wc-shortcode-my-account.php:270
 msgid "Invalid username or email."
-msgstr "ชื่อบัญชีผู้ใช้หรือที่อยู่อีเมลไม่ถูกต้อง"
+msgstr "ชื่อบัญชีผู้ใช้หรืออีเมลไม่ถูกต้อง"
 
 #: includes/shortcodes/class-wc-shortcode-my-account.php:283
 msgid "Password reset is not allowed for this user"
@@ -23214,7 +23214,7 @@ msgstr "เลือกหมวดหมู่"
 #: includes/wc-user-functions.php:53
 msgid ""
 "An account is already registered with your email address. Please log in."
-msgstr "มีการลงทะเบียนบัญชีกับที่อยู่อีเมลของคุณแล้ว กรุณาเข้าสู่ระบบ"
+msgstr "มีการลงทะเบียนบัญชีกับอีเมลของคุณแล้ว กรุณาเข้าสู่ระบบ"
 
 #: includes/wc-user-functions.php:61
 msgid "Please enter a valid account username."
@@ -23517,7 +23517,7 @@ msgstr ""
 
 #: templates/auth/form-login.php:35 templates/myaccount/form-login.php:44
 msgid "Username or email address"
-msgstr "ชื่อผู้ใช้ หรือ ที่อยู่อีเมล"
+msgstr "ชื่อผู้ใช้ หรือ อีเมล"
 
 #: templates/auth/header.php:29
 msgid "Application authentication request"
@@ -23858,7 +23858,7 @@ msgstr "ดูรายการสั่งซื้อ: %s"
 #: templates/global/form-login.php:35
 #: templates/myaccount/form-lost-password.php:30
 msgid "Username or email"
-msgstr "ชื่อผู้ใช้ หรือ ที่อยู่อีเมล"
+msgstr "ชื่อผู้ใช้ หรือ อีเมล"
 
 #: templates/global/form-login.php:51 templates/myaccount/form-login.php:58
 msgid "Remember me"
@@ -23931,7 +23931,7 @@ msgid ""
 "Lost your password? Please enter your username or email address. You will "
 "receive a link to create a new password via email."
 msgstr ""
-"ลืมรหัสผ่าน? กรุณากรอกบัญชีผู้ใช้หรือที่อยู่อีเมล "
+"ลืมรหัสผ่าน? กรุณากรอกบัญชีผู้ใช้หรืออีเมล "
 "คุณจะได้รับลิงค์สำหรับกำหนดรหัสผ่านใหม่ทางอีเมลของคุณ"
 
 #: templates/myaccount/form-reset-password.php:27
