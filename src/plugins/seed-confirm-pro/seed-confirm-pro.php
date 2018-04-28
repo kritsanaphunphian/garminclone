@@ -1672,7 +1672,12 @@ function seed_add_confirm_button($actions, $order){
 	}
 
 	$order_id = $order->get_id();
-	$url = get_page_link($page->ID);
+
+	if ( function_exists( 'pll_get_post' ) ) {
+		$url = get_page_link( pll_get_post( $page_id ) );
+	} else {
+		$url = get_page_link( $page_id );
+	}
 
 	/* Want to check this order has confirm-payment */
 	$params = array(
