@@ -7,6 +7,8 @@
 	Author: AfterShip
 	Author URI: http://aftership.com
 
+	Text Domain: aftership
+
 	Copyright: © AfterShip
 */
 
@@ -438,13 +440,9 @@ if (is_woocommerce_active()) {
 
 
                 $options = get_option('aftership_option_name');
-                if (array_key_exists('track_message_1', $options) && array_key_exists('track_message_2', $options)) {
-                    $track_message_1 = $options['track_message_1'];
-                    $track_message_2 = $options['track_message_2'];
-                } else {
-                    $track_message_1 = 'Your order was shipped via ';
-                    $track_message_2 = 'Tracking number is ';
-                }
+
+                $track_message_1 = __( 'Your order was shipped via ', 'aftership' );
+                $track_message_2 = __( 'Tracking number is ', 'aftership' );
 
                 $required_fields_values = array();
                 $provider_required_fields = explode(",", $values['aftership_tracking_required_fields']);
