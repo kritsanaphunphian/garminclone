@@ -852,7 +852,7 @@ function seed_confirm_init() {
 			die();
 		}
 
-		$_SESSION['resp_message'] = get_option('seed_confirm_notification_text');
+		$_SESSION['resp_message'] = __( 'Thank you for your payment. We will process your order shortly.', 'seed-confirm' );
 	}
 
 endif;
