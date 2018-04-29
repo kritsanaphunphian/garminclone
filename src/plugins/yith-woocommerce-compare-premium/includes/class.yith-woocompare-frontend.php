@@ -162,6 +162,14 @@ if( !class_exists( 'YITH_Woocompare_Frontend' ) ) {
                 $sitepress->switch_lang( $lang, true );
             }
 
+            if ( ! $lang ) {
+                $product_list = $the_list;
+                $the_list     = array();
+                foreach ( $product_list as $product_id ) {
+                    $the_list[] = pll_get_post( $product_id, pll_current_language() );
+                }
+            }
+
             foreach( $the_list as $product_id ) {
                 if( function_exists( 'wpml_object_id_filter' ) ) {
                     $product_id_translated = wpml_object_id_filter( $product_id, 'product', false );
@@ -670,6 +678,14 @@ if( !class_exists( 'YITH_Woocompare_Frontend' ) ) {
             if ( empty( $this->products_list ) ) {
                 echo '<li class="list_empty">' . __( 'No products to compare', 'yith-woocommerce-compare' ) . '</li>';
                 return ob_get_clean();
+            }
+
+            if ( ! $lang ) {
+                $product_list        = $this->products_list;
+                $this->products_list = array();
+                foreach ( $product_list as $product_id ) {
+                    $this->products_list[] = pll_get_post( $product_id, pll_current_language() );
+                }
             }
 
             foreach ( $this->products_list as $product_id ) {
