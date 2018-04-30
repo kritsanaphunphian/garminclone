@@ -1,0 +1,145 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AfterShip - WooCommerce Tracking\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-28 08:20+0000\n"
+"PO-Revision-Date: 2018-04-28 08:23+0000\n"
+"Last-Translator: GarminByGis <kritsana.phunpian@gmail.com>\n"
+"Language-Team: Thai\n"
+"Language: th\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#. Description of the plugin
+msgid ""
+"Add tracking number and carrier name to WooCommerce, display tracking info "
+"at order history page, auto import tracking numbers to AfterShip."
+msgstr ""
+
+#. Author of the plugin
+msgid "AfterShip"
+msgstr ""
+
+#. Name of the plugin
+msgid "AfterShip - WooCommerce Tracking"
+msgstr ""
+
+#: aftership.php:354
+msgid "AfterShip's WordPress API Key"
+msgstr ""
+
+#: api/class-aftership-api-authentication.php:122
+msgid "AfterShip's WordPress API Key is invalid"
+msgstr ""
+
+#: api/class-aftership-api-authentication.php:91
+msgid "AfterShip's WordPress Key is missing"
+msgstr ""
+
+#: api/class-aftership-api-resource.php:335
+#, php-format
+msgid "Deleted %s"
+msgstr ""
+
+#: aftership.php:360
+msgid "Generate API Key"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://aftership.com"
+msgstr ""
+
+#. URI of the plugin
+msgid "http://aftership.com/"
+msgstr ""
+
+#: api/class-aftership-api-resource.php:86
+#, php-format
+msgid "Invalid %s"
+msgstr ""
+
+#: api/class-aftership-api-resource.php:74
+#, php-format
+msgid "Invalid %s ID"
+msgstr ""
+
+#: api/class-aftership-api-server.php:168
+msgid "Invalid authentication method"
+msgstr ""
+
+#: api/class-aftership-api-json-handler.php:60
+msgid "JSONP support is disabled on this site"
+msgstr ""
+
+#: api/class-aftership-api-server.php:409
+#, php-format
+msgid "Missing parameter %s"
+msgstr ""
+
+#: api/class-aftership-api-server.php:375
+msgid "No route was found matching the URL and request method"
+msgstr ""
+
+#: api/class-aftership-api-resource.php:329
+#, php-format
+msgid "Permanently deleted %s"
+msgstr ""
+
+#: api/class-aftership-api-resource.php:315
+msgid "Permanently deleted customer"
+msgstr ""
+
+#: aftership.php:366
+msgid "Revoke API Key"
+msgstr ""
+
+#: api/class-aftership-api-resource.php:317
+msgid "The customer cannot be deleted"
+msgstr ""
+
+#: api/class-aftership-api-server.php:340
+msgid "The handler for the route is invalid"
+msgstr ""
+
+#: api/class-aftership-api-json-handler.php:68
+msgid "The JSONP callback function is invalid"
+msgstr ""
+
+#: api/class-aftership-api-resource.php:326
+#, php-format
+msgid "This %s cannot be deleted"
+msgstr ""
+
+#: aftership.php:445
+msgid "Tracking number is "
+msgstr "หมายเลขพัสดุของคุณ คือ "
+
+#: api/class-aftership-api-server.php:323
+msgid "Unsupported request method"
+msgstr ""
+
+#: api/class-aftership-api-resource.php:103
+#, php-format
+msgid "You do not have permission to delete this %s"
+msgstr ""
+
+#: api/class-aftership-api-resource.php:98
+#, php-format
+msgid "You do not have permission to edit this %s"
+msgstr ""
+
+#: api/class-aftership-api-orders.php:308
+msgid "You do not have permission to read the orders count"
+msgstr ""
+
+#: api/class-aftership-api-resource.php:93
+#, php-format
+msgid "You do not have permission to read this %s"
+msgstr ""
+
+#: aftership.php:444
+msgid "Your order was shipped via "
+msgstr "สินค้าของคุณถูกส่งเรียบร้อย โดย "
