@@ -288,7 +288,7 @@ class WCMCA_Html
 						if(!$is_identifier_field_disabled && get_current_user_id() > 0) //in case of product shipping address for guest
 							woocommerce_form_field('wcmca_address_internal_name', array(
 									'type'       => 'text',
-									'id' 		 => 'wcmca_address_internal_name_'.$type,
+									'id' 		 => 'wcmca_address_internal_name',
 									'class'      => array( 'form-row-wide' ),
 									'required'   => true,
 									'input_class' => array('not_empty' ,'wcmca_input_field'),
