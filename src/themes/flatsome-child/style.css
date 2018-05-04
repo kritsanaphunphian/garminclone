@@ -79,6 +79,33 @@ select {
     font-size: .9em; */
   }
 
+.footer-wrapper .hide-for-medium.large-5 {
+    max-width: 27.667%;
+    -webkit-flex-basis: 27.667%;
+            flex-basis: 27.667%;
+        -ms-flex-preferred-size: 27.667%;
+}
+
+.footer-wrapper .hide-for-medium.large-1 {
+    max-width: 10.33333%;
+    -webkit-flex-basis: 10.33333%;
+            flex-basis: 10.33333%;
+        -ms-flex-preferred-size: 10.33333%;
+}
+
+.footer-wrapper p {
+    font-size: .7em;
+}
+
+.footer-wrapper .fb-button-dt {
+    font-size: .6em;
+}
+
+.footer-wrapper .button i {
+    top: -0.5px;
+}
+
+
 @media screen and (max-width: 640px) {
   table {
     overflow-x: auto;
@@ -262,6 +289,7 @@ border-radius: 100%;
 
 #billing_country_field, #shipping_country_field{
 	visibility: hidden;
+    font-size: 0;
 }
 
 #rememberme{

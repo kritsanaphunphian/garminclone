@@ -70,7 +70,7 @@ function wcmca_init_add_new_addresses_button()
 		return; */
 	
 	init_add_new_addresses_button = false;
-	jQuery('a.wcmca_add_new_address_button, #wcmca_add_new_address_button_billing, #wcmca_add_new_address_button_shipping, .wcmca_edit_address_button').magnificPopup({
+	jQuery('a.wcmca_add_new_address_button, #wcmca_add_new_address_button_billing, #wcmca_add_new_address_button_shipping').magnificPopup({
           type: 'inline',
 		  showCloseBtn:false,
           preloader: false,
@@ -88,6 +88,15 @@ function wcmca_init_add_new_addresses_button()
 				} */
           } 
         });
+
+	// -- START [CUSTOM CODE BY GARMINBYGIS]
+	jQuery('.wcmca_edit_address_button').magnificPopup({
+		type         : 'inline',
+		showCloseBtn :false,
+		preloader    : false
+	});
+	// -- END [CUSTOM CODE BY GARMINBYGIS]
+
 	
 	//Used on checkout to automatically select the just added address
 	jQuery(document).on('click', '.wcmca_add_new_address_button, #wcmca_add_new_address_button_billing, #wcmca_add_new_address_button_shipping', function(event)

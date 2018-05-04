@@ -65,7 +65,7 @@ function wcmca_show_saving_loader(type)
 	jQuery('.wcmca_saving_loader_image, .wcmca_loader_image, .wcmca_product_address_loader').fadeIn();
 	jQuery('.wcmca_add_new_address_button, #wcmca_add_new_address_button_billing, #wcmca_add_new_address_button_shipping').prop('disabled', true);
 	jQuery('.wcmca_edit_address_button, .class_action_sparator, .wcmca_delete_address_button, .wcmca_duplicate_address_button').fadeOut();
-
+	
 	var html_elem_to_use = document.getElementById("wcmca_address_form_container_"+type) != null ? jQuery('#wcmca_address_form_container_'+type).offset().top : jQuery('#wcmca_custom_addresses').offset().top;
 	try{
 	 jQuery('html, body').animate({
@@ -80,7 +80,7 @@ function wcmca_hide_saving_loader()
 	jQuery('.wcmca_saving_loader_image, .wcmca_loader_image, .wcmca_product_address_loader').fadeOut();
 	jQuery('.wcmca_add_new_address_button, #wcmca_add_new_address_button_billing, #wcmca_add_new_address_button_shipping').prop('enabled', true);
 	jQuery('.wcmca_edit_address_button, .class_action_sparator, .wcmca_delete_address_button, .wcmca_duplicate_address_button').fadeIn();
-
+	
 	 return false;
 }
 function toggle_reset_product_address_for_guest_button(id)
@@ -93,10 +93,10 @@ function wcma_highlight_empty_field(field)
 	var validation_message = '';
 	var original_border = jQuery(field).css('border');
 	var original_border_width = jQuery(field).css('border-width');
-
-	if(field.name === "wcmca_billing_country" ||
-	   field.name === "wcmca_billing_state" ||
-	   field.name === "wcmca_shipping_country" ||
+	
+	if(field.name === "wcmca_billing_country" || 
+	   field.name === "wcmca_billing_state" || 
+	   field.name === "wcmca_shipping_country" || 
 	   field.name === "wcmca_shipping_state"  )
 	   {
 		jQuery("#s2id_"+field.name).css({ 'border': "1px #FF0000 solid " });
@@ -106,7 +106,7 @@ function wcma_highlight_empty_field(field)
 							borderBottomColor: '#FF0000',
 							borderLeftColor: '#FF0000',
 							borderRightColor: '#FF0000'}, 'slow'); */
-
+	
 	switch ( field.name ) {
 		case 'wcmca_billing_state':
 			jQuery( '#wcmca_billing_state_field' ).find( '.select2-selection' ).css( { 'border': '1px #FF0000 solid' } );
@@ -168,10 +168,10 @@ function wcmca_show_address_form()
 	//jQuery('#wcmca_form_popup_container').css('top', jQuery(document).scrollTop()  -  (jQuery('#wcmca_form_popup_container').height()/2) + 60);
 	//jQuery('#wcmca_form_popup_container .woocommerce, #wcmca_form_popup_container .woocommerce #wcmca_address_form, #wcmca_form_popup_container .woocommerce #wcmca_address_form #wcmca_address_form_fieldset').css('top', jQuery('#wcmca_form_popup_container').offset().top+20);
 	//jQuery('#wcmca_form_popup_container').css('left', jQuery(document).scrollLeft()  );
-
+	
 	/* jQuery('#wcmca_form_popup_container').fadeIn();
 	jQuery('#wcmca_form_background_overlay').fadeIn(); */
-
+	
 	jQuery('html, body').animate({
           scrollTop: jQuery('#wcmca_form_popup_container').offset().top
         }, 1000);
@@ -194,10 +194,10 @@ function wcmca_update_fields_options_and_attributes(options_and_attributes, type
 	jQuery('#wcmca_'+type+'_state_field label.wcmca_form_label').html(wcmca_state_string+required_label_extra_html);
 	jQuery('#wcmca_'+type+'_postcode_field label.wcmca_form_label').html(wcmca_postcode_string+required_label_extra_html);
 	jQuery('#wcmca_'+type+'_city_field label.wcmca_form_label').html(wcmca_city_string+required_label_extra_html);
-
+	
 	if(options_and_attributes == null)
 		return;
-
+	
 	for(var option in options_and_attributes)
 	{
 		var current_field = null;
