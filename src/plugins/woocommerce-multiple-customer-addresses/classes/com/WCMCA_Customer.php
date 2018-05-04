@@ -271,11 +271,21 @@ class WCMCA_Customer
 					$result[$meta_field_name] = stripslashes(is_array($meta_field_value) ? $meta_field_value[0] : $meta_field_value);
 				}
 			}
+
+			if ( $latest_order = wc_get_customer_last_order( get_current_user_id() ) ) {
+				foreach ( $latest_order->get_address() as $key => $value) {
+					$result[ $prefix . '_' . $key ] = $value;
+				}
+			}
 		}
 		else
 		{
 			$result = get_user_meta($user_id, '_wcmca_additional_addresses', true);
 			$result = is_array($result) && isset($result[$address_id]) ? $result[$address_id] : array();
+		}
+
+		if ( isset( $result['billing_phone'] ) ) {
+			$result['ssn'] = $result['billing_phone'];
 		}
 
 		return $result;
