@@ -7,6 +7,7 @@
 - Save, and do `git diff` at your terminal program. It will tell you which lines that have been edited, removed and added.
 
 v10.5
+- classes/com/WCMCA_Customer.php
 - classes/com/WCMCA_Html.php
 - js/frontend-address-form-ui.js
 - js/frontend-address-form.js
