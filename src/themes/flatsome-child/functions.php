@@ -77,6 +77,14 @@ function include_shortcodes() {
 }
 include_shortcodes();
 
+/**
+ * Load scripts
+ */
+function garminbygis_scripts() {
+    wp_enqueue_script( 'garminbygis-woocommerce', get_stylesheet_directory_uri() . '/assets/js/woocommerce.js', array( 'jquery', 'wc-cart' ), '1.1', true );
+}
+add_action( 'wp_enqueue_scripts', 'garminbygis_scripts' );
+
 // Hooks near the bottom of profile page (if current user) 
 add_action('show_user_profile', 'custom_user_profile_fields');
 
@@ -282,24 +290,6 @@ return substr( $title, 0, 25 ); // change last number to the number of character
 } else {
 return $title;
 }
-}
-
-add_action( 'wp_footer', 'cart_update_qty_script' );
-function cart_update_qty_script() {
-    if (is_cart()) :
-        ?>
-        <script type="text/javascript">
-            (function($){
-                $(function(){
-                    $('div.woocommerce').on( 'change', '.qty', function(){
-                        $("[name='update_cart']").removeProp("disabled");
-                        $("[name='update_cart']").trigger('click');
-                    });
-                });
-            })(jQuery);
-        </script>
-        <?php
-    endif;
 }
 
 /**
