@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Activity Log - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-12-27 13:20:02+0000\n"
+"PO-Revision-Date: 2018-05-01 14:33:02+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,6 +23,15 @@ msgstr "ייצוא רשומות מסומנות כ %s"
 msgid "Export File Format"
 msgstr "פורמט קובץ ייצוא"
 
+#: classes/class-aal-settings.php:489
+msgid "and"
+msgstr "&"
+
+#: classes/class-aal-admin-ui.php:16 classes/class-aal-admin-ui.php:26
+msgctxt "Page and Menu Title"
+msgid "Activity Log"
+msgstr "יומן פעילות"
+
 #: classes/class-aal-admin-ui.php:195
 msgid "Learn more about Elementor"
 msgstr "קרא עוד אודות אלמנטור"
@@ -33,7 +42,7 @@ msgstr "שוחזר"
 
 #: classes/class-aal-admin-ui.php:199
 msgid "Install Now For Free!"
-msgstr "להתקין עכשיו בחינם!"
+msgstr "התקן עכשיו, זה חינם!"
 
 #: classes/class-aal-admin-ui.php:194
 msgid "Create high-end, pixel perfect websites at record speeds. Any theme, any page, any design. The most advanced frontend drag & drop page builder."
@@ -503,7 +512,7 @@ msgstr "עורך"
 msgid "Administrator"
 msgstr "מנהל"
 
-#. #-#-#-#-#  aryo-activity-log-code.pot (Activity Log 2.4.0)  #-#-#-#-#
+#. #-#-#-#-#  aryo-activity-log-code.pot (Activity Log 2.4.1)  #-#-#-#-#
 #. Description of the plugin/theme
 #: i18n/strings.php:6
 msgid "Get aware of any activities that are taking place on your dashboard! Imagine it like a black-box for your WordPress site. e.g. post was deleted, plugin was activated, user logged in or logged out - it's all these for you to see."
@@ -634,7 +643,7 @@ msgstr "התראות"
 msgid "Overview"
 msgstr "סקירה"
 
-#. #-#-#-#-#  aryo-activity-log-code.pot (Activity Log 2.4.0)  #-#-#-#-#
+#. #-#-#-#-#  aryo-activity-log-code.pot (Activity Log 2.4.1)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: i18n/strings.php:5
 msgid "Activity Log"

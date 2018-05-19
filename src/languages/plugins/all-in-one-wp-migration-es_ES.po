@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - All-in-One WP Migration - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-11-23 13:17:54+0000\n"
+"PO-Revision-Date: 2018-04-07 20:54:34+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,11 @@ msgstr ""
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: es\n"
 "Project-Id-Version: Plugins - All-in-One WP Migration - Stable (latest release)\n"
+
+#: lib/view/export/button-digitalocean.php:1
+#: lib/view/import/button-digitalocean.php:1
+msgid "DigitalOcean"
+msgstr "DigitalOcean"
 
 #: lib/view/export/button-mega.php:1 lib/view/import/button-mega.php:1
 msgid "Mega"
@@ -85,7 +90,7 @@ msgstr "Archivo de la base de datos completado."
 msgid "Archiving database...<br />%d%% complete"
 msgstr "Archivo de la base de datos...<br />%d%% completado."
 
-#: functions.php:1081
+#: functions.php:1133
 msgid "Unable to authenticate the secret key."
 msgstr "No se puede autentificar la clave secreta."
 
@@ -116,11 +121,11 @@ msgstr "Mensual"
 msgid "Weekly"
 msgstr "Semanal"
 
-#: functions.php:873
+#: functions.php:936
 msgid "Unable to read file: %s"
 msgstr "Imposible leer el archivo: %s"
 
-#: functions.php:855
+#: functions.php:918
 msgid "Out of disk space."
 msgstr "Sin espacio en disco."
 
@@ -192,11 +197,11 @@ msgstr "Falta la clave de error en el archivo subido."
 msgid "Missing upload file."
 msgstr "Falta el archivo a subir."
 
-#: functions.php:852
+#: functions.php:915
 msgid "Unable to write to: %s"
 msgstr "No se puede escribir en: %s"
 
-#: functions.php:833
+#: functions.php:896
 msgid "Unable to open %s with mode %s"
 msgstr "No se puede abrir %s con el modo %s"
 
@@ -211,14 +216,6 @@ msgstr "Nuevo"
 #: lib/view/export/advanced-settings.php:70
 msgid "Do <strong>not</strong> export cache (files)"
 msgstr "<strong>No</strong> exportar cache (archivos)"
-
-#: lib/model/export/class-ai1wm-export-compatibility.php:55
-msgid "All-in-One WP Migration was unable to backup %s. %s"
-msgstr "All-in-One WP Migration no pudo realizar la copia de seguridad de %s. %s"
-
-#: lib/model/export/class-ai1wm-export-compatibility.php:52
-msgid "Unable to backup your site"
-msgstr "No se puede hacer una copia de seguridad de tu sitio"
 
 #: lib/view/export/button-onedrive.php:1 lib/view/import/button-onedrive.php:1
 msgid "OneDrive"
@@ -334,10 +331,10 @@ msgstr "ServMask"
 msgid "Migration tool for all your blog data. Import or Export your blog content with a single click."
 msgstr "Herramienta de migración para todos los datos de tu blog. Importa o Exporta el contenido de tu blog con un solo clic."
 
-#. #-#-#-#-#  all-in-one-wp-migration-code.pot (All-in-One WP Migration 6.61) 
+#. #-#-#-#-#  all-in-one-wp-migration-code.pot (All-in-One WP Migration 6.67) 
 #. #-#-#-#-#
 #. Plugin URI of the plugin/theme
-#. #-#-#-#-#  all-in-one-wp-migration-code.pot (All-in-One WP Migration 6.61) 
+#. #-#-#-#-#  all-in-one-wp-migration-code.pot (All-in-One WP Migration 6.67) 
 #. #-#-#-#-#
 #. Author URI of the plugin/theme
 msgid "https://servmask.com/"
@@ -573,15 +570,15 @@ msgstr "Fecha"
 msgid "Name"
 msgstr "Nom"
 
-#: functions.php:907
+#: functions.php:970
 msgid "Unable to get current pointer position of %s"
 msgstr "No se puede obtener la posición del puntero actual de %s"
 
-#: functions.php:890
+#: functions.php:953
 msgid "Unable to seek to offset %d on %s"
 msgstr "No se puede buscar un desplazamiento %d en %s"
 
-#: lib/model/import/class-ai1wm-import-done.php:157
+#: lib/model/import/class-ai1wm-import-done.php:173
 msgid "Your data has been imported successfully!"
 msgstr "¡Tus datos se han importado correctamente!"
 
@@ -640,3 +637,13 @@ msgstr "Exportar"
 #: lib/view/main/multisite-notice.php:12
 msgid "Get multisite"
 msgstr "Obtener multisitio"
+
+#: lib/controller/class-ai1wm-import-controller.php:92
+#: lib/controller/class-ai1wm-import-controller.php:93
+msgid "Unable to import"
+msgstr "No ha sido posible importar"
+
+#: lib/controller/class-ai1wm-export-controller.php:88
+#: lib/controller/class-ai1wm-export-controller.php:89
+msgid "Unable to export"
+msgstr "No ha sido posible exportar"

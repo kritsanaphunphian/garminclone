@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Contact Form 7 - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-11-05 08:46:20+0000\n"
+"PO-Revision-Date: 2018-02-27 14:12:36+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,75 @@ msgstr ""
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: ro\n"
 "Project-Id-Version: Plugins - Contact Form 7 - Stable (latest release)\n"
+
+#: modules/acceptance.php:243
+msgid "Condition"
+msgstr "Condiție"
+
+#. translators: 1: 'Consented' or 'Not consented', 2: conditions
+#: modules/acceptance.php:202
+msgctxt "mail output for acceptance checkboxes"
+msgid "%1$s: %2$s"
+msgstr "%1$s: %2$s"
+
+#: modules/acceptance.php:186
+msgid "Not consented"
+msgstr "Neacceptat"
+
+#: modules/acceptance.php:184
+msgid "Consented"
+msgstr "Acceptat"
+
+#: includes/submission.php:196
+msgid "Sending mail has been aborted."
+msgstr "Trimiterea emailurilor a fost întreruptă."
+
+#: admin/includes/editor.php:211
+msgid "You can edit messages used in various situations here. For details, see %s."
+msgstr "Poți edita aici mesajele folosite în diferite situații. Pentru detalii, vezi %s."
+
+#: admin/includes/editor.php:210
+msgid "Editing Messages"
+msgstr "Editarea mesajelor"
+
+#: admin/includes/editor.php:209
+msgid "https://contactform7.com/editing-messages/"
+msgstr "https://contactform7.com/editing-messages/"
+
+#: admin/includes/editor.php:130
+msgid "You can edit the mail template here. For details, see %s."
+msgstr "Poți edita șablonul de email aici. Pentru detalii, vezi %s."
+
+#: admin/includes/editor.php:57
+msgid "You can edit the form template here. For details, see %s."
+msgstr "Poți edita șablonul formularului aici. Pentru detalii, vezi %s."
+
+#: admin/includes/editor.php:56
+msgid "Editing Form Template"
+msgstr "Editare șablon formular"
+
+#: admin/includes/editor.php:55
+msgid "https://contactform7.com/editing-form-template/"
+msgstr "https://contactform7.com/editing-form-template/"
+
+#. translators: screen reader text
+#: admin/edit-contact-form.php:192
+msgid "(left and right arrow)"
+msgstr "(săgeată stânga și dreapta)"
+
+#. translators: 1: ◀ ▶ dashicon, 2: screen reader text for the dashicon
+#: admin/edit-contact-form.php:187
+msgid "%1$s %2$s keys switch panels"
+msgstr "%1$s %2$s chei de comutare ale panourilor"
+
+#. translators: screen reader text
+#: admin/admin.php:326
+msgid "(configuration error)"
+msgstr "(eroare de configurare)"
+
+#: admin/admin.php:319
+msgid "How to resolve?"
+msgstr "Cum se rezolvă?"
 
 #: admin/includes/welcome-panel.php:37
 msgid "Your donation will help encourage and support the plugin&#8217;s continued development and better user support."
@@ -28,15 +97,16 @@ msgstr "Dacă îți place să folosești Formularul de contact 7 și îl găseș
 msgid "It is hard to continue development and support for this plugin without contributions from users like you."
 msgstr "Este greu să continuăm dezvoltarea și suportul pentru acest modul fără contribuția unor utilizatori ca tine."
 
-#: includes/contact-form.php:294 includes/contact-form.php:673
+#: includes/contact-form.php:294 includes/contact-form.php:707
 msgid "This contact form is available only for logged in users."
 msgstr "Acest formular de contact este disponibil numai pentru utilizatorii autentificați."
 
-#: includes/config-validator.php:144
+#: includes/config-validator.php:145
 msgid "Deprecated settings are used."
 msgstr "Sunt folosite setări învechite."
 
-#: modules/really-simple-captcha.php:30
+#. translators: %s: link labeled 'Really Simple CAPTCHA'
+#: modules/really-simple-captcha.php:36
 msgid "To use CAPTCHA, you need %s plugin installed."
 msgstr "Pentru a folosi CAPTCHA, trebuie ca modulul %s să fie instalat."
 
@@ -51,7 +121,7 @@ msgstr "Nu ai voie să accesezi formularul de contact cerut."
 
 #: includes/rest-api.php:171 includes/rest-api.php:198
 #: includes/rest-api.php:247 includes/rest-api.php:276
-#: includes/rest-api.php:324
+#: includes/rest-api.php:316
 msgid "The requested contact form was not found."
 msgstr "Formularul de contact cerut n-a fost găsit."
 
@@ -67,35 +137,36 @@ msgstr "Nu pot crea formularul de contact existent."
 msgid "You are not allowed to access contact forms."
 msgstr "Nu ai voie să accesezi formulare de contact."
 
-#: includes/config-validator.php:541
+#: includes/config-validator.php:552
 msgid "Attachment file does not exist at %path%."
 msgstr "Fișierul atașament nu există la %path%."
 
-#: includes/config-validator.php:472
+#: includes/config-validator.php:481
 msgid "Invalid mailbox syntax is used in the %name% field."
 msgstr "Este folosită o sintaxă invalidă pentru căsuța poștală în câmpul %name%."
 
-#: includes/config-validator.php:383
+#. translators: %names%: a list of form control names
+#: includes/config-validator.php:392
 msgid "Unavailable names (%names%) are used for form controls."
-msgstr "Sunt folosite nume (%names%) indisponibile pentru comenzile formularului."
+msgstr "Sunt folosite nume indisponibile (%names%) pentru comenzile formularului."
 
-#: includes/config-validator.php:142
+#: includes/config-validator.php:143
 msgid "There are invalid mail header fields."
 msgstr "Există câmpuri invalide pentru antet email."
 
-#: includes/config-validator.php:138
+#: includes/config-validator.php:139
 msgid "HTML tags are used in a message."
 msgstr "Sunt folosite taguri HTML într-un mesaj."
 
-#: includes/config-validator.php:136
+#: includes/config-validator.php:137
 msgid "Sender email address does not belong to the site domain."
 msgstr "Adresa de email a expeditorului nu aparține domeniului de sit."
 
-#: includes/config-validator.php:134
+#: includes/config-validator.php:135
 msgid "Invalid mailbox syntax is used."
 msgstr "Este folosită o sintaxă invalidă pentru căsuța poștală"
 
-#: includes/config-validator.php:132
+#: includes/config-validator.php:133
 msgid "There is a possible empty field."
 msgstr "Există un posibil câmp gol."
 
@@ -107,27 +178,27 @@ msgstr[0] "%s eroare de configurare detectată"
 msgstr[1] "%s erori de configurare detectate"
 msgstr[2] "%s de erori de configurare detectate"
 
-#: admin/admin.php:321
+#: admin/admin.php:323
 msgid "%d configuration errors detected in this tab panel"
 msgstr "%d erori de configurare detectate în acest panou filă"
 
-#: admin/admin.php:320
+#: admin/admin.php:322
 msgid "1 configuration error detected in this tab panel"
 msgstr "1 eroare de configurare detectată în acest panou filă"
 
-#: admin/admin.php:319
+#: admin/admin.php:321
 msgid "%d configuration errors detected"
 msgstr "%d erori de configurare detectate"
 
-#: admin/admin.php:318
+#: admin/admin.php:320
 msgid "1 configuration error detected"
 msgstr "1 eroare de configurare detectată"
 
-#: admin/admin.php:505 includes/rest-api.php:138 includes/rest-api.php:214
+#: admin/admin.php:509 includes/rest-api.php:138 includes/rest-api.php:214
 msgid "There was an error saving the contact form."
 msgstr "A fost o eroare la salvarea formularul de contact."
 
-#: includes/functions.php:355
+#: includes/functions.php:365
 msgid "%1$s is <strong>deprecated</strong> since Contact Form 7 version %2$s! Use %3$s instead."
 msgstr "%1$s este <strong>învechit</strong> de la versiunea %2$s a Formularului de contact 7! Folosește în schimb %3$s."
 
@@ -172,19 +243,15 @@ msgstr "Mesajele spam vizează tot; formularele tale de contact nu sunt o excep�
 msgid "Getting spammed? You have protection."
 msgstr "Primești mesaje spam? Ai protecție."
 
-#: includes/config-validator.php:140
+#: includes/config-validator.php:141
 msgid "Multiple form controls are in a single label element."
 msgstr "Mai multe comenzi ale formularului sunt plasate într-un singur element de etichetă."
 
-#: admin/admin.php:317
-msgid "How to correct this?"
-msgstr "Cum să corectez asta?"
-
-#: admin/admin.php:424
+#: admin/admin.php:428
 msgid "FAQ about Configuration Validator"
 msgstr "ÎPF despre Validatorul configurării"
 
-#: admin/admin.php:424
+#: admin/admin.php:428
 msgid "https://contactform7.com/configuration-validator-faq/"
 msgstr "https://contactform7.com/configuration-validator-faq/"
 
@@ -200,7 +267,7 @@ msgstr "URL-ul este invalid."
 msgid "The e-mail address entered is invalid."
 msgstr "Adresa de email introdusă este invalidă."
 
-#: modules/quiz.php:162
+#: modules/quiz.php:163
 msgid "The answer to the quiz is incorrect."
 msgstr "Răspunsul la chestionar este incorect."
 
@@ -216,19 +283,19 @@ msgstr "Numărul este mai mic decât valoarea minimă permisă."
 msgid "The number format is invalid."
 msgstr "Formatul numărului este invalid."
 
-#: modules/file.php:210
+#: modules/file.php:195
 msgid "There was an error uploading the file."
 msgstr "A apărut o eroare la încărcarea fișierului."
 
-#: modules/file.php:205
+#: modules/file.php:190
 msgid "The file is too big."
 msgstr "Fișierul este prea mare."
 
-#: modules/file.php:200
+#: modules/file.php:185
 msgid "You are not allowed to upload files of this type."
 msgstr "Nu-ți este permis să încarci fișiere de acest tip."
 
-#: modules/file.php:195
+#: modules/file.php:180
 msgid "There was an unknown error uploading the file."
 msgstr "A apărut o eroare necunoscută la încărcarea fișierului."
 
@@ -279,11 +346,11 @@ msgctxt "mail subject"
 msgid "%1$s \"%2$s\""
 msgstr "%1$s \"%2$s\""
 
-#: admin/admin.php:619
+#: admin/admin.php:628
 msgid "Misconfiguration leads to mail delivery failure or other troubles. Validate your contact forms now."
 msgstr "Configurarea incorectă conduce la eșec în expedierea unui email sau la alte probleme. Validează acum formularele de contact."
 
-#: admin/admin.php:617
+#: admin/admin.php:626
 msgid "Validate Contact Form 7 Configuration"
 msgstr "Validează configurare Formular de contact 7"
 
@@ -291,24 +358,24 @@ msgstr "Validează configurare Formular de contact 7"
 msgid "https://contactform7.com/configuration-errors/"
 msgstr "https://contactform7.com/configuration-errors/"
 
-#: admin/admin.php:528
+#: admin/admin.php:532
 msgid "Configuration validation completed. No invalid contact form was found."
 msgstr "Validarea configurării s-a finalizată. Nu a fost găsit niciun formular de contact invalid."
 
 #. translators: %s: number of contact forms
-#: admin/admin.php:520
-msgid "Configuration validation completed. An invalid contact form was found."
+#: admin/admin.php:524
+msgid "Configuration validation completed. %s invalid contact form was found."
 msgid_plural "Configuration validation completed. %s invalid contact forms were found."
-msgstr[0] "Validarea configurării s-a finalizată. A fost găsit un formular de contact invalid."
-msgstr[1] "Validarea configurării s-a finalizată. Au fost găsite %s formulare de contact invalide."
-msgstr[2] "Validarea configurării s-a finalizată. Au fost găsite %s de formulare de contact invalide."
+msgstr[0] "Validarea configurării s-a finalizat. A fost găsit un formular de contact invalid."
+msgstr[1] "Validarea configurării s-a finalizat. Au fost găsite %s formulare de contact invalide."
+msgstr[2] "Validarea configurării s-a finalizat. Au fost găsite %s de formulare de contact invalide."
 
-#: admin/admin.php:416
+#: admin/admin.php:420
 msgid "Validate Configuration"
 msgstr "Validează configurarea"
 
 #. translators: %s: number of contact forms
-#: admin/admin.php:407
+#: admin/admin.php:411
 msgid "Validate %s Contact Form Now"
 msgid_plural "Validate %s Contact Forms Now"
 msgstr[0] "Validează acum %s formular de contact"
@@ -406,7 +473,7 @@ msgstr "EROARE"
 msgid "reCAPTCHA"
 msgstr "reCAPTCHA"
 
-#: modules/really-simple-captcha.php:236
+#: modules/really-simple-captcha.php:243
 msgid "CAPTCHA (Really Simple CAPTCHA)"
 msgstr "CAPTCHA (Really Simple CAPTCHA)"
 
@@ -427,7 +494,7 @@ msgid "https://contactform7.com/"
 msgstr "https://contactform7.com/"
 
 #. translators: title of your first contact form. %d: number fixed to '1'
-#: settings.php:142
+#: settings.php:143
 msgid "Contact form %d"
 msgstr "Formular de contact %d"
 
@@ -544,31 +611,31 @@ msgstr "Generează un tag de formular pentru un meniu vertical. Pentru mai multe
 msgid "drop-down menu"
 msgstr "meniu vertical"
 
-#: modules/quiz.php:206
+#: modules/quiz.php:207
 msgid "One pipe-separated question-answer pair (e.g. The capital of Brazil?|Rio) per line."
 msgstr "O linie desparte perechea întrebare-răspuns pe un rând (de exemplu: Capitala Braziliei?|Rio)"
 
-#: modules/quiz.php:201 modules/quiz.php:204
+#: modules/quiz.php:202 modules/quiz.php:205
 msgid "Questions and answers"
 msgstr "Întrebări și răspunsuri"
 
-#: modules/quiz.php:186
+#: modules/quiz.php:187
 msgid "Quiz"
 msgstr "Chestionar"
 
-#: modules/quiz.php:186
+#: modules/quiz.php:187
 msgid "https://contactform7.com/quiz/"
 msgstr "https://contactform7.com/quiz/"
 
-#: modules/quiz.php:184
+#: modules/quiz.php:185
 msgid "Generate a form-tag for a question-answer pair. For more details, see %s."
 msgstr "Generează un tag de formular pentru o pereche întrebare-răspuns. Pentru mai multe detalii, vezi %s."
 
-#: modules/quiz.php:176
+#: modules/quiz.php:177
 msgid "quiz"
 msgstr "chestionar"
 
-#: modules/quiz.php:160
+#: modules/quiz.php:161
 msgid "Sender doesn't enter the correct answer to the quiz"
 msgstr "Expeditorul nu a răspuns corect la chestionar."
 
@@ -608,51 +675,51 @@ msgstr "Numărul este mai mic decât limita minimă"
 msgid "Number format that the sender entered is invalid"
 msgstr "Formatul numărului introdus de expeditor este invalid"
 
-#: modules/file.php:316
+#: modules/file.php:301
 msgid "This contact form contains file uploading fields, but the temporary folder for the files (%s) does not exist or is not writable. You can create the folder or change its permission manually."
 msgstr "Acest formular de contact conține câmpuri pentru încărcarea fișierelor, dar dosarul temporar pentru fișierele (%s) nu există sau nu este editabil. Poți să creezi dosarul sau să-i modifici manual permisiunile."
 
-#: modules/file.php:290
+#: modules/file.php:275
 msgid "To attach the file uploaded through this field to mail, you need to insert the corresponding mail-tag (%s) into the File Attachments field on the Mail tab."
 msgstr "Pentru a atașa fișierul încărcat prin intermediul acestui câmp pentru corespondență, trebuie să introduci tag-ul de corespondență corespunzător (%s) în câmpul fișierelor atașate din fila Corespondență."
 
-#: modules/file.php:262
+#: modules/file.php:247
 msgid "Acceptable file types"
 msgstr "Tipuri de fișiere acceptate"
 
-#: modules/file.php:257
+#: modules/file.php:242
 msgid "File size limit (bytes)"
 msgstr "Dimensiune limită fișier (biți)"
 
-#: modules/file.php:232
+#: modules/file.php:217
 msgid "File Uploading and Attachment"
 msgstr "Încărcare fișier și imagine atașată"
 
-#: modules/file.php:232
+#: modules/file.php:217
 msgid "https://contactform7.com/file-uploading-and-attachment/"
 msgstr "https://contactform7.com/file-uploading-and-attachment/"
 
-#: modules/file.php:230
+#: modules/file.php:215
 msgid "Generate a form-tag for a file uploading field. For more details, see %s."
 msgstr "Generează un tag de formular pentru un câmp de încărcare fișier. Pentru mai multe detalii, vezi %s."
 
-#: modules/file.php:222
+#: modules/file.php:207
 msgid "file"
 msgstr "fișier"
 
-#: modules/file.php:209
+#: modules/file.php:194
 msgid "Uploading a file fails for PHP error"
 msgstr "Încărcarea unui fișier eșuează din cauza unei erori PHP"
 
-#: modules/file.php:204
+#: modules/file.php:189
 msgid "Uploaded file is too large"
 msgstr "Fișierul încărcat este prea mare"
 
-#: modules/file.php:199
+#: modules/file.php:184
 msgid "Uploaded file is not allowed for file type"
 msgstr "Fișierul încărcat nu este permis ca tip de fișier"
 
-#: modules/file.php:194
+#: modules/file.php:179
 msgid "Uploading a file fails for any reason"
 msgstr "Încărcarea unui fișier eșuează din orice motiv"
 
@@ -728,14 +795,14 @@ msgstr "Mai întâi pune o etichetă, apoi o bifă"
 msgid "One option per line."
 msgstr "O opțiune pe fiecare rând."
 
-#: modules/checkbox.php:311 modules/date.php:164 modules/file.php:246
+#: modules/checkbox.php:311 modules/date.php:164 modules/file.php:231
 #: modules/number.php:172 modules/select.php:201 modules/text.php:247
 #: modules/textarea.php:150
 msgid "Required field"
 msgstr "Câmp obligatoriu"
 
 #: modules/checkbox.php:307 modules/checkbox.php:310 modules/date.php:160
-#: modules/date.php:163 modules/file.php:242 modules/file.php:245
+#: modules/date.php:163 modules/file.php:227 modules/file.php:230
 #: modules/number.php:163 modules/number.php:166 modules/select.php:197
 #: modules/select.php:200 modules/text.php:243 modules/text.php:246
 #: modules/textarea.php:146 modules/textarea.php:149
@@ -766,104 +833,105 @@ msgstr "Butoane radio"
 msgid "checkboxes"
 msgstr "bife"
 
-#: modules/really-simple-captcha.php:346
+#: modules/really-simple-captcha.php:360
 msgid "This contact form contains CAPTCHA fields, but the necessary libraries (GD and FreeType) are not available on your server."
 msgstr "Acest formular de contact conține câmpuri CAPTCHA, dar bibliotecile necesare (GD și FreeType) nu sunt disponibile pe serverul tău."
 
-#: modules/really-simple-captcha.php:340
+#: modules/really-simple-captcha.php:353
 msgid "This contact form contains CAPTCHA fields, but the temporary folder for the files (%s) does not exist or is not writable. You can create the folder or change its permission manually."
 msgstr "Acest formular de contact conține câmpuri CAPTCHA, dar dosarul temporar pentru fișierele (%s) nu există sau nu este editabil. Poți să creezi dosarul sau să-i modifici manual permisiunile."
 
-#: modules/really-simple-captcha.php:289
+#: modules/really-simple-captcha.php:302
 msgid "Input field settings"
 msgstr "Setări câmp de intrare"
 
-#: modules/really-simple-captcha.php:274
+#: modules/really-simple-captcha.php:287
 msgid "Image settings"
 msgstr "Setări imagine"
 
-#: modules/really-simple-captcha.php:257
+#: modules/really-simple-captcha.php:270
 msgid "https://contactform7.com/captcha/"
 msgstr "https://contactform7.com/captcha/"
 
-#: modules/really-simple-captcha.php:255
+#: modules/really-simple-captcha.php:268
 msgid "Generate form-tags for a CAPTCHA image and corresponding response input field. For more details, see %s."
 msgstr "Generează tag-uri de formular pentru o imagine CAPTCHA și câmpul de intrare a răspunsului corespunzător. Pentru mai multe detalii, vezi %s."
 
-#: modules/really-simple-captcha.php:247
+#. translators: %s: link labeled 'Really Simple CAPTCHA'
+#: modules/really-simple-captcha.php:257
 msgid "To use CAPTCHA, you first need to install and activate %s plugin."
 msgstr "Pentru a folosi CAPTCHA, trebuie mai întâi să instalezi și să activezi modulul %s."
 
-#: modules/really-simple-captcha.php:257 modules/recaptcha.php:223
+#: modules/really-simple-captcha.php:270 modules/recaptcha.php:223
 msgid "CAPTCHA"
 msgstr "CAPTCHA"
 
-#: modules/really-simple-captcha.php:217
+#: modules/really-simple-captcha.php:224
 msgid "Your entered code is incorrect."
 msgstr "Codul pe care l-ai introdus este incorect."
 
-#: modules/really-simple-captcha.php:215
+#: modules/really-simple-captcha.php:222
 msgid "The code that sender entered does not match the CAPTCHA"
 msgstr "Codul pe care l-a introdus expeditorul nu se potrivește cu CAPTCHA"
 
-#: modules/acceptance.php:195 modules/checkbox.php:357 modules/date.php:216
-#: modules/file.php:285 modules/number.php:224 modules/quiz.php:230
-#: modules/really-simple-captcha.php:309 modules/recaptcha.php:503
+#: modules/acceptance.php:277 modules/checkbox.php:357 modules/date.php:216
+#: modules/file.php:270 modules/number.php:224 modules/quiz.php:231
+#: modules/really-simple-captcha.php:322 modules/recaptcha.php:503
 #: modules/select.php:243 modules/submit.php:88 modules/text.php:311
 #: modules/textarea.php:185
 msgid "Insert Tag"
 msgstr "Inserare tag"
 
-#: modules/acceptance.php:182 modules/checkbox.php:344 modules/date.php:204
-#: modules/file.php:272 modules/number.php:212 modules/quiz.php:217
-#: modules/really-simple-captcha.php:282 modules/really-simple-captcha.php:297
+#: modules/acceptance.php:264 modules/checkbox.php:344 modules/date.php:204
+#: modules/file.php:257 modules/number.php:212 modules/quiz.php:218
+#: modules/really-simple-captcha.php:295 modules/really-simple-captcha.php:310
 #: modules/recaptcha.php:490 modules/select.php:230 modules/submit.php:75
 #: modules/text.php:298 modules/textarea.php:172
 msgid "Class attribute"
 msgstr "Atribut clasă"
 
-#: modules/acceptance.php:177 modules/checkbox.php:339 modules/date.php:199
-#: modules/file.php:267 modules/number.php:207 modules/quiz.php:212
-#: modules/really-simple-captcha.php:277 modules/really-simple-captcha.php:292
+#: modules/acceptance.php:259 modules/checkbox.php:339 modules/date.php:199
+#: modules/file.php:252 modules/number.php:207 modules/quiz.php:213
+#: modules/really-simple-captcha.php:290 modules/really-simple-captcha.php:305
 #: modules/recaptcha.php:485 modules/select.php:225 modules/submit.php:70
 #: modules/text.php:293 modules/textarea.php:167
 msgid "Id attribute"
 msgstr "Atribut Id"
 
-#: modules/acceptance.php:171
+#: modules/acceptance.php:253
 msgid "Make this work inversely"
 msgstr "Fă acest lucru invers"
 
-#: modules/acceptance.php:170
+#: modules/acceptance.php:252
 msgid "Make this checkbox checked by default"
 msgstr "Bifează această căsuță în mod implicit"
 
-#: modules/acceptance.php:166 modules/acceptance.php:169
+#: modules/acceptance.php:248 modules/acceptance.php:251
 #: modules/checkbox.php:323 modules/checkbox.php:326 modules/select.php:212
 #: modules/select.php:215
 msgid "Options"
 msgstr "Opțiuni"
 
-#: modules/acceptance.php:161 modules/checkbox.php:318 modules/date.php:170
-#: modules/file.php:252 modules/number.php:178 modules/quiz.php:196
-#: modules/really-simple-captcha.php:267 modules/select.php:207
+#: modules/acceptance.php:238 modules/checkbox.php:318 modules/date.php:170
+#: modules/file.php:237 modules/number.php:178 modules/quiz.php:197
+#: modules/really-simple-captcha.php:280 modules/select.php:207
 #: modules/text.php:253 modules/textarea.php:156
 msgid "Name"
 msgstr "Nume"
 
-#: modules/acceptance.php:151
+#: modules/acceptance.php:228
 msgid "Acceptance Checkbox"
 msgstr "Bifă de acceptare"
 
-#: modules/acceptance.php:151
+#: modules/acceptance.php:228
 msgid "https://contactform7.com/acceptance-checkbox/"
 msgstr "https://contactform7.com/acceptance-checkbox/"
 
-#: modules/acceptance.php:149
+#: modules/acceptance.php:226
 msgid "Generate a form-tag for an acceptance checkbox. For more details, see %s."
 msgstr "Generează un tag de formular pentru bifă de acceptare. Pentru mai multe detalii, vezi %s."
 
-#: modules/acceptance.php:141
+#: modules/acceptance.php:218
 msgid "acceptance"
 msgstr "acceptare"
 
@@ -1048,63 +1116,59 @@ msgstr "Acțiuni disponibile"
 msgid "Overview"
 msgstr "Prezentare generală"
 
-#: admin/includes/editor.php:218
+#: admin/includes/editor.php:248
 msgid "You can add customization code snippets here. For details, see %s."
 msgstr "Poți adăuga aici fragmente de coduri personalizate. Pentru detalii, vezi %s."
 
-#: admin/includes/editor.php:216
+#: admin/includes/editor.php:246
 msgid "https://contactform7.com/additional-settings/"
 msgstr "https://contactform7.com/additional-settings/"
 
 #: admin/includes/editor.php:194
-msgid "Edit messages used in the following situations."
-msgstr "Editarea mesajelor se face în următoarele situații."
-
-#: admin/includes/editor.php:170
 msgid "File Attachments"
 msgstr "Fișier cu imagini atașate"
 
-#: admin/includes/editor.php:164
+#: admin/includes/editor.php:188
 msgid "Use HTML content type"
 msgstr "Folosește tip de conținut HTML"
 
-#: admin/includes/editor.php:162
+#: admin/includes/editor.php:186
 msgid "Exclude lines with blank mail-tags from output"
 msgstr "Exclude ieșirea rândurilor cu tag-uri de corespondență necompletate"
 
-#: admin/includes/editor.php:157
+#: admin/includes/editor.php:181
 msgid "Message Body"
 msgstr "Textul mesajului"
 
-#: admin/includes/editor.php:148
+#: admin/includes/editor.php:172
 msgid "Additional Headers"
 msgstr "Antete suplimentare"
 
-#: admin/includes/editor.php:139 includes/contact-form-template.php:40
+#: admin/includes/editor.php:163 includes/contact-form-template.php:40
 msgid "Subject"
 msgstr "Subiect"
 
-#: admin/includes/editor.php:130
+#: admin/includes/editor.php:154
 msgid "From"
 msgstr "De la"
 
-#: admin/includes/editor.php:121
+#: admin/includes/editor.php:145
 msgid "To"
 msgstr "La"
 
-#: admin/includes/editor.php:115
+#: admin/includes/editor.php:135
 msgid "In the following fields, you can use these mail-tags:"
 msgstr "În câmpurile următoarele, poți să folosești aceste tag-uri de corespondență:"
 
-#: admin/includes/editor.php:109
+#: admin/includes/editor.php:119
 msgid "Mail (2) is an additional mail template often used as an autoresponder."
 msgstr "Corespondență (2) este un șablon de corespondență suplimentar adesea folosit ca un program care trimite automat răspunsuri."
 
-#: admin/includes/editor.php:75
+#: admin/includes/editor.php:85
 msgid "Use Mail (2)"
 msgstr "Folosește Corespondență (2)"
 
-#: admin/includes/editor.php:74
+#: admin/includes/editor.php:84
 msgid "Mail (2)"
 msgstr "Corespondență (2)"
 
@@ -1146,62 +1210,57 @@ msgstr "Scurtcod"
 msgid "Title"
 msgstr "Titlu"
 
-#: admin/edit-contact-form.php:216 admin/includes/editor.php:217
-#: admin/includes/editor.php:222
+#: admin/edit-contact-form.php:229 admin/includes/editor.php:247
+#: admin/includes/editor.php:252
 msgid "Additional Settings"
 msgstr "Setări suplimentare"
 
 #. translators: %d: number of additional settings
-#: admin/edit-contact-form.php:214
+#: admin/edit-contact-form.php:227
 msgid "Additional Settings (%d)"
 msgstr "Setări suplimentare (%d)"
 
-#: admin/edit-contact-form.php:202 admin/includes/editor.php:192
+#: admin/edit-contact-form.php:213 admin/includes/editor.php:222
 msgid "Messages"
 msgstr "Mesaje"
 
-#: admin/edit-contact-form.php:199 admin/includes/editor.php:83
+#: admin/edit-contact-form.php:209 admin/includes/editor.php:93
 msgid "Mail"
 msgstr "Corespondență"
 
-#: admin/edit-contact-form.php:196 admin/includes/editor.php:55
+#: admin/edit-contact-form.php:205 admin/includes/editor.php:61
 msgid "Form"
 msgstr "Formular"
 
-#. translators: %s: ◀ ▶ dashicon
-#: admin/edit-contact-form.php:185
-msgid "%s keys switch panels"
-msgstr "Chei %s pentru comutare panouri"
-
-#: admin/edit-contact-form.php:174 admin/includes/help-tabs.php:94
+#: admin/edit-contact-form.php:175 admin/includes/help-tabs.php:94
 msgid "Support"
 msgstr "Suport"
 
-#: admin/edit-contact-form.php:174 admin/includes/help-tabs.php:94
+#: admin/edit-contact-form.php:175 admin/includes/help-tabs.php:94
 msgid "https://contactform7.com/support/"
 msgstr "https://contactform7.com/support/"
 
-#: admin/edit-contact-form.php:173 admin/includes/help-tabs.php:93
+#: admin/edit-contact-form.php:174 admin/includes/help-tabs.php:93
 msgid "FAQ"
 msgstr "Întrebări frecvente"
 
-#: admin/edit-contact-form.php:173 admin/includes/help-tabs.php:93
+#: admin/edit-contact-form.php:174 admin/includes/help-tabs.php:93
 msgid "https://contactform7.com/faq/"
 msgstr "https://contactform7.com/faq/"
 
-#: admin/edit-contact-form.php:172 admin/includes/help-tabs.php:92
+#: admin/edit-contact-form.php:173 admin/includes/help-tabs.php:92
 msgid "Docs"
 msgstr "Documente"
 
-#: admin/edit-contact-form.php:172 admin/includes/help-tabs.php:92
+#: admin/edit-contact-form.php:173 admin/includes/help-tabs.php:92
 msgid "https://contactform7.com/docs/"
 msgstr "https://contactform7.com/docs/"
 
-#: admin/edit-contact-form.php:169
+#: admin/edit-contact-form.php:170
 msgid "Information"
 msgstr "Informație"
 
-#: admin/edit-contact-form.php:153
+#: admin/edit-contact-form.php:154
 msgid ""
 "You are about to delete this contact form.\n"
 "  'Cancel' to stop, 'OK' to delete."
@@ -1209,25 +1268,25 @@ msgstr ""
 "Ești pe cale de a șterge acest formular de contact.\n"
 "  'Cancel' pentru a anula, 'OK' pentru a șterge."
 
-#: admin/edit-contact-form.php:153
+#: admin/edit-contact-form.php:154
 #: admin/includes/class-contact-forms-list-table.php:92
 msgid "Delete"
 msgstr "Șterge"
 
-#: admin/edit-contact-form.php:138
+#: admin/edit-contact-form.php:139
 #: admin/includes/class-contact-forms-list-table.php:156
 msgid "Duplicate"
 msgstr "Duplicare"
 
-#: admin/edit-contact-form.php:124
+#: admin/edit-contact-form.php:125
 msgid "Status"
 msgstr "Stare"
 
-#: admin/edit-contact-form.php:110
+#: admin/edit-contact-form.php:111
 msgid "You can also use this old-style shortcode:"
 msgstr "De asemenea, poți folosi acest stil vechi de scurtcod:"
 
-#: admin/edit-contact-form.php:103
+#: admin/edit-contact-form.php:104
 msgid "Copy this shortcode and paste it into your post, page, or text widget content:"
 msgstr "Copiază acest scurtcod și lipește-l în articol, pagină sau în conținutul piesei:"
 
@@ -1235,12 +1294,12 @@ msgstr "Copiază acest scurtcod și lipește-l în articol, pagină sau în con�
 msgid "Enter title here"
 msgstr "Introdu titlul aici"
 
-#: admin/edit-contact-form.php:26 admin/edit-contact-form.php:131
+#: admin/edit-contact-form.php:26 admin/edit-contact-form.php:132
 #: modules/recaptcha.php:211
 msgid "Save"
 msgstr "Salvează"
 
-#: admin/admin.php:584
+#: admin/admin.php:593
 msgid "You are not allowed to edit this contact form."
 msgstr "Nu-ți este permis să editezi acest formular de contact."
 
@@ -1251,6 +1310,14 @@ msgstr "https://contactform7.com/save-submitted-messages-with-flamingo/"
 #: admin/includes/welcome-panel.php:26
 msgid "https://contactform7.com/spam-filtering-with-akismet/"
 msgstr "https://contactform7.com/spam-filtering-with-akismet/"
+
+#: admin/includes/editor.php:129
+msgid "Setting Up Mail"
+msgstr "Inițializare corespondență"
+
+#: admin/includes/editor.php:128
+msgid "https://contactform7.com/setting-up-mail/"
+msgstr "https://contactform7.com/setting-up-mail/"
 
 #: admin/includes/welcome-panel.php:35
 msgid "https://contactform7.com/donate/"
@@ -1265,36 +1332,36 @@ msgid "Dismiss"
 msgstr "Respinge"
 
 #. translators: 1: version of Contact Form 7, 2: version of WordPress, 3: URL
-#: admin/admin.php:565
+#: admin/admin.php:574
 msgid "<strong>Contact Form 7 %1$s requires WordPress %2$s or higher.</strong> Please <a href=\"%3$s\">update WordPress</a> first."
 msgstr "<strong>Contact Form 7 %1$s necesită WordPress %2$s sau o versiune mai nouă.</strong> În primul rând, te rog să <a href=\"%3$s\">actualizezi WordPress</a>."
 
-#: admin/admin.php:545
+#: admin/admin.php:554
 msgid "Settings"
 msgstr "Setări"
 
-#: admin/admin.php:496
+#: admin/admin.php:500
 msgid "Contact form deleted."
 msgstr "Formularul de contact a fost șters."
 
-#: admin/admin.php:494
+#: admin/admin.php:498
 msgid "Contact form saved."
 msgstr "Formularul de contact a fost salvat."
 
-#: admin/admin.php:492
+#: admin/admin.php:496
 msgid "Contact form created."
 msgstr "Formularul de contact a fost creat."
 
-#: admin/admin.php:393
+#: admin/admin.php:397
 msgid "Search Contact Forms"
 msgstr "Căutare formulare de contact"
 
 #. translators: %s: search keywords
-#: admin/admin.php:380
+#: admin/admin.php:384
 msgid "Search results for &#8220;%s&#8221;"
 msgstr "Rezultatele căutării după &#8222;%s&#8221;"
 
-#: admin/admin.php:310
+#: admin/admin.php:312
 msgid "The changes you made will be lost if you navigate away from this page."
 msgstr "Modificările efectuate se vor pierde dacă părăsești această pagină."
 
@@ -1314,11 +1381,11 @@ msgstr "Nu ai dreptul de a edita acest element."
 msgid "Integration"
 msgstr "Integrare"
 
-#: admin/admin.php:47 admin/admin.php:462
+#: admin/admin.php:47 admin/admin.php:466
 msgid "Integration with Other Services"
 msgstr "Integrare cu alte servicii"
 
-#: admin/admin.php:37 admin/admin.php:374 admin/edit-contact-form.php:46
+#: admin/admin.php:37 admin/admin.php:378 admin/edit-contact-form.php:46
 msgid "Add New"
 msgstr "Adaugă nou"
 
@@ -1326,7 +1393,7 @@ msgstr "Adaugă nou"
 msgid "Add New Contact Form"
 msgstr "Adaugă un formular de contact nou"
 
-#: admin/admin.php:29 admin/admin.php:367 includes/contact-form.php:31
+#: admin/admin.php:29 admin/admin.php:371 includes/contact-form.php:31
 msgid "Contact Forms"
 msgstr "Formulare de contact"
 
@@ -1338,8 +1405,8 @@ msgstr "Editare formular de contact"
 msgid "Contact"
 msgstr "Contact"
 
-#. #-#-#-#-#  contact-form-7-code.pot (Contact Form 7 4.9.1)  #-#-#-#-#
+#. #-#-#-#-#  contact-form-7-code.pot (Contact Form 7 5.0.1)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
-#: admin/admin.php:21 modules/flamingo.php:150
+#: admin/admin.php:21 modules/flamingo.php:167
 msgid "Contact Form 7"
 msgstr "Formular de contact 7"
