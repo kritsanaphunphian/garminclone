@@ -529,11 +529,11 @@ table.shop_attributes {
 /**
  * -- START [Custom th/support/vdo-tutorial page]
  */
-.slider-wrapper .flickity-viewport {
+.col-inner .slider-wrapper .flickity-viewport {
     margin-top: -1.5em;
     margin-bottom: 2.5em;
 }
-.slider-wrapper .flickity-viewport .col {
+.col-inner .slider-wrapper .flickity-viewport .col {
     padding: 0;
 }
 
