@@ -1,0 +1,116 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Woocommerce Products Per Page\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-06 09:54+0000\n"
+"PO-Revision-Date: 2018-03-06 09:55+0000\n"
+"Last-Translator: GarminByGis <kritsana.phunpian@gmail.com>\n"
+"Language-Team: Thai\n"
+"Language: th\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: woocommerce-products-per-page.php:214
+msgid "Settings"
+msgstr ""
+
+#: includes/class-wppp-front-end.php:100
+#, php-format
+msgid "%s products per page"
+msgstr "%s รายการ ต่อ หน้า"
+
+#: includes/class-wppp-front-end.php:101
+msgid "All"
+msgstr ""
+
+#: includes/admin/class-wppp-admin-settings.php:64
+msgid "Drop-down location"
+msgstr ""
+
+#: includes/admin/class-wppp-admin-settings.php:72
+msgid "Top"
+msgstr ""
+
+#: includes/admin/class-wppp-admin-settings.php:73
+msgid "Bottom"
+msgstr ""
+
+#: includes/admin/class-wppp-admin-settings.php:74
+msgid "Top/Bottom"
+msgstr ""
+
+#: includes/admin/class-wppp-admin-settings.php:75
+msgid "None"
+msgstr ""
+
+#: includes/admin/class-wppp-admin-settings.php:81
+msgid "List of dropdown options"
+msgstr ""
+
+#: includes/admin/class-wppp-admin-settings.php:82
+msgid "Seperated by spaces <em>(-1 for all products)</em>"
+msgstr ""
+
+#: includes/admin/class-wppp-admin-settings.php:89
+msgid "Default products per page"
+msgstr ""
+
+#: includes/admin/class-wppp-admin-settings.php:90
+msgid "-1 for all products"
+msgstr ""
+
+#: includes/admin/class-wppp-admin-settings.php:98
+msgid "Shop columns"
+msgstr ""
+
+#: includes/admin/class-wppp-admin-settings.php:111
+msgid "First category page"
+msgstr ""
+
+#: includes/admin/class-wppp-admin-settings.php:112
+msgid ""
+"When checked and a new number of PPP is selected, the visitor will be send "
+"to the first page of the product category"
+msgstr ""
+
+#: includes/admin/class-wppp-admin-settings.php:119
+msgid "HTTP method"
+msgstr ""
+
+#: includes/admin/class-wppp-admin-settings.php:120
+msgid ""
+"GET sends the products per page via the url, POST does this on the background"
+msgstr ""
+
+#: includes/admin/class-wppp-admin-settings.php:126
+msgid "POST"
+msgstr ""
+
+#: includes/admin/class-wppp-admin-settings.php:127
+msgid "GET"
+msgstr ""
+
+#. Name of the plugin
+msgid "Woocommerce Products Per Page"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Integrate a 'products per page' dropdown on your WooCommerce website! Set-up "
+"in <strong>seconds</strong>!"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://wordpress.org/plugins/woocommerce-products-per-page/"
+msgstr ""
+
+#. Author of the plugin
+msgid "Jeroen Sormani"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://jeroensormani.com"
+msgstr ""

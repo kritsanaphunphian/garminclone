@@ -1,0 +1,229 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Flatsome Child\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-10 13:19+0000\n"
+"PO-Revision-Date: 2018-04-10 13:21+0000\n"
+"Last-Translator: GarminByGis <kritsana.phunpian@gmail.com>\n"
+"Language-Team: Thai\n"
+"Language: th\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: functions.php:8
+msgid "You must select a province."
+msgstr "กรุณาระบุจังหวัด"
+
+#: functions.php:9
+msgid "Identifier / Name field cannot be blank."
+msgstr "กรุณาระบุชื่อสถานที่"
+
+#: functions.php:10 wp-additional-field-account.php:95
+msgid "First name field cannot be blank."
+msgstr "กรุณาระบุชื่อ"
+
+#: functions.php:11 wp-additional-field-account.php:104
+msgid "Last name field cannot be blank."
+msgstr "กรุณาระบุนามสกุล"
+
+#: functions.php:12
+msgid "Street address field cannot be blank."
+msgstr "กรุณาระบุที่อยู่"
+
+#: functions.php:13
+msgid "Sub District field cannot be blank."
+msgstr "กรุณาระบุตำบล / แขวง"
+
+#: functions.php:14
+msgid "District / City field cannot be blank."
+msgstr "กรุณาระบุอำเภอ / เขต"
+
+#: functions.php:15
+msgid "Postcode field cannot be blank."
+msgstr "กรุณาระบุรหัสไปรษณีย์"
+
+#: functions.php:16
+msgid "Phone number field cannot be blank."
+msgstr "กรุณาระบุหมายเลขโทรศัพท์"
+
+#: functions.php:17
+msgid "Email address field cannot be blank."
+msgstr "กรุณาระบุอีเมลล์"
+
+#: functions.php:531
+msgid "My Address"
+msgstr "ที่อยู่ของฉัน"
+
+#: functions.php:546
+msgid "Wishlist"
+msgstr "รายการโปรด"
+
+#: functions.php:556
+msgid "e.g. 111/1 M.1 Soi 1 Silom road."
+msgstr "ต.ย. 111/1 หมู่ 1 ซอย 1 ถนน สีลม"
+
+#: functions.php:557
+msgid "Sub District"
+msgstr "ตำบล / แขวง"
+
+#: functions.php:558
+msgid "e.g. Silom"
+msgstr "ต.ย. สีลม"
+
+#: functions.php:559
+msgid "District / City"
+msgstr "อำเภอ / เขต"
+
+#: functions.php:560
+msgid "e.g. Bangrak"
+msgstr "ต.ย. บางรัก"
+
+#: functions.php:622
+msgid "ระดับความปลอดภัยของรหัสผ่าน : ต่ำมาก"
+msgstr ""
+
+#: functions.php:623
+msgid "ระดับความปลอดภัยของรหัสผ่าน : ต่ำ"
+msgstr ""
+
+#: functions.php:624
+msgid "ระดับความปลอดภัยของรหัสผ่าน : ปลอดภัย"
+msgstr ""
+
+#: functions.php:625
+msgid "ระดับความปลอดภัยของรหัสผ่าน : ปลอดภัยมาก"
+msgstr ""
+
+#: functions.php:657
+msgid ""
+"<strong>Success:</strong> Account created successfully. Please check your "
+"email address to verify account."
+msgstr ""
+
+#: functions.php:673
+msgid ""
+"<strong>Error:</strong> Invalid verification credentials. Try login to get "
+"new verificaton key."
+msgstr ""
+
+#: functions.php:681
+msgid "<strong>Success:</strong> Your account is verified. Try login now."
+msgstr ""
+
+#: functions.php:704
+msgid "Resend Verification Link."
+msgstr ""
+
+#: functions.php:704
+msgid ""
+"<strong>Error:</strong> Please verify your account before login. "
+"{{resend_verification_link}}"
+msgstr ""
+
+#: functions.php:721
+msgid "<strong>Success:</strong> Check email for new verification link."
+msgstr ""
+
+#: wp-additional-field-account.php:22
+msgctxt "myaccount additional information fields"
+msgid "Birth date"
+msgstr "วันเกิด"
+
+#: wp-additional-field-account.php:24
+msgctxt "myaccount additional information fields"
+msgid "(Birth date format: DD-MM-YYYY. eg: 01/12/1990)"
+msgstr "(รูปแบบวันเกิด : วว-ดด-ปปปป. เช่น: 01/12/1990)"
+
+#: wp-additional-field-account.php:28
+msgctxt "myaccount additional information fields"
+msgid "Gender"
+msgstr "เพศ"
+
+#: wp-additional-field-account.php:30
+msgctxt "myaccount additional information fields"
+msgid "male"
+msgstr "ชาย"
+
+#: wp-additional-field-account.php:31
+msgctxt "myaccount additional information fields"
+msgid "female"
+msgstr "หญิง"
+
+#: wp-additional-field-account.php:33
+msgctxt "myaccount additional information fields"
+msgid "(Gender format: male/female)"
+msgstr "(เพศ : ชาย/หญิง)"
+
+#: wp-additional-field-account.php:37
+msgctxt "myaccount additional information fields"
+msgid "Phone no"
+msgstr "เบอร์โทรศัพท์"
+
+#: wp-additional-field-account.php:39
+msgctxt "myaccount additional information fields"
+msgid "(Phone no. format: 088-664-4321)"
+msgstr "(รูปแบบการกรอกเบอร์โทร : 088-664-4321)"
+
+#: wp-additional-field-account.php:113
+msgid "Email field cannot be blank."
+msgstr "กรุณาระบุอีเมลล์"
+
+#: wp-additional-field-account.php:123
+msgid "Birth date field cannot be blank."
+msgstr "กรุณาระบุวันเกิด"
+
+#: wp-checkbox-field-checkout.php:3 wp-checkbox-field-checkout.php:84
+#: wp-checkbox-field-checkout.php:87 wp-checkbox-field-checkout.php:91
+msgctxt "additional checkout fields"
+msgid "Require Tax Invoice"
+msgstr "ต้องการใบกำกับภาษีหรือไม่"
+
+#: wp-checkbox-field-checkout.php:10
+msgctxt "additional checkout fields"
+msgid "I want tax invoice"
+msgstr "ฉันต้องการใบกำกับภาษี"
+
+#: wp-checkbox-field-checkout.php:18
+msgctxt "additional checkout fields"
+msgid "Tax Information"
+msgstr ""
+
+#: wp-checkbox-field-checkout.php:25 wp-checkbox-field-checkout.php:85
+#: wp-checkbox-field-checkout.php:88
+msgctxt "additional checkout fields"
+msgid "Tax Id"
+msgstr ""
+
+#: wp-checkbox-field-checkout.php:36 wp-checkbox-field-checkout.php:89
+msgctxt "additional checkout fields"
+msgid "Head Office/Branch"
+msgstr ""
+
+#: wp-checkbox-field-checkout.php:84 wp-checkbox-field-checkout.php:87
+msgctxt "additional checkout fields"
+msgid "Yes"
+msgstr "ใช่"
+
+#: wp-checkbox-field-checkout.php:87
+msgctxt "additional checkout fields"
+msgid "(For Company)"
+msgstr "(รูปแบบบริษัท)"
+
+#: woocommerce/myaccount/account-links.php:36
+msgid "Log out"
+msgstr "ออกจากระบบ"
+
+#. Name of the theme
+msgid "Flatsome Child"
+msgstr ""
+
+#. Description of the theme
+msgid "This is a child theme for Flatsome Theme"
+msgstr ""
+
+#. Author of the theme
+msgid "UX Themes"
+msgstr ""

@@ -33,6 +33,6 @@ if ( has_nav_menu( 'my_account' ) ) {
   <?php do_action( 'flatsome_account_links' ); ?>
 
   <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout">
-    <a href="<?php echo wp_logout_url( '/my-account/' ) ?>"><?php _e( 'Log out', 'woocommerce' ); ?></a>
+    <a href="<?php echo wp_logout_url( '/my-account/' ) ?>"><?php _e( 'Log out', 'garminbygis' ); ?></a>
   </li>
 <?php endif; ?>

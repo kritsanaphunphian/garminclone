@@ -1,0 +1,31 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: SB WooCommerce Email Verification\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-06 15:47+0000\n"
+"PO-Revision-Date: 2018-03-06 15:47+0000\n"
+"Last-Translator: GarminByGis <kritsana.phunpian@gmail.com>\n"
+"Language-Team: \n"
+"Language: th\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#. Name of the plugin
+msgid "SB WooCommerce Email Verification"
+msgstr ""
+
+#. Description of the plugin
+msgid "Force customers to verify account before login. Reduce spam users."
+msgstr ""
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "http://codecanyon.net/user/sbthemes/portfolio?ref=sbthemes"
+msgstr ""
+
+#. Author of the plugin
+msgid "SB Themes"
+msgstr ""

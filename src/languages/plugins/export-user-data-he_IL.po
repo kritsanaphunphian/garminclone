@@ -1,0 +1,224 @@
+# Translation of Stable (latest release) in Hebrew
+# This file is distributed under the same license as the Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2016-09-28 13:53:16+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.1.0-alpha\n"
+"Project-Id-Version: Stable (latest release)\n"
+
+#: export-user-data.php:157
+msgid " - %s%s() %s:%d"
+msgstr "- %s%s() %s:%d"
+
+#: export-user-data.php:1491
+msgid "Standard User Fields"
+msgstr "שדות משתמש סטנדרטיים"
+
+#: export-user-data.php:1500
+msgid "Include Standard user profile fields, such as user_login. <a href=\"%s\" target=\"_blank\">%s</a>"
+msgstr "כלול שדות משתמש סטנדרטיים כמו שם משתמש. <a href=\"%s\" target=\"_blank\">%s</a>"
+
+#. #-#-#-#-#  tmp-export-user-data.pot (Export User Data 1.3.1)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: export-user-data.php:200 export-user-data.php:1263
+msgid "Export User Data"
+msgstr "ייצא פרטי משתמשים"
+
+#: export-user-data.php:1161
+msgid "You do not have sufficient permissions to access this page."
+msgstr "אין לך הרשאות להיכנס לעמוד. נא להתחבר ולנסות שוב, או לעבור לעמוד הראשי."
+
+#: export-user-data.php:1268
+msgid "No users found."
+msgstr "לא נמצאו משתמשים."
+
+#: export-user-data.php:1324
+msgid "User Meta Fields"
+msgstr "שדות מידע למשתמשים"
+
+#: export-user-data.php:1326
+msgid "Filter"
+msgstr "מסננים"
+
+#: export-user-data.php:1326 export-user-data.php:1329
+#: export-user-data.php:1412 export-user-data.php:1449
+msgid "All"
+msgstr "הכל"
+
+#: export-user-data.php:1326
+msgid "Common"
+msgstr "שכיח"
+
+#: export-user-data.php:1329 export-user-data.php:1412
+#: export-user-data.php:1449
+msgid "Select"
+msgstr "בחר"
+
+#: export-user-data.php:1329 export-user-data.php:1412
+#: export-user-data.php:1449
+msgid "None"
+msgstr "ללא"
+
+#: export-user-data.php:1380
+msgid "Select the user meta keys to export, use the filters to simplify the list."
+msgstr "בחר שדות מידע משתמש לייצא, השתמש במסננים כדי להקל על המשימה."
+
+#: export-user-data.php:1410
+msgid "BP xProfile Fields"
+msgstr "שדות מידע מפרופיל באדיפרס"
+
+#: export-user-data.php:1435
+msgid "Select the BuddyPress XProfile keys to export"
+msgstr "בחר מפתחות פרופיל באדיפרס לייצא"
+
+#: export-user-data.php:1447
+msgid "BP xProfile Fields Update Time"
+msgstr "זמן עדכון פרטי המשתמש בבאדיפרס"
+
+#: export-user-data.php:1466
+msgid "Select the BuddyPress XProfile keys updated dates to export"
+msgstr "בחר תאריכי עדכון פרופיל בבאדיפרס לייצא"
+
+#: export-user-data.php:1473
+msgid "BP User Groups"
+msgstr "קבוצות משתמשים בבאדיפרס"
+
+#: export-user-data.php:1478
+msgid "Include BuddyPress Group Data. <a href=\"%s\" target=\"_blank\">%s</a>"
+msgstr "כלול פרטי קבוצות באדיפרס בקובץ היצוא. <a href=\"%s\" target=\"_blank\">%s</a>"
+
+#: export-user-data.php:1510
+msgid "Role"
+msgstr "תפקיד"
+
+#: export-user-data.php:1515
+msgid "All Roles"
+msgstr "כל התפקידים"
+
+#: export-user-data.php:1536
+msgid "Filter the exported users by a WordPress Role. <a href=\"%s\" target=\"_blank\">%s</a>"
+msgstr "סנן את המשתמשים לייצוא בעזרת תפקיד משתמש. <a href=\"%s\" target=\"_blank\">%s</a>"
+
+#: export-user-data.php:1545
+msgid "User Roles"
+msgstr "תפקידי משתמש"
+
+#: export-user-data.php:1550
+msgid "Include all of the users <a href=\"%s\" target=\"_blank\">%s</a>"
+msgstr "כלול את כל המשתמשים <a href=\"%s\" target=\"_blank\">%s</a>"
+
+#: export-user-data.php:1564
+msgid "Programs"
+msgstr "תוכניות"
+
+#: export-user-data.php:1569
+msgid "All Programs"
+msgstr "כל התוכניות"
+
+#: export-user-data.php:1590
+msgid "Registered"
+msgstr "רשומים"
+
+#: export-user-data.php:1596
+msgid "Pick a start and end user registration date to limit the results."
+msgstr "בחר תאריך רישום התחלתי ותאריך רישום סופי על מנת להגביל את התוצאות."
+
+#: export-user-data.php:1603
+msgid "Limit Range"
+msgstr "הגבל טווח"
+
+#: export-user-data.php:1605
+msgid "Offset"
+msgstr "היסט"
+
+#: export-user-data.php:1606
+msgid "Total"
+msgstr "סך הכל"
+
+#: export-user-data.php:1609
+msgid "Enter an offset start number and a total number of users to export. <a href=\"%s\" target=\"_blank\">%s</a>"
+msgstr "הזן מספר משתמש התחלתי ומספר משתמשים לייצוא. <a href=\"%s\" target=\"_blank\">%s</a>"
+
+#: export-user-data.php:1618
+msgid "Updated Since"
+msgstr "עודכנו מאז"
+
+#: export-user-data.php:1637
+msgid "Limit the results to users who have updated this extended profile field after this date."
+msgstr "הגבל את התוצאות למשתמשים שעדכנו את שדה הפרופיל המורחב הזה לאחר תאריך מסוים."
+
+#: export-user-data.php:1644
+msgid "Format"
+msgstr "פורמט"
+
+#: export-user-data.php:1649 export-user-data.php:1651
+msgid "Excel"
+msgstr "אקסל"
+
+#: export-user-data.php:1654 export-user-data.php:1656
+msgid "CSV"
+msgstr "CSV"
+
+#: export-user-data.php:1662
+msgid "Select the format for the export file."
+msgstr "בחר פורמט לקובץ הייצוא."
+
+#: export-user-data.php:1669
+msgid "Stored Options"
+msgstr "אפשרויות שמורות"
+
+#: export-user-data.php:1673
+msgid "Export Name"
+msgstr "שם הקובץ לייצוא"
+
+#: export-user-data.php:1674
+msgid "Save"
+msgstr "שמירה"
+
+#: export-user-data.php:1710
+msgid "Load"
+msgstr "טען"
+
+#: export-user-data.php:1711
+msgid "Delete"
+msgstr "מחיקה"
+
+#: export-user-data.php:1718
+msgid "Save, load or delete your stored export options."
+msgstr "שמור, טען או מחק הגדרות ייצוא שמורים."
+
+#: export-user-data.php:1725
+msgid "Advanced Options"
+msgstr "אפשרויות מתקדמות"
+
+#: export-user-data.php:1729 export-user-data.php:1823
+msgid "Show"
+msgstr "הצג"
+
+#: export-user-data.php:1737
+msgid "Run Export"
+msgstr "ייצא נתונים"
+
+#: export-user-data.php:1821
+msgid "Hide"
+msgstr "הסתר"
+
+#. Plugin URI of the plugin/theme
+msgid "http://qstudio.us/plugins/"
+msgstr "http://qstudio.us/plugins/"
+
+#. Description of the plugin/theme
+msgid "Export User data, metadata and BuddyPress X-Profile data."
+msgstr "ייצא פרטי משתמשים, כולל מידע משתמש ומידע מפרופיל באדיפרס."
+
+#. Author of the plugin/theme
+msgid "Q Studio"
+msgstr "Q Studio"
+
+#. Author URI of the plugin/theme
+msgid "http://qstudio.us"
+msgstr "http://qstudio.us"

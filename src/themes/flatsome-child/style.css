@@ -3,10 +3,70 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
+Text Domain: garminbygis
 Version: 3.0
 */
 
 /*************** ADD CUSTOM CSS HERE.   ***************/
+
+/**
+ * 1. Generic stylesheet --------------------------------------------------
+ */
+th {
+    font-size: .6em;
+}
+
+.uppercase, h6, th, span.widget-title {
+    letter-spacing: 0;
+}
+
+a.showlogin,
+a.showcoupon {
+    color: #005395;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.hide-from-screen {
+    display: none;
+}
+
+.required {
+    color: red;
+}
+
+.badge-inner {
+    text-transform: uppercase;
+}
+
+input[type='email'].input-field-invalid,
+input[type='date'].input-field-invalid,
+input[type='search'].input-field-invalid,
+input[type='number'].input-field-invalid,
+input[type='text'].input-field-invalid,
+input[type='tel'].input-field-invalid,
+input[type='url'].input-field-invalid,
+input[type='password'].input-field-invalid,
+textarea.input-field-invalid,
+select.input-field-invalid, .select2-container .select2-choice, .select2-container .select2-selection.input-field-invalid,
+.input-field-invalid {
+    border: 1px solid #d1002a;
+}
+
+select {
+    padding: 0 1.75em 0 .75em;
+}
+
+.page-notice-message {
+    padding-bottom: 1.9em;
+}
+
+.validation-message.text-warning {
+    display: inline-block;
+    margin-bottom: 1em;
+    font-size: .9em;
+    color: #d1002a;
+}
 
 .catalog-short {
     overflow: hidden;
@@ -18,6 +78,33 @@ Version: 3.0
     padding-top:-10px;
     font-size: .9em; */
   }
+
+.footer-wrapper .hide-for-medium.large-5 {
+    max-width: 27.667%;
+    -webkit-flex-basis: 27.667%;
+            flex-basis: 27.667%;
+        -ms-flex-preferred-size: 27.667%;
+}
+
+.footer-wrapper .hide-for-medium.large-1 {
+    max-width: 10.33333%;
+    -webkit-flex-basis: 10.33333%;
+            flex-basis: 10.33333%;
+        -ms-flex-preferred-size: 10.33333%;
+}
+
+.footer-wrapper p {
+    font-size: .7em;
+}
+
+.footer-wrapper .fb-button-dt {
+    font-size: .6em;
+}
+
+.footer-wrapper .button i {
+    top: -0.5px;
+}
+
 
 @media screen and (max-width: 640px) {
   table {
@@ -202,6 +289,7 @@ border-radius: 100%;
 
 #billing_country_field, #shipping_country_field{
 	visibility: hidden;
+    font-size: 0;
 }
 
 #rememberme{
@@ -209,4 +297,508 @@ border-radius: 100%;
 	vertical-align: middle;
 }
 
+.product_meta > span {
+    padding: 7px 0;
+}
 
+/**
+ * -- START [Custom for product list page]
+ */
+.products .product.has-post-thumbnail .box-image img {
+    height: 170px;
+}
+
+.products .product .name.product-title {
+    height: 2.8em;
+    overflow-y: hidden;
+}
+
+.products .product .price-wrapper {
+    height: 2em;
+}
+/**
+ * -- END [Custom for product list page]
+ */
+
+/**
+ * Custom style.
+ * Only for 'flatsome-child/woocommmerce-list-grid/additional_product_data.php'
+ */
+.berocket_lgv_additional_data {
+    margin-bottom: 3.5em;
+    max-width: 100%;
+    padding: 0 .5rem;
+}
+.berocket_lgv_additional_data .lgv_description {
+    padding-top: 16px;
+    padding-bottom: 20px;
+    line-height: 1.35em;
+}
+
+.garminbygis-additional-data-price-n-button-area:after {
+    clear: both;
+}
+
+.garminbygis-additional-data-action-button {
+    float: left;
+    width: 55.9%;
+}
+.garminbygis-additional-data-action-button .compare.button {
+    color: #fff;
+    font-size: .6em;
+    margin: 0;
+    border-radius: 4px;
+    padding: 0 5px;
+}
+.garminbygis-additional-data-action-button .add-to-cart-button {
+    display: inline-block;
+}
+.garminbygis-additional-data-action-button .add_to_cart_button,
+.garminbygis-additional-data-action-button .ajax_add_to_cart {
+    width: auto;
+    margin: 0;
+    padding: 0 5px;
+    font-size: 0.6em;
+    border-radius: 4px;
+}
+
+.garminbygis-additional-data-price {
+    float: right;
+    width: 43.9%;
+    text-align: right;
+}
+.garminbygis-additional-data-price.lgv_price {
+    padding-top: 5px;
+}
+.garminbygis-additional-data-price .amount {
+    font-size: 1.1em;
+}
+
+.garminbygis-wc-checkout-must-be-logged-in-message {
+    text-align: center;
+    padding-bottom: 6px;
+}
+
+.widget.yith-woocompare-widget a.remove {
+    padding: 0;
+    top: 10px;
+    line-height: .85em !important;
+}
+
+/**
+ * Note, it is because we are attempting to override the WooCommerce-Multiple-Customer-Addresses style.
+ * That is why we specify a specific page's class, to make sure that this fix will not affect to another pages.
+ *
+ * @see wp-content/plugins/woocommerce-multiple-customer-addresses/classes/com/WCMCA_Html.php
+ * @see WCMCA_Html::render_addresses_list()
+ */
+.woocommerce-MyAccount-content .u-columns.woocommerce-Addresses.col2-set.addresses:after,
+.woocommerce-MyAccount-content .col2-set.addresses:after {
+    content: '.';
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+#yith-wcmap-avatar-form-overlay {
+    z-index: 30;
+}
+#yith-wcmap-avatar-form {
+    z-index: 31;
+}
+
+#wcmca_custom_addresses {
+    padding-top: 20px;
+}
+
+/**
+ * -- START [Custom style only for WooCommerce Multiple Customer Addresses plugin]
+ */
+.woocommerce-Addresses address {
+    font-size: 0.95em;
+}
+
+.wcmca_additional_addresses_list_title {
+    margin-top: 40px;
+}
+
+.wcmca_default_address_badge {
+    font-size: .8em;
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 400px) {
+    .button.wcmca_add_new_address_button {
+        font-size: .935em;
+        line-height: 2em;
+        padding: 10px;
+    }
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 401px) and (max-width: 960px) {
+  .button.wcmca_add_new_address_button {
+        font-size: .75em;
+        line-height: 2em;
+        padding: 10px;
+    }
+}
+/**
+ * -- END [Custom style only for WooCommerce Multiple Customer Addresses plugin]
+ */
+
+#wrapper > .message-wrapper {
+    padding-top: 30px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+#wrapper > .message-wrapper li:last-child {
+    margin-bottom: 0;
+}
+
+
+/**
+ * -- START [Custom table class' styles only for WooCommerce plugin]
+ *
+ * This may appears in various places, such as:
+ * - 'My Account > My Orders' page.
+ *
+ */
+.woocommerce-orders-table__cell-order-actions--mobile {
+    box-shadow: 0 1px 1px 1px #ffffff;
+}
+.woocommerce-orders-table__cell-order-actions--mobile .button {
+    min-height: 1em;
+    margin: 0 .35em 0 0;
+    padding: .6em .4em;
+    font-size: .725em;
+    font-weight: 400;
+    line-height: 1em;
+    border: 1px solid #00447b;
+}
+.woocommerce-orders-table__cell-order-actions--mobile .button:last-child {
+    margin: 0;
+}
+
+.woocommerce-orders-table__header.woocommerce-orders-table__header-order-actions,
+.woocommerce-orders-table__cell.woocommerce-orders-table__cell-order-actions {
+    display: none;
+}
+/**
+ * -- END [Custom table class' styles only for WooCommerce plugin]
+ */
+
+/**
+ * -- START [Custom jc-woocommerce-advanced-attributes plugin]
+ */
+ .jcaa_attr_select .jcaa_active_attr {
+    border-width: 3px;
+ }
+/**
+ * -- END [Custom jc-woocommerce-advanced-attributes plugin]
+ */
+
+/**
+ * -- START [Custom single-product page]
+ */
+table.shop_attributes {
+    display: table;
+}
+/**
+ * -- END [Custom single-product page]
+ */
+
+/**
+ * -- START [Custom faq page]
+ */
+.faqsearch-searchbox {
+    margin-bottom: 1em;
+}
+
+.arconix-faq-term-title,
+#tab_ask-your-question h2,
+#tab_ask-your-question .divider {
+    display: none;
+}
+/**
+ * -- END [Custom faq page]
+ */
+
+/**
+ * -- START [Custom th/support/vdo-tutorial page]
+ */
+.col-inner .slider-wrapper .flickity-viewport {
+    margin-top: -1.5em;
+    margin-bottom: 2.5em;
+}
+.col-inner .slider-wrapper .flickity-viewport .col {
+    padding: 0;
+}
+
+#huge_it_videogallery .huge_it_big_li {
+    max-width: 48% !important;
+    height: 95px !important;
+}
+
+#huge_it_videogallery li img {
+    height: auto !important;
+}
+
+section #huge_it_videogallery li:hover img {
+    border-radius: 4px;
+}
+/**
+ * -- END [Custom th/support/vdo-tutorial page]
+ */
+
+.page-template-default div.img div.image-cover {
+    padding-top: 0 !important;
+}
+
+.page-template-default div.img  div.image-cover img {
+    position: initial;
+}
+
+.garminbygis-label-icon img {
+    width: 60%;
+}
+.garminbygis-label-desc .col-inner {
+    padding-left: 4px;
+}
+.garminbygis-label-desc {
+    margin-bottom: 1em;
+}
+.garminbygis-label-desc h3 {
+    font-size: 1em;
+    margin-bottom: 0;
+}
+.garminbygis-label-desc p {
+    font-size: .85em;
+}
+
+
+/**
+ * ============================================================================
+ * Media Queries
+ * ============================================================================
+ */
+
+/**
+ * About width: 544;
+ * ============================================================================
+ */
+@media all and (min-width: 34em) {
+    /**
+     * Custom style.
+     * Only for 'flatsome-child/woocommmerce-list-grid/additional_product_data.php'
+     */
+    .garminbygis-additional-data-action-button .compare.button,
+    .garminbygis-additional-data-action-button .add_to_cart_button,
+    .garminbygis-additional-data-action-button .ajax_add_to_cart {
+        font-size: 0.7em;
+    }
+
+    /**
+     * -- START [Custom for product list page]
+     */
+    .products .product.has-post-thumbnail .box-image img {
+        height: 200px;
+    }
+
+    .garminbygis-additional-data-price .amount {
+       font-size: 1.4em;
+    }
+    /**
+     * -- END [Custom for product list page]
+     */
+
+    /**
+     * -- START [Custom th/support/vdo-tutorial page]
+     */
+    #huge_it_videogallery .huge_it_big_li {
+        max-width: 23.7% !important;
+        height: 120px !important;
+    }
+    /**
+     * -- END [Custom th/support/vdo-tutorial page]
+     */
+}
+
+/**
+ * About width: 576;
+ * ============================================================================
+ */
+@media all and (min-width: 36em) {
+    .berocket_lgv_additional_data {
+        max-width: 66%;
+        padding: 0 0 0 1rem;
+    }
+}
+
+@media all and (min-width: 38em) {
+    /**
+     * -- START [Custom for product list page]
+     */
+    .products .product.has-post-thumbnail .box-image img {
+        height: 230px;
+    }
+    /**
+     * -- END [Custom for product list page]
+     */
+}
+
+@media all and (min-width: 44em) {
+    /**
+     * -- START [Custom for product list page]
+     */
+    .products .product.has-post-thumbnail .box-image img {
+        height: 290px;
+    }
+
+    .products .product .price-wrapper {
+        height: auto;
+    }
+    /**
+     * -- END [Custom for product list page]
+     */
+}
+
+/**
+ * About width: 800px;
+ * ============================================================================
+ */
+@media all and (min-width: 50em) {
+    /**
+     * -- START [Custom for product list page]
+     */
+    .products .product.has-post-thumbnail .box-image img {
+        height: 275px;
+    }
+    /**
+     * -- END [Custom for product list page]
+     */
+
+    /**
+     * -- START [Custom th/support/vdo-tutorial page]
+     */
+    #huge_it_videogallery .huge_it_big_li {
+        height: 135px !important;
+    }
+    /**
+     * -- END [Custom th/support/vdo-tutorial page]
+     */
+}
+
+@media all and (min-width: 52em) {
+    /**
+     * 1. Generic stylesheet --------------------------------------------------
+     */
+    th {
+        font-size: .9em;
+    }
+
+    .uppercase, h6, th, span.widget-title {
+        letter-spacing: .05em;
+    }
+
+    /**
+     * 2. Specific area stylesheet --------------------------------------------
+     */
+
+    /**
+     * -- START [Custom for product list page]
+     */
+    .products .product.has-post-thumbnail .box-image img {
+        min-height: 230px;
+    }
+
+    .products .product .name.product-title {
+        height: 3.2em;
+    }
+    /**
+     * -- END [Custom for product list page]
+     */
+
+    /**
+     * -- START [Custom table class' styles only for WooCommerce plugin]
+     *
+     * This may appears in various places, such as:
+     * - 'My Account > My Orders' page.
+     *
+     */
+    .woocommerce-orders-table__row.garminbygis-action-buttons--mobile {
+        display: none;
+    }
+
+    .woocommerce-orders-table__header.woocommerce-orders-table__header-order-actions,
+    .woocommerce-orders-table__cell.woocommerce-orders-table__cell-order-actions {
+        display: table-cell;
+    }
+
+    .woocommerce-orders-table__cell.woocommerce-orders-table__cell-order-actions .button {
+        min-height: auto;
+        padding: .6em .35em;
+        font-size: .75em;
+        font-weight: 400;
+        line-height: 1em;
+        border: 1px solid #00447b;
+    }
+    /**
+     * -- END [Custom table class' styles only for WooCommerce plugin]
+     */
+
+    /**
+     * -- START [Custom faq page]
+     */
+    .arconix-faq-term-title,
+    #tab_ask-your-question h2,
+    #tab_ask-your-question .divider {
+        display: inherit;
+    }
+    /**
+     * -- END [Custom faq page]
+     */
+}
+
+@media all and (min-width: 56em) {
+    /**
+     * -- START [Custom for product list page]
+     */
+    .products .product.has-post-thumbnail .box-image img {
+        height: 250px;
+    }
+    /**
+     * -- END [Custom for product list page]
+     */
+}
+
+@media all and (min-width: 66em) {
+    /**
+     * -- START [Custom for product list page]
+     */
+    .products .product.has-post-thumbnail .box-image img {
+        height: 300px;
+    }
+    /**
+     * -- END [Custom for product list page]
+     */
+
+    /**
+     * -- START [Custom th/support/vdo-tutorial page]
+     */
+    #huge_it_videogallery .huge_it_big_li {
+        max-width: 24.38% !important;
+        height: 150px !important;
+    }
+    section #huge_it_videogallery li a,
+    section #huge_it_videogallery li .overLayer,
+    section #huge_it_videogallery li .infoLayer,
+    #huge_it_videogallery li img {
+        max-width: none !important;
+    }
+    /**
+     * -- END [Custom th/support/vdo-tutorial page]
+     */
+}
