@@ -27,6 +27,11 @@ class GISC {
 	protected static $the_instance = null;
 
 	/**
+	 * @var string  API endpoint.
+	 */
+	protected $endpoint = 'http://203.151.93.59:94/api';
+
+	/**
 	 * @since  3.0
 	 */
 	public function __construct() {
@@ -65,6 +70,51 @@ class GISC {
 		}
 
 		return self::$the_instance;
+	}
+
+	/**
+	 * @param string $email
+	 * @param string $serial
+	 */
+	public function request_register_product( $email, $serial ) {
+		$endpoint = 'ProductRegistration/GetProduct_byEmail';
+		$params   = array( 'serialNo', 'Email' );
+	}
+
+	/**
+	 * @param string $email
+	 */
+	public function request_list_registered_product( $email ) {
+		$endpoint = 'ProductRegistration/GetRegisteredProducts_byEmail';
+		$params   = array( 'Email' );
+	}
+
+	/**
+	 * @param string $productOwnerId
+	 */
+	public function request_remove_registed_product( $productOwnerId ) {
+		$endpoint = 'ProductRegistration/Delete';
+		$params   = array( 'productOwnerId' );
+	}
+
+	/**
+	 * @param string $email
+	 * @param string $password
+	 * @param string $name
+	 * @param string $surname
+	 */
+	public function request_register_new_customer( $email, $password, $name, $surname ) {
+		$endpoint = 'Customer/insertGarminCustomer';
+		$params   = array( 'Email', 'Password', 'Name', 'Surname' );
+	}
+
+	/**
+	 * @param string $email
+	 * @param string $password
+	 */
+	public function request_update_customer_password( $email, $password ) {
+		$endpoint = 'Customer/ChangePasswordGarminCustomer';
+		$params   = array( 'Email', 'Password' );
 	}
 }
 
