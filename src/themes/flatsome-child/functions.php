@@ -1,6 +1,4 @@
 <?php
-add_action('init', 'garminbygis_custom_post_type');
-
 function garminbygis_custom_post_type() {
     register_post_type(
         'gis_reg_product',
@@ -23,6 +21,7 @@ function garminbygis_custom_post_type() {
         )
     );
 }
+add_action('init', 'garminbygis_custom_post_type');
 
 /**
  * Initiate localization file after theme is loaded
