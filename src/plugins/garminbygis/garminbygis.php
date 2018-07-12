@@ -27,9 +27,24 @@ class GISC {
 	protected static $the_instance = null;
 
 	/**
+	 * @var string  API server url.
+	 */
+	protected $api_server = 'http://203.151.93.59:94/api';
+
+	/**
 	 * @var string  API endpoint.
 	 */
-	protected $endpoint = 'http://203.151.93.59:94/api';
+	protected $endpoint = '';
+
+	/**
+	 * @var array
+	 */
+	protected $required_params = array();
+
+	/**
+	 * @var array
+	 */
+	protected $request_params = array();
 
 	/**
 	 * @since  3.0
@@ -72,29 +87,49 @@ class GISC {
 		return self::$the_instance;
 	}
 
+	public function request( $api_name, $params ) {
+		if ( ! method_exists( $this, 'api_' . $api_name ) ) {
+			return false;
+		}
+
+		$api = 'api_' . $api_name;
+		$this->$api();
+
+		$this->build_request( $params );
+
+		$request = add_query_arg( $this->request_params, $this->endpoint );
+		$result = wp_remote_get( $request );
+
+		if ( is_array( $result ) && ! is_wp_error( $result ) ) {
+			return json_decode( $result['body'], true );
+		}
+
+		return false;
+	}
+
 	/**
 	 * @param string $email
 	 * @param string $serial
 	 */
-	public function request_register_product( $email, $serial ) {
-		$endpoint = 'ProductRegistration/GetProduct_byEmail';
-		$params   = array( 'serialNo', 'Email' );
+	public function api_register_product() {
+		$this->set_endpoint( 'ProductRegistration/GetProduct_byEmail' );
+		$this->set_required_parameters( array( 'serialNo', 'Email' ) );
 	}
 
 	/**
 	 * @param string $email
 	 */
-	public function request_list_registered_product( $email ) {
-		$endpoint = 'ProductRegistration/GetRegisteredProducts_byEmail';
-		$params   = array( 'Email' );
+	public function api_list_registered_product() {
+		$this->set_endpoint( 'ProductRegistration/GetRegisteredProducts_byEmail' );
+		$this->set_required_parameters( array( 'Email' ) );
 	}
 
 	/**
 	 * @param string $productOwnerId
 	 */
-	public function request_remove_registed_product( $productOwnerId ) {
-		$endpoint = 'ProductRegistration/Delete';
-		$params   = array( 'productOwnerId' );
+	public function api_remove_registed_product() {
+		$this->set_endpoint( 'ProductRegistration/Delete' );
+		$this->set_required_parameters( array( 'productOwnerId' ) );
 	}
 
 	/**
@@ -103,18 +138,41 @@ class GISC {
 	 * @param string $name
 	 * @param string $surname
 	 */
-	public function request_register_new_customer( $email, $password, $name, $surname ) {
-		$endpoint = 'Customer/insertGarminCustomer';
-		$params   = array( 'Email', 'Password', 'Name', 'Surname' );
+	public function api_register_new_customer() {
+		$this->set_endpoint( 'Customer/insertGarminCustomer' );
+		$this->set_required_parameters( array( 'Email', 'Password', 'Name', 'Surname' ) );
 	}
 
 	/**
 	 * @param string $email
 	 * @param string $password
 	 */
-	public function request_update_customer_password( $email, $password ) {
-		$endpoint = 'Customer/ChangePasswordGarminCustomer';
-		$params   = array( 'Email', 'Password' );
+	public function api_update_customer_password() {
+		$this->set_endpoint( 'Customer/ChangePasswordGarminCustomer' );
+		$this->set_required_parameters( array( 'Email', 'Password' ) );
+	}
+
+	/**
+	 * @param string $endpoint
+	 */
+	protected function set_endpoint( $endpoint ) {
+		$this->endpoint = $this->api_server . '/' . $endpoint;
+	}
+
+	/**
+	 * @param array $params
+	 */
+	protected function set_required_parameters( $params ) {
+		$this->required_params = $params;
+	}
+
+	/**
+	 * @param array $params
+	 */
+	protected function build_request( $params ) {
+		foreach ( $this->required_params as $key => $value ) {
+			$this->request_params[ $value ] = isset( $params[ $value ] ) ? $params[ $value ] : null;
+		}
 	}
 }
 
