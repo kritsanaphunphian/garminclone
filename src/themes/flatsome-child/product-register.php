@@ -55,7 +55,8 @@ function register_product( $email, $serial ) {
 
 if ( isset( $_POST['send-serial'] ) ) {
     if ( $user ) {
-        $post_id = register_product( 's.tuasakul@gmail.com', $_POST['serail-product'] );
+        $post_id = register_product( $user->user_email, $_POST['serail-product'] );
+        // $post_id = register_product( 's.tuasakul@gmail.com', $_POST['serail-product'] );
 
         if ( $post_id && isset( $_FILES['product-receipt']['tmp_name'] ) && ! $_FILES['product-receipt']['error'] ) {
             $upload = wp_upload_bits(
@@ -208,8 +209,8 @@ $receipt_attachment_modal = '
 ?>
 
 <?php
-// $items = GISC()->request( 'list_registered_product', array( 'Email' => $email ) )
-$items = GISC()->request( 'list_registered_product', array( 'Email' => 's.tuasakul@gmail.com' ) ); // TODO: Remove mock email.
+$items = GISC()->request( 'list_registered_product', array( 'Email' => $email ) )
+// $items = GISC()->request( 'list_registered_product', array( 'Email' => 's.tuasakul@gmail.com' ) ); // TODO: Remove mock email.
 ?>
 <?php if ( $items && ! empty( $items ) ) : ?>
     <form class="garminbygis-form-registered-product-list" name="frm" method="post" action="#" enctype="multipart/form-data">
