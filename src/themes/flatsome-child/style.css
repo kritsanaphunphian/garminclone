@@ -696,7 +696,7 @@ section #huge_it_videogallery li:hover img {
      * 1. Generic stylesheet --------------------------------------------------
      */
     th {
-        font-size: .9em;
+        font-size: .75em;
     }
 
     .uppercase, h6, th, span.widget-title {

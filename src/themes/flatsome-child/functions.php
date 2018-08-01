@@ -1,4 +1,38 @@
 <?php
+function garminbygis_update_post_meta( $post_id, $field_name, $value = '' ) {
+    if ( empty( $value ) || ! $value ) {
+        delete_post_meta( $post_id, $field_name );
+    } elseif ( ! get_post_meta( $post_id, $field_name ) ) {
+        add_post_meta( $post_id, $field_name, $value );
+    } else {
+        update_post_meta( $post_id, $field_name, $value );
+    }
+}
+
+function garminbygis_custom_post_type() {
+    register_post_type(
+        'gis_reg_product',
+        array(
+            'labels'    => array(
+                'name'          => __('Registered Products', 'garminbygis'),
+                'singular_name' => __('Registered Product'),
+                'menu_name'     => __('Registered Products','garminbygis')
+            ),
+            // 'capabilities' => array(
+            //     'create_posts' => 'do_not_allow',
+            //     // 'edit_posts' => 'manage_woocommerce',
+            // ),
+            'supports' => array( 'title', 'custom-fields', 'thumbnail' ),
+            'has_archive'   => false,
+            'menu_icon'   => 'dashicons-paperclip',
+            'public'    => true,
+            'exclude_from_search' => true,
+            'publicly_queryable'    => false
+        )
+    );
+}
+add_action('init', 'garminbygis_custom_post_type');
+
 /**
  * Initiate localization file after theme is loaded
  */
