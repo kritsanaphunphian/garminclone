@@ -29,7 +29,7 @@ class GISC {
 	/**
 	 * @var string  API server url.
 	 */
-	protected $api_server = 'http://203.151.93.59:94/api';
+	protected $api_server = 'http://garminuat.cdg.co.th:94/api';
 
 	/**
 	 * @var string  API endpoint.
