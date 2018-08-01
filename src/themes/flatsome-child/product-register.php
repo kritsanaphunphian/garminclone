@@ -4,38 +4,67 @@ $user = get_userdata( get_current_user_id() );
 function register_product( $email, $serial ) {
     $result = GISC()->request( 'register_product', array( 'serialNo' => $serial, 'Email' => $email ) );
 
-    if ( is_array( $result ) && ! is_wp_error( $result ) ) {
-        $headers = $result['headers']; // array of http header lines
-        $body    = json_decode( $result['body'], true ); // use the content
+    if ( $result['Flag'] == 102 ) {
+        ?>
+        <p class="alert-color">
+            <?php echo __( 'The serial number has been registered.', 'garminbygis' ); ?>
+        </p>
+        <?php
+        return false;
+    } else if ( $result['Flag'] == 3 ) {
+        $post_id = wp_insert_post( array(
+            'post_title'  => 'GISC Product Receipt, owner id: " ' . $result['ProductOwnerId'] . ' ", serial: "' . $serial . '"',
+            'post_status' => 'publish',
+            'post_type'   => 'gis_reg_product'
+        ) );
 
-        if ( $body['Flag'] === 102 ) {
-            ?>
-            <p class="alert-color">
-                <?php echo __( 'The serial number has been registered.', 'garminbygis' ); ?>
-            </p>
-            <?php
-        } else if ( $body['Flag'] === 0 ) {
+        garminbygis_update_post_meta( $post_id, 'gisc_reg_product_product_owner_id', $result['ProductOwnerId'] );
+        garminbygis_update_post_meta( $post_id, 'gisc_reg_product_product_owner_email', $email );
+        garminbygis_update_post_meta( $post_id, 'gisc_reg_product_serial_number', $serial );
+
+        return $post_id;
+    } else {
+        ?>
+        <p class="alert-color">
+            <?php echo __( 'No serial found.', 'garminbygis' ); ?>
+        </p>
+        <?php
+        return false;
+    }
+}
+
+if ( isset( $_POST['send-serial'] ) ) {
+    if ( $user ) {
+        $post_id = register_product( 's.tuasakul@gmail.com', $_POST['serail-product'] );
+
+        if ( $post_id && isset( $_FILES['product-receipt']['tmp_name'] ) && ! $_FILES['product-receipt']['error'] ) {
+            $upload = wp_upload_bits(
+                $_FILES['product-receipt']['name'],
+                null,
+                file_get_contents( $_FILES['product-receipt']['tmp_name'] )
+            );
+
+            $filename = $upload['file'];
+            $wp_filetype = wp_check_filetype($filename, null );
+            $attachment = array(
+                'post_mime_type' => $wp_filetype['type'],
+                'post_title' => sanitize_file_name($filename),
+                'post_content' => '',
+                'post_status' => 'inherit'
+            );
+            $attach_id = wp_insert_attachment( $attachment, $filename, $post_id );
+
+            require_once(ABSPATH . 'wp-admin/includes/image.php');
+            $attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
+            wp_update_attachment_metadata( $attach_id, $attach_data );
+            set_post_thumbnail( $post_id, $attach_id );
+
             ?>
             <p class="success-color">
                 <?php echo __( 'Register successfully.', 'garminbygis' ); ?>
             </p>
             <?php
-        } else {
-            ?>
-            <p class="alert-color">
-                <?php echo __( 'No serial found.', 'garminbygis' ); ?>
-            </p>
-            <?php
         }
-    }
-}
-
-if ( isset( $_POST['send-serial'] ) ) {
-
-    if ( $user ) {
-
-        // register_product( $user->user_email, $_POST['serail-product'] );
-        register_product( 's.tuasakul@gmail.com', $_POST['serail-product'] );
     }
 
 
