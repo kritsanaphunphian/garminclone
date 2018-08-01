@@ -1,6 +1,21 @@
 <?php
 $user = get_userdata( get_current_user_id() );
 
+function get_related_registered_product_post( $productOwnerId ) {
+    $args = array(
+        'post_type'  => 'gis_reg_product',
+        'meta_query' => array(
+            array(
+                'key'     => 'gisc_reg_product_product_owner_id',
+                'value'   => $productOwnerId,
+                'compare' => 'LIKE'
+            )
+        )
+    );
+
+    return new WP_Query( $args );
+}
+
 function register_product( $email, $serial ) {
     $result = GISC()->request( 'register_product', array( 'serialNo' => $serial, 'Email' => $email ) );
 
@@ -171,8 +186,16 @@ $items = GISC()->request( 'list_registered_product', array( 'Email' => 's.tuasak
                         </td>
 
                         <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-receipt" data-title="Receipt">
-                            <!-- <a class="woocommerce-button button view">View Receipt</a> -->
-                            <a class="woocommerce-button button view">attach file</a>
+                            <?php $query = get_related_registered_product_post( $value['ProductOwnerId'] ); ?>
+
+                            <?php if ( $query->have_posts() ): ?>
+                                <a href="#">view receipt</a>
+                            <?php else: ?>
+                                <a class="woocommerce-button button view">attach file</a>
+                            <?php endif; ?>
+
+
+
                             <!-- <a href="">attach file</a> -->
                         </td>
 
@@ -213,6 +236,9 @@ $items = GISC()->request( 'list_registered_product', array( 'Email' => 's.tuasak
     padding: 1rem;
 }
 
+.woocommerce-gisc-registered-product-table td {
+    padding: .75em .5em;
+}
 
 .woocommerce .woocommerce-gisc-registered-product-table__cell-product-name span.name {
     color: #005395;
