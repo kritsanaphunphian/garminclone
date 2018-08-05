@@ -15,7 +15,23 @@ class GISC_Product {
 	 * @since  0.1
 	 */
 	public function register( $serialNo, $email ) {
-		return GISC()->request( 'register_product', array( 'serialNo' => $serialNo, 'Email' => $email ) );
+		$result = GISC()->request( 'register_product', array( 'serialNo' => $serialNo, 'Email' => $email ) );
+
+		if ( $result['Flag'] === 3 || $result['Flag'] === 0 ) {
+			$post_id = wp_insert_post( array(
+			    'post_title'  => 'GISC Product Receipt, owner id: " ' . $result['ProductOwnerId'] . ' ", serial: "' . $serial . '"',
+			    'post_status' => 'publish',
+			    'post_type'   => 'gis_reg_product'
+			) );
+
+			garminbygis_update_post_meta( $post_id, 'gisc_reg_product_product_owner_id', $result['ProductOwnerId'] );
+			garminbygis_update_post_meta( $post_id, 'gisc_reg_product_product_owner_email', $email );
+			garminbygis_update_post_meta( $post_id, 'gisc_reg_product_serial_number', $serialNo );
+
+			return $post_id;
+		}
+
+		return $result;
 	}
 
 	/**

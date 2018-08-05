@@ -1,42 +1,24 @@
 <?php
 $user = get_userdata( get_current_user_id() );
 
-function register_product( $email, $serial ) {
-    $result = GISC()->request( 'register_product', array( 'serialNo' => $serial, 'Email' => $email ) );
-
-    if ( $result['Flag'] == 102 ) {
-        ?>
-        <p class="alert-color">
-            <?php echo __( 'The serial number has been registered.', 'garminbygis' ); ?>
-        </p>
-        <?php
-        return false;
-    } else if ( $result['Flag'] == 3 || $result['Flag'] == 0 ) {
-        $post_id = wp_insert_post( array(
-            'post_title'  => 'GISC Product Receipt, owner id: " ' . $result['ProductOwnerId'] . ' ", serial: "' . $serial . '"',
-            'post_status' => 'publish',
-            'post_type'   => 'gis_reg_product'
-        ) );
-
-        garminbygis_update_post_meta( $post_id, 'gisc_reg_product_product_owner_id', $result['ProductOwnerId'] );
-        garminbygis_update_post_meta( $post_id, 'gisc_reg_product_product_owner_email', $email );
-        garminbygis_update_post_meta( $post_id, 'gisc_reg_product_serial_number', $serial );
-
-        return $post_id;
-    } else {
-        ?>
-        <p class="alert-color">
-            <?php echo __( 'No serial found.', 'garminbygis' ); ?>
-        </p>
-        <?php
-        return false;
-    }
-}
-
 if ( isset( $_POST['send-serial'] ) ) {
     if ( $user ) {
-        $post_id = register_product( $user->user_email, $_POST['serail-product'] );
-        // $post_id = register_product( 's.tuasakul@gmail.com', $_POST['serail-product'] );
+        // $post_id = GISC_Product()->register( $_POST['serail-product'], 's.tuasakul@gmail.com' ); // TODO: Remove mock email.
+        $post_id = GISC_Product()->register( $_POST['serail-product'], $user->user_email );
+
+        if ( ! is_integer( $post_id ) ) {
+            if ( $result['Flag'] == 102 ): ?>
+                <p class="alert-color">
+                    <?php echo __( 'The serial number has been registered.', 'garminbygis' ); ?>
+                </p>
+            <?php else: ?>
+                <p class="alert-color">
+                    <?php echo __( 'No serial found.', 'garminbygis' ); ?>
+                </p>
+            <?php endif;
+
+            return false;
+        }
 
         if ( $post_id && isset( $_FILES['product-receipt']['tmp_name'] ) && ! $_FILES['product-receipt']['error'] ) {
             $upload = wp_upload_bits(
