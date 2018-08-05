@@ -8,8 +8,9 @@ $user = get_userdata( get_current_user_id() );
  */
 function get_related_registered_product_post( $productOwnerId ) {
     $args = array(
-        'post_type'  => 'gis_reg_product',
-        'meta_query' => array(
+        'post_type'   => 'gis_reg_product',
+        'post_status' => array( 'publish' ),
+        'meta_query'  => array(
             array(
                 'key'     => 'gisc_reg_product_product_owner_id',
                 'value'   => $productOwnerId,
