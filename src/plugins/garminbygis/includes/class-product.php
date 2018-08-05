@@ -5,24 +5,50 @@ class GISC_Product {
 	/**
 	 * The GISC Instance.
 	 *
-	 * @since 3.0
+	 * @since 0.1
 	 *
 	 * @var   \GISC
 	 */
 	protected static $the_instance = null;
 
 	/**
-	 * @since  3.0
+	 * @since  0.1
 	 */
 	public function register( $serialNo, $email ) {
-	    return GISC()->request( 'register_product', array( 'serialNo' => $serialNo, 'Email' => $email ) );
+		return GISC()->request( 'register_product', array( 'serialNo' => $serialNo, 'Email' => $email ) );
 	}
 
 	/**
-	 * @since  3.0
+	 * @since  0.1
 	 */
 	public function deregister( $productOwnerId, $email ) {
-    	return GISC()->request( 'remove_registed_product', array( 'productOwnerId' => $productOwnerId, 'Email' => $email ) );
+		$result = GISC()->request( 'remove_registed_product', array( 'productOwnerId' => $productOwnerId, 'Email' => $email ) );
+
+		$args = array(
+			'post_type'   => 'gis_reg_product',
+			'post_status' => array( 'publish' ),
+			'meta_query'  => array(
+				array(
+					'key'     => 'gisc_reg_product_product_owner_id',
+					'value'   => $productOwnerId,
+					'compare' => 'LIKE'
+				),
+				array(
+					'key'     => 'gisc_reg_product_product_owner_email',
+					'value'   => $email,
+					'compare' => 'LIKE'
+				)
+			)
+		);
+
+		$query = new WP_Query( $args );
+		$posts = $query->have_posts() ? $query->posts : array();
+
+		foreach ( $posts as $post ) {
+			wp_delete_post( $post->ID, true );
+		}
+
+		return $result;
 	}
 
 	/**
