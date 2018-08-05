@@ -1,27 +1,6 @@
 <?php
 $user = get_userdata( get_current_user_id() );
 
-/**
- * @param  string $productOwnerId
- *
- * @return WP_Query
- */
-function get_related_registered_product_post( $productOwnerId ) {
-    $args = array(
-        'post_type'   => 'gis_reg_product',
-        'post_status' => array( 'publish' ),
-        'meta_query'  => array(
-            array(
-                'key'     => 'gisc_reg_product_product_owner_id',
-                'value'   => $productOwnerId,
-                'compare' => 'LIKE'
-            )
-        )
-    );
-
-    return new WP_Query( $args );
-}
-
 function register_product( $email, $serial ) {
     $result = GISC()->request( 'register_product', array( 'serialNo' => $serial, 'Email' => $email ) );
 
@@ -242,7 +221,7 @@ $items = GISC()->request( 'list_registered_product', array( 'Email' => $user->us
                         </td>
 
                         <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-receipt" data-title="Receipt">
-                            <?php $query = get_related_registered_product_post( $value['ProductOwnerId'] ); ?>
+                            <?php $query = GISC_Product()->get_related_posts( $value['ProductOwnerId'], $user->user_email ); ?>
 
                             <?php if ( $query->have_posts() ): $posts = $query->posts; ?>
                                 <?php $url = wp_get_attachment_url( get_post_thumbnail_id($posts[0]->ID), 'thumbnail' ); ?>
