@@ -249,9 +249,6 @@ $items = GISC()->request( 'list_registered_product', array( 'Email' => $user->us
                                 <a href="<?php echo $url ?>">view receipt</a>
                             <?php else: ?>
                                 <?php echo do_shortcode('[button text="attach file" link="#attach-to-owner-id-' . $value['ProductOwnerId'] . '"][lightbox id="attach-to-owner-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"]' . sprintf( $receipt_attachment_modal, $value['ProductOwnerId'], $value['SerialNo'] ) . '[/lightbox]'); ?>
-
-
-                                <!-- <a class="woocommerce-button button view">attach file</a> -->
                             <?php endif; ?>
                         </td>
 
