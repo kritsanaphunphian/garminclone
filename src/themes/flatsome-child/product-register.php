@@ -163,7 +163,7 @@ if ( isset( $_POST['send-serial'] ) ) {
         set_post_thumbnail( $post_id, $attach_id );
     }
 } else if ( isset( $_POST['delete-button'] ) ) {
-    GISC()->request( 'remove_registed_product', array( 'productOwnerId' => $_POST['delete-button'] ) );
+    GISC_Product()->deregister( $_POST['delete-button'], $user->user_email );
 
     wp_redirect( get_permalink() . 'register-product' );
     exit();
@@ -260,6 +260,11 @@ $items = GISC()->request( 'list_registered_product', array( 'Email' => $user->us
             </tbody>
         </table>
     </form>
+<?php else: ?>
+    <p>
+        ..<br/>
+        <em><small>You have no registed products.</small></em>
+    </p>
 <?php endif; ?>
 
 <script type="text/javascript">
