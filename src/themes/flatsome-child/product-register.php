@@ -193,52 +193,53 @@ $items = GISC()->request( 'list_registered_product', array( 'Email' => $user->us
 // $items = GISC()->request( 'list_registered_product', array( 'Email' => 's.tuasakul@gmail.com' ) ); // TODO: Remove mock email.
 ?>
 <?php if ( $items && ! empty( $items ) ) : ?>
-    <form class="garminbygis-form-registered-product-list" name="frm" method="post" action="#" enctype="multipart/form-data">
-        <input type="hidden" name="form-delete" />
+    <h3>Registered Products.</h3>
+    <table class="woocommerce-gisc-registered-product-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
+        <thead>
+            <tr>
+                <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-product-name"><span class="nobr">Product's Information</span></th>
+                <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-order-date"><span class="nobr">Purchase Date</span></th>
+                <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-receipt"><span class="nobr">Receipt / Warranty</span></th>
+                <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-delete"><span class="nobr">Delete</span></th>
+            </tr>
+        </thead>
 
-        <h3>Registered Products.</h3>
-        <table class="woocommerce-gisc-registered-product-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
-            <thead>
-                <tr>
-                    <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-product-name"><span class="nobr">Product's Information</span></th>
-                    <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-order-date"><span class="nobr">Purchase Date</span></th>
-                    <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-receipt"><span class="nobr">Receipt / Warranty</span></th>
-                    <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-delete"><span class="nobr">Delete</span></th>
-                </tr>
-            </thead>
+        <tbody>
+            <?php foreach ( $items as $key => $value ) : ?>
+                <tr class="woocommerce-gisc-registered-product-table__row woocommerce-gisc-registered-product-table__row--status-on-hold order">
+                    <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-product-name" data-title="Product">
+                        <span class="name"><?php echo $value['ProductName']; ?></span>
+                        <br/><em>Serial No : <?php echo $value['SerialNo']; ?></em>
+                    </td>
 
-            <tbody>
-                <?php foreach ( $items as $key => $value ) : ?>
-                    <tr class="woocommerce-gisc-registered-product-table__row woocommerce-gisc-registered-product-table__row--status-on-hold order">
-                        <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-product-name" data-title="Product">
-                            <span class="name"><?php echo $value['ProductName']; ?></span>
-                            <br/><em>Serial No : <?php echo $value['SerialNo']; ?></em>
-                        </td>
+                    <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-order-date" data-title="Date">
+                        <?php $datetime =  new DateTime( $value['BuyDate'] ); ?>
+                        <time datetime="<?php echo $value['BuyDate']; ?>"><?php echo $datetime->format(' Y.m.d' ); ?></time>
+                    </td>
 
-                        <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-order-date" data-title="Date">
-                            <?php $datetime =  new DateTime( $value['BuyDate'] ); ?>
-                            <time datetime="<?php echo $value['BuyDate']; ?>"><?php echo $datetime->format(' Y.m.d' ); ?></time>
-                        </td>
+                    <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-receipt" data-title="Receipt">
+                        <?php
+                        $query = GISC_Product()->get_related_posts( $value['ProductOwnerId'], $user->user_email );
+                        $post  = $query->have_posts() ? $query->posts[0] : null;
 
-                        <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-receipt" data-title="Receipt">
-                            <?php $query = GISC_Product()->get_related_posts( $value['ProductOwnerId'], $user->user_email ); ?>
+                        if ( $post && $url = wp_get_attachment_url( get_post_thumbnail_id($post->ID), 'thumbnail' ) ) {
+                            echo '<a href="' . $url . '">view receipt</a>';
+                        } else {
+                            echo do_shortcode('[button text="attach file" link="#attach-to-owner-id-' . $value['ProductOwnerId'] . '"][lightbox id="attach-to-owner-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"]' . sprintf( $receipt_attachment_modal, $value['ProductOwnerId'], $value['SerialNo'] ) . '[/lightbox]');
+                        }
+                        ?>
+                    </td>
 
-                            <?php if ( $query->have_posts() ): $posts = $query->posts; ?>
-                                <?php $url = wp_get_attachment_url( get_post_thumbnail_id($posts[0]->ID), 'thumbnail' ); ?>
-                                <a href="<?php echo $url ?>">view receipt</a>
-                            <?php else: ?>
-                                <?php echo do_shortcode('[button text="attach file" link="#attach-to-owner-id-' . $value['ProductOwnerId'] . '"][lightbox id="attach-to-owner-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"]' . sprintf( $receipt_attachment_modal, $value['ProductOwnerId'], $value['SerialNo'] ) . '[/lightbox]'); ?>
-                            <?php endif; ?>
-                        </td>
-
-                        <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-delete" data-title="">
+                    <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-delete" data-title="">
+                        <form class="garminbygis-form-registered-product-list" name="frm" method="post" action="#" enctype="multipart/form-data">
+                            <input type="hidden" name="form-delete" />
                             <button class="button" type="submit" name="delete-button" value="<?php echo $value['ProductOwnerId']; ?>" onClick="return confirm( 'Are you sure you want to remove this product?' )">Remove</button>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </form>
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 <?php else: ?>
     <p>
         ..<br/>
