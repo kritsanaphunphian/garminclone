@@ -15,11 +15,11 @@ class GISC_Product {
 	 * @since  0.1
 	 */
 	public function register( $serialNo, $email ) {
-		$result = GISC()->request( 'register_product', array( 'serialNo' => $serialNo, 'Email' => $email ) );
+		$result = GISC()->get( 'register_product', array( 'serialNo' => $serialNo, 'Email' => $email ) );
 
 		if ( $result['Flag'] === 3 || $result['Flag'] === 0 ) {
 			$post_id = wp_insert_post( array(
-			    'post_title'  => 'GISC Product Receipt, owner id: " ' . $result['ProductOwnerId'] . ' ", serial: "' . $serial . '"',
+			    'post_title'  => 'GISC Product Receipt, owner id: " ' . $result['ProductOwnerId'] . ' ", serial: "' . $serialNo . '"',
 			    'post_status' => 'publish',
 			    'post_type'   => 'gis_reg_product'
 			) );
@@ -38,7 +38,7 @@ class GISC_Product {
 	 * @since  0.1
 	 */
 	public function deregister( $productOwnerId, $email ) {
-		$result = GISC()->request( 'remove_registed_product', array( 'productOwnerId' => $productOwnerId, 'Email' => $email ) );
+		$result = GISC()->get( 'remove_registed_product', array( 'productOwnerId' => $productOwnerId, 'Email' => $email ) );
 
 		$args = array(
 			'post_type'   => 'gis_reg_product',

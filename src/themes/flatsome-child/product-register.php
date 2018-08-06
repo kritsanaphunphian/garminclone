@@ -167,8 +167,8 @@ $receipt_attachment_modal = '
 ?>
 
 <?php
-$items = GISC()->request( 'list_registered_product', array( 'Email' => $user->user_email ) );
-// $items = GISC()->request( 'list_registered_product', array( 'Email' => 's.tuasakul@gmail.com' ) ); // TODO: Remove mock email.
+$items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_email ) );
+// $items = GISC()->get( 'list_registered_product', array( 'Email' => 's.tuasakul@gmail.com' ) ); // TODO: Remove mock email.
 ?>
 <?php if ( $items && ! empty( $items ) ) : ?>
     <h3>Registered Products.</h3>

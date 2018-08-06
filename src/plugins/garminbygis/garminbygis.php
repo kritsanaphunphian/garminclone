@@ -89,18 +89,26 @@ class GISC {
 		return self::$the_instance;
 	}
 
-	public function request( $api_name, $params ) {
+	public function get( $api_name, $params ) {
 		if ( ! method_exists( $this, 'api_' . $api_name ) ) {
 			return false;
 		}
 
-		$api = 'api_' . $api_name;
-		$this->$api();
+		$result = wp_remote_get( $this->build_request( $api_name, $params ) );
 
-		$this->build_request( $params );
+		if ( is_array( $result ) && ! is_wp_error( $result ) ) {
+			return json_decode( $result['body'], true );
+		}
 
-		$request = add_query_arg( $this->request_params, $this->endpoint );
-		$result = wp_remote_get( $request );
+		return false;
+	}
+
+	public function post( $api_name, $params ) {
+		if ( ! method_exists( $this, 'api_' . $api_name ) ) {
+			return false;
+		}
+
+		$result = wp_remote_post( $this->build_request( $api_name, $params ) );
 
 		if ( is_array( $result ) && ! is_wp_error( $result ) ) {
 			return json_decode( $result['body'], true );
@@ -141,8 +149,8 @@ class GISC {
 	 * @param string $surname
 	 */
 	public function api_register_new_customer() {
-		$this->set_endpoint( 'Customer/insertGarminCustomer' );
-		$this->set_required_parameters( array( 'Email', 'Password', 'Name', 'Surname' ) );
+		$this->set_endpoint( 'Customer/insertGarminCustomerCommerce' );
+		$this->set_required_parameters( array( 'Email', 'Password', 'Passwordenc', 'Name', 'Surname' ) );
 	}
 
 	/**
@@ -150,8 +158,8 @@ class GISC {
 	 * @param string $password
 	 */
 	public function api_update_customer_password() {
-		$this->set_endpoint( 'Customer/ChangePasswordGarminCustomer' );
-		$this->set_required_parameters( array( 'Email', 'Password' ) );
+		$this->set_endpoint( 'Customer/ChangePasswordGarminCustomerCommerce' );
+		$this->set_required_parameters( array( 'Email', 'Password', 'Passwordenc' ) );
 	}
 
 	/**
@@ -171,10 +179,15 @@ class GISC {
 	/**
 	 * @param array $params
 	 */
-	protected function build_request( $params ) {
+	protected function build_request( $api_name, $params ) {
+		$api = 'api_' . $api_name;
+		$this->$api();
+
 		foreach ( $this->required_params as $key => $value ) {
 			$this->request_params[ $value ] = isset( $params[ $value ] ) ? $params[ $value ] : null;
 		}
+
+		return add_query_arg( $this->request_params, $this->endpoint );
 	}
 }
 
