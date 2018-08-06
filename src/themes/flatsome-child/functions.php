@@ -1,4 +1,38 @@
 <?php
+function garminbygis_update_post_meta( $post_id, $field_name, $value = '' ) {
+    if ( empty( $value ) || ! $value ) {
+        delete_post_meta( $post_id, $field_name );
+    } elseif ( ! get_post_meta( $post_id, $field_name ) ) {
+        add_post_meta( $post_id, $field_name, $value );
+    } else {
+        update_post_meta( $post_id, $field_name, $value );
+    }
+}
+
+function garminbygis_custom_post_type() {
+    register_post_type(
+        'gis_reg_product',
+        array(
+            'labels'    => array(
+                'name'          => __('Registered Products', 'garminbygis'),
+                'singular_name' => __('Registered Product'),
+                'menu_name'     => __('Registered Products','garminbygis')
+            ),
+            // 'capabilities' => array(
+            //     'create_posts' => 'do_not_allow',
+            //     // 'edit_posts' => 'manage_woocommerce',
+            // ),
+            'supports' => array( 'title', 'custom-fields', 'thumbnail' ),
+            'has_archive'   => false,
+            'menu_icon'   => 'dashicons-paperclip',
+            'public'    => true,
+            'exclude_from_search' => true,
+            'publicly_queryable'    => false
+        )
+    );
+}
+add_action('init', 'garminbygis_custom_post_type');
+
 /**
  * Initiate localization file after theme is loaded
  */
@@ -32,35 +66,15 @@ pll_register_string( 'register-form-validation-confirm-password-not-match', 'Pas
 //Verify Email
 //require_once('wp-verify-email.php');
 
-/**
- * To display additional field at My Account page 
- * Once member login: edit account
- */
-require_once('wp-additional-field-account.php');
-
-//password confirmation
-require_once('wp-confirm-password.php');
-
-//change layout near sort order
-require_once('wp-change-layout-sort-order.php');
-
-//custom product data fields
-require_once('wp-custom-product-data-fields.php');
-
-//custom product variation field
-require_once('wp-custom-product-variation-fields.php');
-
-//phone format field
-require_once('wp-phone-format-field.php');
-
-//Add Nostra Shortcode
-require_once('wp-nostra-pin-short-code.php');
-
-//Additional information catalog page
-require_once('wp-addtional-info-catalog-page.php');
-
-//Add checkbox require tax field
-require_once('wp-checkbox-field-checkout.php');
+require_once('wp-additional-field-account.php');        // Display additional field at My Account page for logged in user
+require_once('wp-confirm-password.php');                // Password confirmation
+require_once('wp-change-layout-sort-order.php');        // Change layout near sort order
+require_once('wp-custom-product-data-fields.php');      // Custom product data fields
+require_once('wp-custom-product-variation-fields.php'); // Custom product variation field
+require_once('wp-phone-format-field.php');              // Phone format field
+require_once('wp-nostra-pin-short-code.php');           // Add Nostra Shortcode
+require_once('wp-addtional-info-catalog-page.php');     // Additional information catalog page
+require_once('wp-checkbox-field-checkout.php');         // Add checkbox require tax field
 
 function include_shortcodes() {
     require_once( 'shortcodes/wp-shortcode-dealers.php' );          // shop dealer
@@ -85,17 +99,16 @@ function garminbygis_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'garminbygis_scripts' );
 
-// Hooks near the bottom of profile page (if current user) 
-add_action('show_user_profile', 'custom_user_profile_fields');
-
-// Hooks near the bottom of the profile page (if not current user) 
-add_action('edit_user_profile', 'custom_user_profile_fields');
-
-// @param WP_User $user
+/**
+ * @hook  show_user_profile  Hooks near the bottom of profile page (if current user).
+ * @hook  edit_user_profile  Hooks near the bottom of the profile page (if not current user).
+ *
+ * @param WP_User $user
+ */
 function custom_user_profile_fields( $user ) {
-    $gender = get_the_author_meta( 'gender', $user->ID );
+    $gender   = get_the_author_meta( 'gender', $user->ID );
     $birthday = get_the_author_meta('birthday', $user->ID);
-?>
+    ?>
     <table class="form-table">
         <tr>
             <th>
@@ -113,100 +126,111 @@ function custom_user_profile_fields( $user ) {
                 <label for="birthday"><?php _e( 'Birthday' ); ?></label>
             </th>
             <td>
-                <?php wp_enqueue_script('jquery-ui-datepicker'); ?>
+                <?php wp_enqueue_script( 'jquery-ui-datepicker' ); ?>
                 <input type="text" id="birth-date" name="birthday" value="<?php echo esc_attr( $birthday ); ?>"/>
             </td>
         </tr>
     </table>
     <script type="text/javascript">
-                jQuery(document).ready(function($) {
+        jQuery(document).ready(function($) {
 
-                <?php if(get_locale() == 'th') : ?>
+            <?php if ( 'th' == get_locale() ) : ?>
 
                 $.datepicker.regional['th'] = {
-                        closeText: "ปิด",
-                        prevText: "&#xAB;&#xA0;ย้อน",
-                        nextText: "ถัดไป&#xA0;&#xBB;",
-                        currentText: "วันนี้",
-                        monthNames: [ "มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน",
-                        "กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม" ],
-                        monthNamesShort: [ "ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.",
-                        "ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค." ],
-                        dayNames: [ "อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์" ],
-                        dayNamesShort: [ "อา.","จ.","อ.","พ.","พฤ.","ศ.","ส." ],
-                        dayNamesMin: [ "อา.","จ.","อ.","พ.","พฤ.","ศ.","ส." ],
-                        weekHeader: "Wk",
-                        dateFormat: "dd/mm/yy",
-                        firstDay: 0,
-                        isRTL: false,
-                        showMonthAfterYear: false,
-                        yearSuffix: "" };
+                    closeText: "ปิด",
+                    prevText: "&#xAB;&#xA0;ย้อน",
+                    nextText: "ถัดไป&#xA0;&#xBB;",
+                    currentText: "วันนี้",
+                    monthNames: [ "มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน",
+                    "กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม" ],
+                    monthNamesShort: [ "ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.",
+                    "ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค." ],
+                    dayNames: [ "อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์" ],
+                    dayNamesShort: [ "อา.","จ.","อ.","พ.","พฤ.","ศ.","ส." ],
+                    dayNamesMin: [ "อา.","จ.","อ.","พ.","พฤ.","ศ.","ส." ],
+                    weekHeader: "Wk",
+                    dateFormat: "dd/mm/yy",
+                    firstDay: 0,
+                    isRTL: false,
+                    showMonthAfterYear: false,
+                    yearSuffix: "" };
                 $.datepicker.setDefaults($.datepicker.regional['th']);
 
-                <?php endif; ?>
+            <?php endif; ?>
 
-                $('#birth-date').datepicker({
-                        yearRange: "-100:+0",
-                        changeMonth: true, 
-                        changeYear: true,
-                        dateFormat : 'dd/mm/yy',
-                        maxDate: new Date
-                });
-                });
-
-        </script>
-<?php
+            $('#birth-date').datepicker({
+                yearRange: "-100:+0",
+                changeMonth: true,
+                changeYear: true,
+                dateFormat : 'dd/mm/yy',
+                maxDate: new Date
+            });
+        });
+    </script>
+    <?php
 }
+add_action('show_user_profile', 'custom_user_profile_fields');
+add_action('edit_user_profile', 'custom_user_profile_fields');
 
-
-// Hook is used to save custom fields that have been added to the WordPress profile page (if current user) 
-add_action( 'personal_options_update', 'update_extra_profile_fields' );
-
-// Hook is used to save custom fields that have been added to the WordPress profile page (if not current user) 
-add_action( 'edit_user_profile_update', 'update_extra_profile_fields' );
-
+/**
+ * @hook personal_options_update   Hook is used to save custom fields that have
+ *                                 been added to the WordPress profile page (if current user).
+ * @hook edit_user_profile_update  Hook is used to save custom fields that have been added to
+ *                                 the WordPress profile page (if not current user).
+ */
 function update_extra_profile_fields( $user_id ) {
-    if ( current_user_can( 'edit_user', $user_id ) )
+    if ( current_user_can( 'edit_user', $user_id ) ) {
         update_user_meta( $user_id, 'gender', $_POST['gender'] );
         update_user_meta( $user_id, 'birthday', $_POST['birthday'] );
+    }
 }
+add_action( 'personal_options_update', 'update_extra_profile_fields' );
+add_action( 'edit_user_profile_update', 'update_extra_profile_fields' );
 
-add_filter('template_include', 'restict_by_category');
 
 function check_user() {
-  $user = wp_get_current_user();
-  if ( ! $user->ID || in_array('subscriber', $user->roles) ) {
-    // user is not logged or is a subscriber
-    return false;
-  }
-  return true;
+    $user = wp_get_current_user();
+    if ( ! $user->ID || in_array('subscriber', $user->roles) ) {
+        // user is not logged or is a subscriber
+        return false;
+    }
+
+    return true;
 }
 
+/**
+ * @hook template_include
+ */
 function restict_by_category( $template ) {
-  if ( ! is_main_query() ) return $template; // only affect main query.
-  $allow = true;
-  $private_categories = array('special-deal-aia'); // categories subscribers cannot see
-  if ( is_single() ) {
-    $cats = wp_get_object_terms( get_queried_object()->ID, 'category', array('fields' => 'slugs') ); // get the categories associated to the required post
-    if ( array_intersect( $private_categories, $cats ) ) {
-      // post has a reserved category, let's check user
-      $allow = check_user();
+    if ( ! is_main_query() ) return $template; // only affect main query.
+
+    $allow              = true;
+    $private_categories = array('special-deal-aia'); // categories subscribers cannot see
+
+    if ( is_single() ) {
+        $cats = wp_get_object_terms( get_queried_object()->ID, 'category', array('fields' => 'slugs') ); // get the categories associated to the required post
+
+        if ( array_intersect( $private_categories, $cats ) ) {
+            // post has a reserved category, let's check user
+            $allow = check_user();
+        }
+    } elseif ( is_tax('category', $private_categories) ) {
+        // the archive for one of private categories is required, let's check user
+        $allow = check_user();
     }
-  } elseif ( is_tax('category', $private_categories) ) {
-    // the archive for one of private categories is required, let's check user
-    $allow = check_user();
-  }
-  // if allowed include the required template, otherwise include the 'not-allowed' one
-  return $allow ? $template : get_template_directory() . '/not-allowed.php';
+
+    // if allowed include the required template, otherwise include the 'not-allowed' one
+    return $allow ? $template : get_template_directory() . '/not-allowed.php';
 }
+add_filter('template_include', 'restict_by_category');
 
 
 // dont update user meta
 add_filter('woocommerce_checkout_update_customer_data', '__return_false' );
 
-
-
-
+/**
+ * @hook wc_product_sku_enabled
+ */
 function sv_remove_product_page_skus( $enabled ) {
     if ( ! is_admin() && is_product() ) {
         return false;
@@ -216,81 +240,48 @@ function sv_remove_product_page_skus( $enabled ) {
 }
 add_filter( 'wc_product_sku_enabled', 'sv_remove_product_page_skus' );
 
-
-// Add Part number variation product
-add_filter( 'woocommerce_available_variation', 'load_variation_settings_fields' );
 /**
  * Add custom fields for variations
  *
+ * @hook woocommerce_available_variation  Add Part number variation product
 */
 function load_variation_settings_fields( $variations ) {
-	
 	// duplicate the line for each field
 	$variations['_partnumber_text_field_variation'] = get_post_meta( $variations[ 'variation_id' ], '_partnumber_text_field_variation', true );
-	
+
 	return $variations;
 }
+add_filter( 'woocommerce_available_variation', 'load_variation_settings_fields' );
 
-
-//Add Part number simple product
-add_action( 'woocommerce_single_product_summary', 'add_custom_field', 5 );
-
+/**
+ * @hook woocommerce_single_product_summary  Add Part number simple product
+ */
 function add_custom_field() {
-
     global $product; 
+
+    $product_id = $product->get_id(); // The product ID
     
-        $product_id = $product->get_id(); // The product ID
-    
-        // Your custom field "Book author"
-        $_partnumber_product_field_simple = get_post_meta($product_id, "_partnumber_product_field_simple", true);
-    
-        // Displaying your custom field under the title
-        _e('Part Number : ','woocommerce');  
-        echo $_partnumber_product_field_simple;
+    // Your custom field "Book author"
+    $_partnumber_product_field_simple = get_post_meta($product_id, "_partnumber_product_field_simple", true);
+
+    // Displaying your custom field under the title
+    _e('Part Number : ','woocommerce');
+    echo $_partnumber_product_field_simple;
 }
+add_action( 'woocommerce_single_product_summary', 'add_custom_field', 5 );
 
 //Custom JS
 
 
-// //custom endpoint
-// function wk_custom_endpoint() {
-//     add_rewrite_endpoint( 'custom', EP_ROOT | EP_PAGES );
-//   }
-// add_action( 'init', 'wk_custom_endpoint' );
-
-// add_filter( 'woocommerce_account_menu_items', 'wk_new_menu_items' );
-//  /**
-//  * Insert the new endpoint into the My Account menu.
-//  *
-//  * @param array $items
-//  * @return array
-//  */
-//  function wk_new_menu_items( $items ) {
-//      $items[ 'custom1' ] = __( 'Custom1', 'webkul' );
-//      $items[ 'custom2' ] = __( 'Custom2', 'webkul' );
-//      return $items;
-//  }
-
-//  $endpoint = 'custom';
- 
-// add_action( 'woocommerce_account_' . $endpoint .  '_endpoint', 'wk_endpoint_content' );
-// add_action( 'woocommerce_account_' . $endpoint .  '_endpoint', 'wk_endpoint_content' );
- 
-// function wk_endpoint_content() {
-//     //content goes here
-//     echo '//content goes here';    
-// }
-
 // Note: this is simple PHP that can be placed in your functions.php file
 // Note: substr may give you problems, please check Option 3
-add_filter( 'the_title', 'shorten_woo_product_title', 10, 2 );
 function shorten_woo_product_title( $title, $id ) {
-if ( is_shop() && get_post_type( $id ) === 'product' ) {
-return substr( $title, 0, 25 ); // change last number to the number of characters you want
-} else {
-return $title;
+    if ( is_shop() && get_post_type( $id ) === 'product' ) {
+        return substr( $title, 0, 25 ); // change last number to the number of characters you want
+    }
+    return $title;
 }
-}
+add_filter( 'the_title', 'shorten_woo_product_title', 10, 2 );
 
 /**
  * To add 'login by Google' and 'login by Facebook' to the WooCommerce's form-login page.
