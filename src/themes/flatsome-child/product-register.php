@@ -1,62 +1,24 @@
 <?php
 $user = get_userdata( get_current_user_id() );
 
-/**
- * @param  string $productOwnerId
- *
- * @return WP_Query
- */
-function get_related_registered_product_post( $productOwnerId ) {
-    $args = array(
-        'post_type'  => 'gis_reg_product',
-        'meta_query' => array(
-            array(
-                'key'     => 'gisc_reg_product_product_owner_id',
-                'value'   => $productOwnerId,
-                'compare' => 'LIKE'
-            )
-        )
-    );
-
-    return new WP_Query( $args );
-}
-
-function register_product( $email, $serial ) {
-    $result = GISC()->request( 'register_product', array( 'serialNo' => $serial, 'Email' => $email ) );
-
-    if ( $result['Flag'] == 102 ) {
-        ?>
-        <p class="alert-color">
-            <?php echo __( 'The serial number has been registered.', 'garminbygis' ); ?>
-        </p>
-        <?php
-        return false;
-    } else if ( $result['Flag'] == 3 || $result['Flag'] == 0 ) {
-        $post_id = wp_insert_post( array(
-            'post_title'  => 'GISC Product Receipt, owner id: " ' . $result['ProductOwnerId'] . ' ", serial: "' . $serial . '"',
-            'post_status' => 'publish',
-            'post_type'   => 'gis_reg_product'
-        ) );
-
-        garminbygis_update_post_meta( $post_id, 'gisc_reg_product_product_owner_id', $result['ProductOwnerId'] );
-        garminbygis_update_post_meta( $post_id, 'gisc_reg_product_product_owner_email', $email );
-        garminbygis_update_post_meta( $post_id, 'gisc_reg_product_serial_number', $serial );
-
-        return $post_id;
-    } else {
-        ?>
-        <p class="alert-color">
-            <?php echo __( 'No serial found.', 'garminbygis' ); ?>
-        </p>
-        <?php
-        return false;
-    }
-}
-
 if ( isset( $_POST['send-serial'] ) ) {
     if ( $user ) {
-        $post_id = register_product( $user->user_email, $_POST['serail-product'] );
-        // $post_id = register_product( 's.tuasakul@gmail.com', $_POST['serail-product'] );
+        // $post_id = GISC_Product()->register( $_POST['serail-product'], 's.tuasakul@gmail.com' ); // TODO: Remove mock email.
+        $post_id = GISC_Product()->register( $_POST['serail-product'], $user->user_email );
+
+        if ( ! is_integer( $post_id ) ) {
+            if ( $result['Flag'] == 102 ): ?>
+                <p class="alert-color">
+                    <?php echo __( 'The serial number has been registered.', 'garminbygis' ); ?>
+                </p>
+            <?php else: ?>
+                <p class="alert-color">
+                    <?php echo __( 'No serial found.', 'garminbygis' ); ?>
+                </p>
+            <?php endif;
+
+            return false;
+        }
 
         if ( $post_id && isset( $_FILES['product-receipt']['tmp_name'] ) && ! $_FILES['product-receipt']['error'] ) {
             $upload = wp_upload_bits(
@@ -162,7 +124,7 @@ if ( isset( $_POST['send-serial'] ) ) {
         set_post_thumbnail( $post_id, $attach_id );
     }
 } else if ( isset( $_POST['delete-button'] ) ) {
-    GISC()->request( 'remove_registed_product', array( 'productOwnerId' => $_POST['delete-button'] ) );
+    GISC_Product()->deregister( $_POST['delete-button'], $user->user_email );
 
     wp_redirect( get_permalink() . 'register-product' );
     exit();
@@ -209,59 +171,62 @@ $receipt_attachment_modal = '
 ?>
 
 <?php
-$items = GISC()->request( 'list_registered_product', array( 'Email' => $email ) )
+$items = GISC()->request( 'list_registered_product', array( 'Email' => $user->user_email ) );
 // $items = GISC()->request( 'list_registered_product', array( 'Email' => 's.tuasakul@gmail.com' ) ); // TODO: Remove mock email.
 ?>
 <?php if ( $items && ! empty( $items ) ) : ?>
-    <form class="garminbygis-form-registered-product-list" name="frm" method="post" action="#" enctype="multipart/form-data">
-        <input type="hidden" name="form-delete" />
+    <h3>Registered Products.</h3>
+    <table class="woocommerce-gisc-registered-product-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
+        <thead>
+            <tr>
+                <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-product-name"><span class="nobr">Product's Information</span></th>
+                <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-order-date"><span class="nobr">Purchase Date</span></th>
+                <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-receipt"><span class="nobr">Receipt / Warranty</span></th>
+                <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-delete"><span class="nobr">Delete</span></th>
+            </tr>
+        </thead>
 
-        <h3>Registered Products.</h3>
-        <table class="woocommerce-gisc-registered-product-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
-            <thead>
-                <tr>
-                    <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-product-name"><span class="nobr">Product's Information</span></th>
-                    <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-order-date"><span class="nobr">Purchase Date</span></th>
-                    <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-receipt"><span class="nobr">Receipt / Warranty</span></th>
-                    <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-delete"><span class="nobr">Delete</span></th>
-                </tr>
-            </thead>
+        <tbody>
+            <?php foreach ( $items as $key => $value ) : ?>
+                <tr class="woocommerce-gisc-registered-product-table__row woocommerce-gisc-registered-product-table__row--status-on-hold order">
+                    <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-product-name" data-title="Product">
+                        <span class="name"><?php echo $value['ProductName']; ?></span>
+                        <br/><em>Serial No : <?php echo $value['SerialNo']; ?></em>
+                    </td>
 
-            <tbody>
-                <?php foreach ( $items as $key => $value ) : ?>
-                    <tr class="woocommerce-gisc-registered-product-table__row woocommerce-gisc-registered-product-table__row--status-on-hold order">
-                        <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-product-name" data-title="Product">
-                            <span class="name"><?php echo $value['ProductName']; ?></span>
-                            <br/><em>Serial No : <?php echo $value['SerialNo']; ?></em>
-                        </td>
+                    <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-order-date" data-title="Date">
+                        <?php $datetime =  new DateTime( $value['BuyDate'] ); ?>
+                        <time datetime="<?php echo $value['BuyDate']; ?>"><?php echo $datetime->format(' Y.m.d' ); ?></time>
+                    </td>
 
-                        <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-order-date" data-title="Date">
-                            <?php $datetime =  new DateTime( $value['BuyDate'] ); ?>
-                            <time datetime="<?php echo $value['BuyDate']; ?>"><?php echo $datetime->format(' Y.m.d' ); ?></time>
-                        </td>
+                    <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-receipt" data-title="Receipt">
+                        <?php
+                        $query = GISC_Product()->get_related_posts( $value['ProductOwnerId'], $user->user_email );
+                        $post  = $query->have_posts() ? $query->posts[0] : null;
 
-                        <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-receipt" data-title="Receipt">
-                            <?php $query = get_related_registered_product_post( $value['ProductOwnerId'] ); ?>
+                        if ( $post && $url = wp_get_attachment_url( get_post_thumbnail_id($post->ID), 'thumbnail' ) ) {
+                            echo '<a href="' . $url . '">view receipt</a>';
+                        } else {
+                            echo do_shortcode('[button text="attach file" link="#attach-to-owner-id-' . $value['ProductOwnerId'] . '"][lightbox id="attach-to-owner-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"]' . sprintf( $receipt_attachment_modal, $value['ProductOwnerId'], $value['SerialNo'] ) . '[/lightbox]');
+                        }
+                        ?>
+                    </td>
 
-                            <?php if ( $query->have_posts() ): $posts = $query->posts; ?>
-                                <?php $url = wp_get_attachment_url( get_post_thumbnail_id($posts[0]->ID), 'thumbnail' ); ?>
-                                <a href="<?php echo $url ?>">view receipt</a>
-                            <?php else: ?>
-                                <?php echo do_shortcode('[button text="attach file" link="#attach-to-owner-id-' . $value['ProductOwnerId'] . '"][lightbox id="attach-to-owner-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"]' . sprintf( $receipt_attachment_modal, $value['ProductOwnerId'], $value['SerialNo'] ) . '[/lightbox]'); ?>
-
-
-                                <!-- <a class="woocommerce-button button view">attach file</a> -->
-                            <?php endif; ?>
-                        </td>
-
-                        <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-delete" data-title="">
+                    <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-delete" data-title="">
+                        <form class="garminbygis-form-registered-product-list" name="frm" method="post" action="#" enctype="multipart/form-data">
+                            <input type="hidden" name="form-delete" />
                             <button class="button" type="submit" name="delete-button" value="<?php echo $value['ProductOwnerId']; ?>" onClick="return confirm( 'Are you sure you want to remove this product?' )">Remove</button>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </form>
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php else: ?>
+    <p>
+        ..<br/>
+        <em><small>You have no registed products.</small></em>
+    </p>
 <?php endif; ?>
 
 <script type="text/javascript">

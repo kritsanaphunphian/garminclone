@@ -59,6 +59,8 @@ class GISC {
 	protected function initiate() {
 		defined( 'GISC_PLUGIN_VERSION' ) || define( 'GISC_PLUGIN_VERSION', $this->version );
 		defined( 'GISC_PLUGIN_PATH' ) || define( 'GISC_PLUGIN_PATH', __DIR__ );
+
+		include_once GISC_PLUGIN_PATH . '/includes/class-product.php';
 	}
 
 	/**
