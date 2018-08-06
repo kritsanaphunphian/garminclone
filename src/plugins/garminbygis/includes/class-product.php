@@ -19,7 +19,7 @@ class GISC_Product {
 
 		if ( $result['Flag'] === 3 || $result['Flag'] === 0 ) {
 			$post_id = wp_insert_post( array(
-			    'post_title'  => 'GISC Product Receipt, owner id: " ' . $result['ProductOwnerId'] . ' ", serial: "' . $serial . '"',
+			    'post_title'  => 'GISC Product Receipt, owner id: " ' . $result['ProductOwnerId'] . ' ", serial: "' . $serialNo . '"',
 			    'post_status' => 'publish',
 			    'post_type'   => 'gis_reg_product'
 			) );
