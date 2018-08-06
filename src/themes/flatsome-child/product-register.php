@@ -2,24 +2,20 @@
 $user = get_userdata( get_current_user_id() );
 
 if ( isset( $_POST['send-serial'] ) ) {
-    if ( $user ) {
-        // $post_id = GISC_Product()->register( $_POST['serail-product'], 's.tuasakul@gmail.com' ); // TODO: Remove mock email.
-        $post_id = GISC_Product()->register( $_POST['serail-product'], $user->user_email );
+    // $post_id = GISC_Product()->register( $_POST['serail-product'], 's.tuasakul@gmail.com' ); // TODO: Remove mock email.
+    $post_id = GISC_Product()->register( $_POST['serail-product'], $user->user_email );
 
-        if ( ! is_integer( $post_id ) ) {
-            if ( $result['Flag'] == 102 ): ?>
-                <p class="alert-color">
-                    <?php echo __( 'The serial number has been registered.', 'garminbygis' ); ?>
-                </p>
-            <?php else: ?>
-                <p class="alert-color">
-                    <?php echo __( 'No serial found.', 'garminbygis' ); ?>
-                </p>
-            <?php endif;
-
-            return false;
-        }
-
+    if ( ! is_integer( $post_id ) ) {
+        if ( $result['Flag'] == 102 ): ?>
+            <p class="alert-color">
+                <?php echo __( 'The serial number has been registered.', 'garminbygis' ); ?>
+            </p>
+        <?php else: ?>
+            <p class="alert-color">
+                <?php echo __( 'No serial found.', 'garminbygis' ); ?>
+            </p>
+        <?php endif;
+    } else {
         if ( $post_id && isset( $_FILES['product-receipt']['tmp_name'] ) && ! $_FILES['product-receipt']['error'] ) {
             $upload = wp_upload_bits(
                 $_FILES['product-receipt']['name'],
@@ -49,47 +45,47 @@ if ( isset( $_POST['send-serial'] ) ) {
             </p>
             <?php
         endif;
-    }
 
 
-    // add_filter( 'wp_mail_content_type', 'wpdocs_set_html_mail_content_type' );
+        // add_filter( 'wp_mail_content_type', 'wpdocs_set_html_mail_content_type' );
 
-    // $user_id = get_current_user_id();
-    // $user = get_userdata( $user_id );
+        // $user_id = get_current_user_id();
+        // $user = get_userdata( $user_id );
 
-    // $firstname = get_user_meta( $user_id, 'first_name', true );
-    // $lastname = get_user_meta( $user_id, 'last_name' , true );
-    // $tel = get_user_meta( $user_id, 'billing_phone' , true );
-    // $useremail = $user->user_email;
+        // $firstname = get_user_meta( $user_id, 'first_name', true );
+        // $lastname = get_user_meta( $user_id, 'last_name' , true );
+        // $tel = get_user_meta( $user_id, 'billing_phone' , true );
+        // $useremail = $user->user_email;
 
-    // $serailProduct = $_POST['serail-product']; 
+        // $serailProduct = $_POST['serail-product']; 
 
-    // $headers[] = 'CC: kritsana.phunpian@gmail.com';
+        // $headers[] = 'CC: kritsana.phunpian@gmail.com';
+            
+        // $to = array(
+        //     'kolokolo.jack@gmail.com'
+        //     );
+        // $subject = 'Serial Number';
+        // $body = '<p>Serial Number product ' . $serailProduct . '</p> 
+        // <p>Name : ' . $firstname . ' ' . $lastname . '</p>
+        // <p>Email : ' . $useremail . '</p>
+        // <p>Tel : ' . $tel . '</p>';
+
+        // wp_mail( $to, $subject, $body, $headers );
+
+        ?>
+        <!-- <div class="woocommerce-message message-wrapper">
+            <div class="message-container container success-color medium-text-center sb-custom-alert">
+                <i class="icon-checkmark"><strong>Success:</strong> Your serial number product has sended.</i>
+            </div>
+        </div> -->
+        <?php
         
-    // $to = array(
-    //     'kolokolo.jack@gmail.com'
-    //     );
-    // $subject = 'Serial Number';
-    // $body = '<p>Serial Number product ' . $serailProduct . '</p> 
-    // <p>Name : ' . $firstname . ' ' . $lastname . '</p>
-    // <p>Email : ' . $useremail . '</p>
-    // <p>Tel : ' . $tel . '</p>';
-
-    // wp_mail( $to, $subject, $body, $headers );
-
-    ?>
-    <!-- <div class="woocommerce-message message-wrapper">
-        <div class="message-container container success-color medium-text-center sb-custom-alert">
-            <i class="icon-checkmark"><strong>Success:</strong> Your serial number product has sended.</i>
-        </div>
-    </div> -->
-    <?php
-    
-    // Reset content-type to avoid conflicts -- https://core.trac.wordpress.org/ticket/23578
-    // remove_filter( 'wp_mail_content_type', 'wpdocs_set_html_mail_content_type' );
-    // function wpdocs_set_html_mail_content_type() {
-    //     return 'text/html';
-    // }
+        // Reset content-type to avoid conflicts -- https://core.trac.wordpress.org/ticket/23578
+        // remove_filter( 'wp_mail_content_type', 'wpdocs_set_html_mail_content_type' );
+        // function wpdocs_set_html_mail_content_type() {
+        //     return 'text/html';
+        // }
+    }
 } else if ( isset( $_POST['attach-receipt'] ) ) {
     $post_id = wp_insert_post( array(
         'post_title'  => 'GISC Product Receipt, owner id: " ' . $_POST['productOwnerId'] . ' ", serial: "' . $_POST['serialNo'] . '"',
