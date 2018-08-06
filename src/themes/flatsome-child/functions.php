@@ -766,3 +766,22 @@ function add_faq_search_page( $template ) {
     return $template;
 }
 add_filter( 'template_include', 'add_faq_search_page' );
+
+/**
+ * @param int $user_id
+ */
+function insert_user_to_gisc_api( $user_id ) {
+    $user = get_userdata( $user_id );
+
+    GISC()->post(
+        'register_new_customer',
+        array(
+            'Email'       => $_POST['email'],
+            'Password'    => $_POST['password'],
+            'Passwordenc' => $user->get('user_pass'),
+            'Name'        => '-',
+            'Surname'     => '-'
+        )
+    );
+}
+add_action( 'user_register', 'insert_user_to_gisc_api', 10, 1 );
