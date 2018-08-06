@@ -141,8 +141,8 @@ class GISC {
 	 * @param string $surname
 	 */
 	public function api_register_new_customer() {
-		$this->set_endpoint( 'Customer/insertGarminCustomer' );
-		$this->set_required_parameters( array( 'Email', 'Password', 'Name', 'Surname' ) );
+		$this->set_endpoint( 'Customer/insertGarminCustomerCommerce' );
+		$this->set_required_parameters( array( 'Email', 'Password', 'Passwordenc', 'Name', 'Surname' ) );
 	}
 
 	/**
@@ -150,8 +150,8 @@ class GISC {
 	 * @param string $password
 	 */
 	public function api_update_customer_password() {
-		$this->set_endpoint( 'Customer/ChangePasswordGarminCustomer' );
-		$this->set_required_parameters( array( 'Email', 'Password' ) );
+		$this->set_endpoint( 'Customer/ChangePasswordGarminCustomerCommerce' );
+		$this->set_required_parameters( array( 'Email', 'Password', 'Passwordenc' ) );
 	}
 
 	/**
