@@ -138,8 +138,8 @@ class GISC {
 	 * @param string $productOwnerId
 	 */
 	public function api_remove_registed_product() {
-		$this->set_endpoint( 'ProductRegistration/Delete' );
-		$this->set_required_parameters( array( 'productOwnerId' ) );
+		$this->set_endpoint( 'ProductRegistration/DeletebyEmail' );
+		$this->set_required_parameters( array( 'productOwnerId', 'Email' ) );
 	}
 
 	/**
