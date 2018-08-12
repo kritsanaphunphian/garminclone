@@ -132,6 +132,7 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => 's.tuasakul@g
         <thead>
             <tr>
                 <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-product-name"><span class="nobr">Product's Information</span></th>
+                <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-product-update"><span class="nobr">Update</span></th>
                 <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-order-date"><span class="nobr">Purchase Date</span></th>
                 <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-receipt"><span class="nobr">Receipt / Warranty</span></th>
                 <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-delete"><span class="nobr">Delete</span></th>
@@ -144,6 +145,16 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => 's.tuasakul@g
                     <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-product-name" data-title="Product">
                         <span class="name"><?php echo $value['ProductName']; ?></span>
                         <br/><em>Serial No : <?php echo $value['SerialNo']; ?></em>
+                    </td>
+
+                    <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-product-update" data-title="Update">
+                        <?php if ( (int) $value['Flag'] === 3 ): ?>
+                            <a href="http://www.garmin.co.th/mapupdate/" class="button primary">Download Map</a>
+                        <?php elseif ( (int) $value['Flag'] >= 1 && (int) $value['Flag'] <= 6 ): ?>
+                            <a href="#" class="button primary">Download Map</a>
+                        <?php elseif ( (int) $value['Flag'] === 0 ): ?>
+                            <a href="#" class="button primary">Buy Map</a>
+                        <?php endif; ?>
                     </td>
 
                     <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-order-date" data-title="Date">
@@ -223,11 +234,14 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => 's.tuasakul@g
 
 .shop_table thead tr th:last-of-type.woocommerce-gisc-registered-product-table__header-delete,
 .shop_table tr td:last-of-type.woocommerce-gisc-registered-product-table__cell-delete,
+.woocommerce .woocommerce-gisc-registered-product-table__header-product-update,
 .woocommerce .woocommerce-gisc-registered-product-table__header-receipt,
+.woocommerce .woocommerce-gisc-registered-product-table__cell-product-update,
 .woocommerce .woocommerce-gisc-registered-product-table__cell-receipt {
     text-align: center;
 }
 
+.woocommerce .woocommerce-gisc-registered-product-table__cell-product-update .button,
 .woocommerce .woocommerce-gisc-registered-product-table__cell-receipt .button,
 .woocommerce .woocommerce-gisc-registered-product-table__cell-delete button {
     margin: 3px;
