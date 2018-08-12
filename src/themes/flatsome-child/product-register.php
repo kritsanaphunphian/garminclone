@@ -104,6 +104,10 @@ if ( isset( $_POST['send-serial'] ) ) {
     </div>
 </form>
 
+<div class="action-update-software-button">
+    <a href="https://www.garmin.com/th-TH/software/express" class="button primary">UPDATE SOFTWARE</a>
+</div>
+
 <?php
 $receipt_attachment_modal = '
     <form name="receipt-attachment-form" method="post" action="#" enctype="multipart/form-data">
@@ -249,6 +253,11 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => 's.tuasakul@g
 .woocommerce .woocommerce-gisc-registered-product-table__cell-delete button {
     margin: 3px;
     font-size: .75em;
+}
+
+.action-update-software-button {
+    margin-bottom: 1em;
+    text-align: right;
 }
 </style>
 
