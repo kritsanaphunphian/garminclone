@@ -11,27 +11,77 @@ class GISC_Product {
 	 */
 	protected static $the_instance = null;
 
+	protected $product = null;
+	protected $related_post_id = null;
+
+	/**
+	 * @return bool
+	 *
+	 * @since  0.1
+	 */
+	public function has_error() {
+		if ( is_null( $this->product ) ) {
+			return true;
+		}
+
+		if ( (int) $this->product['Flag'] > 6 )  {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * @return int
+	 *
+	 * @since  0.1
+	 */
+	public function related_post_id() {
+		return $this->related_post_id;
+	}
+
+	/**
+	 * @return HTML
+	 *
+	 * @since  0.1
+	 */
+	public function display_error() {
+		?>
+		<p class="alert-color">
+			<?php
+			if ( is_null( $this->product ) ) {
+				echo __( 'Cannot retrieve product\'s information. Please try again or contact our support team', 'garminbygis' );
+			} else if ( $this->product['Flag'] == 102 ) {
+				echo __( 'The serial number has been registered.', 'garminbygis' );
+			} else {
+				echo __( 'No serial found.', 'garminbygis' );
+			}
+			?>
+		</p>
+		<?php
+	}
+
 	/**
 	 * @since  0.1
 	 */
 	public function register( $serialNo, $email ) {
-		$result = GISC()->get( 'register_product', array( 'serialNo' => $serialNo, 'Email' => $email ) );
+		$this->product = GISC()->get( 'register_product', array( 'serialNo' => $serialNo, 'Email' => $email ) );
 
-		if ( $result['Flag'] === 3 || $result['Flag'] === 0 ) {
+		if ( $this->product['Flag'] >= 0 && $this->product['Flag'] <= 6 ) {
 			$post_id = wp_insert_post( array(
-			    'post_title'  => 'GISC Product Receipt, owner id: " ' . $result['ProductOwnerId'] . ' ", serial: "' . $serialNo . '"',
+			    'post_title'  => 'GISC Product Receipt, owner id: " ' . $this->product['ProductOwnerId'] . ' ", serial: "' . $this->product['SerialNo'] . '"',
 			    'post_status' => 'publish',
 			    'post_type'   => 'gis_reg_product'
 			) );
 
-			garminbygis_update_post_meta( $post_id, 'gisc_reg_product_product_owner_id', $result['ProductOwnerId'] );
+			garminbygis_update_post_meta( $post_id, 'gisc_reg_product_product_owner_id', $this->product['ProductOwnerId'] );
+			garminbygis_update_post_meta( $post_id, 'gisc_reg_product_serial_number', $this->product['SerialNo'] );
 			garminbygis_update_post_meta( $post_id, 'gisc_reg_product_product_owner_email', $email );
-			garminbygis_update_post_meta( $post_id, 'gisc_reg_product_serial_number', $serialNo );
 
-			return $post_id;
+			$this->related_post_id = $post_id;
 		}
 
-		return $result;
+		return $this;
 	}
 
 	/**

@@ -1,91 +1,47 @@
 <?php
 $user = get_userdata( get_current_user_id() );
 
-if ( isset( $_POST['send-serial'] ) ) {
-    // $post_id = GISC_Product()->register( $_POST['serail-product'], 's.tuasakul@gmail.com' ); // TODO: Remove mock email.
-    $post_id = GISC_Product()->register( $_POST['serail-product'], $user->user_email );
-
-    if ( ! is_integer( $post_id ) ) {
-        if ( $result['Flag'] == 102 ): ?>
-            <p class="alert-color">
-                <?php echo __( 'The serial number has been registered.', 'garminbygis' ); ?>
-            </p>
-        <?php else: ?>
-            <p class="alert-color">
-                <?php echo __( 'No serial found.', 'garminbygis' ); ?>
-            </p>
-        <?php endif;
-    } else {
-        if ( $post_id && isset( $_FILES['product-receipt']['tmp_name'] ) && ! $_FILES['product-receipt']['error'] ) {
-            $upload = wp_upload_bits(
-                $_FILES['product-receipt']['name'],
-                null,
-                file_get_contents( $_FILES['product-receipt']['tmp_name'] )
-            );
-
-            $filename = $upload['file'];
-            $wp_filetype = wp_check_filetype($filename, null );
-            $attachment = array(
-                'post_mime_type' => $wp_filetype['type'],
-                'post_title' => sanitize_file_name($filename),
-                'post_content' => '',
-                'post_status' => 'inherit'
-            );
-            $attach_id = wp_insert_attachment( $attachment, $filename, $post_id );
-
-            require_once(ABSPATH . 'wp-admin/includes/image.php');
-            $attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
-            wp_update_attachment_metadata( $attach_id, $attach_data );
-            set_post_thumbnail( $post_id, $attach_id );
-        }
-
-        if ( $post_id ) : ?>
-            <p class="success-color">
-                <?php echo __( 'Register successfully.', 'garminbygis' ); ?>
-            </p>
-            <?php
-        endif;
-
-
-        // add_filter( 'wp_mail_content_type', 'wpdocs_set_html_mail_content_type' );
-
-        // $user_id = get_current_user_id();
-        // $user = get_userdata( $user_id );
-
-        // $firstname = get_user_meta( $user_id, 'first_name', true );
-        // $lastname = get_user_meta( $user_id, 'last_name' , true );
-        // $tel = get_user_meta( $user_id, 'billing_phone' , true );
-        // $useremail = $user->user_email;
-
-        // $serailProduct = $_POST['serail-product']; 
-
-        // $headers[] = 'CC: kritsana.phunpian@gmail.com';
-            
-        // $to = array(
-        //     'kolokolo.jack@gmail.com'
-        //     );
-        // $subject = 'Serial Number';
-        // $body = '<p>Serial Number product ' . $serailProduct . '</p> 
-        // <p>Name : ' . $firstname . ' ' . $lastname . '</p>
-        // <p>Email : ' . $useremail . '</p>
-        // <p>Tel : ' . $tel . '</p>';
-
-        // wp_mail( $to, $subject, $body, $headers );
-
-        ?>
-        <!-- <div class="woocommerce-message message-wrapper">
-            <div class="message-container container success-color medium-text-center sb-custom-alert">
-                <i class="icon-checkmark"><strong>Success:</strong> Your serial number product has sended.</i>
-            </div>
-        </div> -->
-        <?php
-        
-        // Reset content-type to avoid conflicts -- https://core.trac.wordpress.org/ticket/23578
-        // remove_filter( 'wp_mail_content_type', 'wpdocs_set_html_mail_content_type' );
-        // function wpdocs_set_html_mail_content_type() {
-        //     return 'text/html';
-        // }
+function register_gisc_product( $serialNo, $email ) {
+    $gisc_product = GISC_Product()->register( $serialNo, $email );
+    if ( $gisc_product->has_error() ) {
+        $gisc_product->display_error();
+        return;
     }
+
+    if ( $gisc_product->related_post_id() && isset( $_FILES['product-receipt']['tmp_name'] ) && ! $_FILES['product-receipt']['error'] ) {
+        $upload = wp_upload_bits(
+            $_FILES['product-receipt']['name'],
+            null,
+            file_get_contents( $_FILES['product-receipt']['tmp_name'] )
+        );
+
+        $filename    = $upload['file'];
+        $wp_filetype = wp_check_filetype($filename, null );
+        $attachment  = array(
+            'post_mime_type' => $wp_filetype['type'],
+            'post_title' => sanitize_file_name($filename),
+            'post_content' => '',
+            'post_status' => 'inherit'
+        );
+        $attach_id = wp_insert_attachment( $attachment, $filename, $gisc_product->related_post_id() );
+
+        require_once(ABSPATH . 'wp-admin/includes/image.php');
+        $attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
+        wp_update_attachment_metadata( $attach_id, $attach_data );
+        set_post_thumbnail( $gisc_product->related_post_id(), $attach_id );
+    }
+
+    if ( $gisc_product->related_post_id() ) : ?>
+        <p class="success-color">
+            <?php echo __( 'Register successfully.', 'garminbygis' ); ?>
+        </p>
+        <?php
+    endif;
+}
+
+if ( isset( $_POST['send-serial'] ) ) {
+    // register_gisc_product( $_POST['serail-product'], $user->user_email );
+    register_gisc_product( $_POST['serail-product'], 's.tuasakul@gmail.com' );
 } else if ( isset( $_POST['attach-receipt'] ) ) {
     $post_id = wp_insert_post( array(
         'post_title'  => 'GISC Product Receipt, owner id: " ' . $_POST['productOwnerId'] . ' ", serial: "' . $_POST['serialNo'] . '"',
@@ -167,8 +123,8 @@ $receipt_attachment_modal = '
 ?>
 
 <?php
-$items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_email ) );
-// $items = GISC()->get( 'list_registered_product', array( 'Email' => 's.tuasakul@gmail.com' ) ); // TODO: Remove mock email.
+// $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_email ) );
+$items = GISC()->get( 'list_registered_product', array( 'Email' => 's.tuasakul@gmail.com' ) ); // TODO: Remove mock email.
 ?>
 <?php if ( $items && ! empty( $items ) ) : ?>
     <h3>Registered Products.</h3>
