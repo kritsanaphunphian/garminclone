@@ -168,7 +168,10 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => 's.tuasakul@g
                         $post  = $query->have_posts() ? $query->posts[0] : null;
 
                         if ( $post && $url = wp_get_attachment_url( get_post_thumbnail_id($post->ID), 'thumbnail' ) ) {
-                            echo '<a href="' . $url . '">view receipt</a>';
+                            ?>
+                            <a href="#receipt-id-<?php echo $value['ProductOwnerId']; ?>">view receipt</a>
+                            <?php
+                            echo do_shortcode('[lightbox id="receipt-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"]<img src="' . $url . '" class="img-responsive" />[/lightbox]');
                         } else {
                             echo do_shortcode('[button text="attach file" link="#attach-to-owner-id-' . $value['ProductOwnerId'] . '"][lightbox id="attach-to-owner-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"]' . sprintf( $receipt_attachment_modal, $value['ProductOwnerId'], $value['SerialNo'] ) . '[/lightbox]');
                         }
