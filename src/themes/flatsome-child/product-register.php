@@ -40,8 +40,7 @@ function register_gisc_product( $serialNo, $email ) {
 }
 
 if ( isset( $_POST['send-serial'] ) ) {
-    // register_gisc_product( $_POST['serail-product'], $user->user_email );
-    register_gisc_product( $_POST['serail-product'], 's.tuasakul@gmail.com' );
+    register_gisc_product( $_POST['serail-product'], $user->user_email );
 } else if ( isset( $_POST['attach-receipt'] ) ) {
     $post_id = wp_insert_post( array(
         'post_title'  => 'GISC Product Receipt, owner id: " ' . $_POST['productOwnerId'] . ' ", serial: "' . $_POST['serialNo'] . '"',
@@ -127,8 +126,7 @@ $receipt_attachment_modal = '
 ?>
 
 <?php
-// $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_email ) );
-$items = GISC()->get( 'list_registered_product', array( 'Email' => 's.tuasakul@gmail.com' ) ); // TODO: Remove mock email.
+$items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_email ) );
 ?>
 <?php if ( $items && ! empty( $items ) ) : ?>
     <h3>Registered Products.</h3>
