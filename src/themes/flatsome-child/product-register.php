@@ -93,6 +93,7 @@ if ( isset( $_POST['send-serial'] ) ) {
         <p class="form-row form-row-first">
             <label>Receipt (optional)</label>
             <input id="product-receipt" type="file" name="product-receipt" accept=".png,.jpg,.gif,.pdf, image/png,image/vnd.sealedmedia.softseal-jpg,image/vnd.sealedmedia.softseal-gif,application/vnd.sealedmedia.softseal-pdf">
+            <br/><em><small>File extensions supported are: pdf, jpg, png, gif, bmp</small></em>
         </p>
 
         <p class="form-row form-row-last garminbygis-form-row-submit-button">
