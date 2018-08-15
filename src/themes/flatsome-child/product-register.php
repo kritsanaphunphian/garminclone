@@ -13,38 +13,11 @@ function register_gisc_product( $serialNo, $email ) {
     }
 
     if ( $gisc_product->related_post_id() ) :
-        // add_filter( 'wp_mail_content_type', 'wpdocs_set_html_mail_content_type' );
-
-        // $user_id = get_current_user_id();
-        // $user    = get_userdata( $user_id );
-
-        // $firstname = get_user_meta( $user_id, 'first_name', true );
-        // $lastname  = get_user_meta( $user_id, 'last_name' , true );
-        // $tel       = get_user_meta( $user_id, 'billing_phone' , true );
-        // $useremail = $user->user_email;
-
-        // $serailProduct = $serialNo;
-
-        // $headers[] = 'CC: kritsana.phunpian@gmail.com';
-        // $to        = array( 'kolokolo.jack@gmail.com' );
-        // $subject   = 'Serial Number';
-        // $body      = '<p>Serial Number product ' . $serailProduct . '</p> 
-        //     <p>Name : ' . $firstname . ' ' . $lastname . '</p>
-        //     <p>Email : ' . $useremail . '</p>
-        //     <p>Tel : ' . $tel . '</p>';
-
-        // wp_mail( $to, $subject, $body, $headers );
         ?>
-
         <p class="success-color">
             <?php echo __( 'Register successfully.', 'garminbygis' ); ?>
         </p>
         <?php
-        // Reset content-type to avoid conflicts -- https://core.trac.wordpress.org/ticket/23578
-        // remove_filter( 'wp_mail_content_type', 'wpdocs_set_html_mail_content_type' );
-        // function wpdocs_set_html_mail_content_type() {
-        //     return 'text/html';
-        // }
     endif;
 }
 
