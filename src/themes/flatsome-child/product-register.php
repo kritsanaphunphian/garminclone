@@ -10,21 +10,6 @@ function register_gisc_product( $serialNo, $email ) {
 
     if ( $gisc_product->related_post_id() && isset( $_FILES['product-receipt']['tmp_name'] ) && ! $_FILES['product-receipt']['error'] ) {
         $gisc_product->attach_receipt($_FILES);
-
-        // $filename    = $upload['file'];
-        // $wp_filetype = wp_check_filetype($filename, null );
-        // $attachment  = array(
-        //     'post_mime_type' => $wp_filetype['type'],
-        //     'post_title' => sanitize_file_name($filename),
-        //     'post_content' => '',
-        //     'post_status' => 'inherit'
-        // );
-        // $attach_id = wp_insert_attachment( $attachment, $filename, $gisc_product->related_post_id() );
-
-        // require_once(ABSPATH . 'wp-admin/includes/image.php');
-        // $attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
-        // wp_update_attachment_metadata( $attach_id, $attach_data );
-        // set_post_thumbnail( $gisc_product->related_post_id(), $attach_id );
     }
 
     if ( $gisc_product->related_post_id() ) :
