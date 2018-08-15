@@ -54,12 +54,14 @@ class GISC_Product {
 		?>
 		<p class="alert-color">
 			<?php
-			if ( is_null( $this->product ) ) {
+			if ( isset( $this->product['Message'] ) ) {
+				echo __( 'Error found, please contact customer service', 'garminbygis' );
+			} else if ( is_null( $this->product ) ) {
 				echo __( 'Cannot retrieve product\'s information. Please try again or contact our support team', 'garminbygis' );
 			} else if ( $this->product['Flag'] == 102 ) {
-				echo __( 'The serial number has been registered.', 'garminbygis' );
+				echo __( 'The serial number is already registered.', 'garminbygis' );
 			} else {
-				echo __( 'No serial found.', 'garminbygis' );
+				echo __( 'Serial Number not found.', 'garminbygis' );
 			}
 			?>
 		</p>

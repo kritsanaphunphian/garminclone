@@ -46,21 +46,21 @@ if ( isset( $_POST['send-serial'] ) ) {
 ?>
 
 <form name="frm" method="post" action="#" enctype="multipart/form-data">
-    <h3>Register your GARMIN products to be eligible for benefits.</h3>
+    <h3><?php echo __( 'Register your GARMIN products to be eligible for benefits.', 'garminbygis' ); ?></h3>
     <div class="garminbygis-product-registration-form">
         <div>
-            <label for="serail-product">Please specify your product's serial number:</label>
+            <label for="serail-product"><?php echo __( 'Please specify your product\'s serial number', 'garminbygis' ); ?>:</label>
             <input id="serail-product" type="text" name="serail-product" value="">
         </div>
 
         <p class="form-row form-row-first">
-            <label>Receipt (optional)</label>
+            <label><?php echo __( 'Receipt (optional)', 'garminbygis' ); ?></label>
             <input id="product-receipt" type="file" name="product-receipt" accept=".png,.jpg,.gif,.pdf, image/png,image/vnd.sealedmedia.softseal-jpg,image/vnd.sealedmedia.softseal-gif,application/vnd.sealedmedia.softseal-pdf">
-            <br/><em><small>File extensions supported are: pdf, jpg, png, gif, bmp</small></em>
+            <br/><em><small><?php echo __( 'File extensions supported are:', 'garminbygis' ); ?> pdf, jpg, png, gif, bmp</small></em>
         </p>
 
         <p class="form-row form-row-last garminbygis-form-row-submit-button">
-            <input type="submit" value="Submit" name="send-serial" id="send-serial">
+            <input type="submit" value="<?php echo _x( 'Submit', 'product registration - register', 'garminbygis' ); ?>" name="send-serial" id="send-serial">
         </p>
 
         <div class="clear"></div>
@@ -68,7 +68,7 @@ if ( isset( $_POST['send-serial'] ) ) {
 </form>
 
 <div class="action-update-software-button">
-    <a href="https://www.garmin.com/th-TH/software/express" class="button primary">UPDATE SOFTWARE</a>
+    <a href="https://www.garmin.com/th-TH/software/express" class="button primary"><?php echo __( 'UPDATE SOFTWARE', 'garminbygis' ); ?></a>
 </div>
 
 <?php
@@ -93,15 +93,15 @@ $receipt_attachment_modal = '
 $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_email ) );
 ?>
 <?php if ( $items && ! empty( $items ) ) : ?>
-    <h3>Registered Products.</h3>
+    <h3><?php echo __( 'Registered Products.', 'garminbygis' ); ?></h3>
     <table class="woocommerce-gisc-registered-product-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
         <thead>
             <tr>
-                <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-product-name"><span class="nobr">Product's Information</span></th>
-                <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-product-update"><span class="nobr">Update</span></th>
-                <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-order-date"><span class="nobr">Purchase Date</span></th>
-                <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-receipt"><span class="nobr">Receipt / Warranty</span></th>
-                <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-delete"><span class="nobr">Delete</span></th>
+                <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-product-name"><span class="nobr"><?php echo __( 'Product\'s Information', 'garminbygis' ); ?></span></th>
+                <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-product-update"><span class="nobr"><?php echo __( 'Update', 'garminbygis' ); ?></span></th>
+                <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-order-date"><span class="nobr"><?php echo __( 'Purchase Date', 'garminbygis' ); ?></span></th>
+                <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-receipt"><span class="nobr"><?php echo __( 'Receipt / Warranty', 'garminbygis' ); ?></span></th>
+                <th class="woocommerce-gisc-registered-product-table__header woocommerce-gisc-registered-product-table__header-delete"><span class="nobr"><?php echo __( 'Delete', 'garminbygis' ); ?></span></th>
             </tr>
         </thead>
 
@@ -115,11 +115,13 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_e
 
                     <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-product-update" data-title="Update">
                         <?php if ( (int) $value['Flag'] === 3 ): ?>
-                            <a href="http://www.garmin.co.th/mapupdate/" class="button primary">Download Map</a>
+                            <a href="http://www.garmin.co.th/mapupdate/" class="button primary"><?php echo __( 'Download Map', 'garminbygis' ); ?></a>
                         <?php elseif ( (int) $value['Flag'] >= 1 && (int) $value['Flag'] <= 6 ): ?>
-                            <a href="#" class="button primary">Download Map</a>
+                            <a href="#" class="button primary"><?php echo __( 'Download Map', 'garminbygis' ); ?></a>
                         <?php elseif ( (int) $value['Flag'] === 0 ): ?>
-                            <a href="#" class="button primary">Buy Map</a>
+                            <a href="#" class="button primary"><?php echo __( 'Buy Map', 'garminbygis' ); ?></a>
+                        <?php else: ?>
+                            -
                         <?php endif; ?>
                     </td>
 
@@ -135,24 +137,24 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_e
 
                         if ( $post && $url = get_post_meta( $post->ID, 'gisc_reg_product_receipt_document_url' ) ) {
                             if ( 'pdf' === pathinfo($url[0])['extension'] ) {
-                                echo do_shortcode('[lightbox id="receipt-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"]The PDF file cannot be rendered. Please click the link to refer to your original file: "<a href="' . $url[0] . '">' . pathinfo($url[0])['filename'] . '</a>"[/lightbox]');
+                                echo do_shortcode('[lightbox id="receipt-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"] ' . __( 'The PDF file cannot be rendered. Please click the link to refer to your original file', 'garminbygis' ) . ': "<a href="' . $url[0] . '">' . pathinfo($url[0])['filename'] . '</a>"[/lightbox]');
                             } else {
                                 echo do_shortcode('[lightbox id="receipt-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"]<img src="' . $url[0] . '" class="img-responsive" />[/lightbox]');
                             }
                             ?>
-                            <a href="#receipt-id-<?php echo $value['ProductOwnerId']; ?>">view receipt</a>
+                            <a href="#receipt-id-<?php echo $value['ProductOwnerId']; ?>"><?php echo __( 'view receipt', 'garminbygis' ); ?></a>
                             <br/>
                             <?php
                         }
 
-                        echo do_shortcode('[button text="attach file" link="#attach-to-owner-id-' . $value['ProductOwnerId'] . '"][lightbox id="attach-to-owner-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"]' . sprintf( $receipt_attachment_modal, $value['ProductOwnerId'], $value['SerialNo'] ) . '[/lightbox]');
+                        echo do_shortcode('[button text="' . __( 'attach file', 'garminbygis' ) . '" link="#attach-to-owner-id-' . $value['ProductOwnerId'] . '"][lightbox id="attach-to-owner-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"]' . sprintf( $receipt_attachment_modal, $value['ProductOwnerId'], $value['SerialNo'] ) . '[/lightbox]');
                         ?>
                     </td>
 
                     <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-delete" data-title="">
                         <form class="garminbygis-form-registered-product-list" name="frm" method="post" action="#" enctype="multipart/form-data">
                             <input type="hidden" name="form-delete" />
-                            <button class="button" type="submit" name="delete-button" value="<?php echo $value['ProductOwnerId']; ?>" onClick="return confirm( 'Are you sure you want to remove this product?' )">Remove</button>
+                            <button class="button" type="submit" name="delete-button" value="<?php echo $value['ProductOwnerId']; ?>" onClick="return confirm( 'Are you sure you want to remove this product?' )"><?php echo __( 'Remove', 'garminbygis' ); ?></button>
                         </form>
                     </td>
                 </tr>
