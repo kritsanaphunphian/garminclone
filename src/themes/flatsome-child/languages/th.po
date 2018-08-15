@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Flatsome Child\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-15 08:25+0000\n"
-"PO-Revision-Date: 2018-08-15 08:43+0000\n"
+"PO-Revision-Date: 2018-08-15 13:14+0000\n"
 "Last-Translator: GarminByGis <kritsana.phunpian@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -141,7 +141,7 @@ msgstr ""
 
 #: product-register.php:40
 msgid "Register successfully."
-msgstr ""
+msgstr "ลงทะเบียนซีเรียลผลิตภัณฑ์"
 
 #: product-register.php:76
 msgid "Register your GARMIN products to be eligible for benefits."
