@@ -9,33 +9,57 @@ function register_gisc_product( $serialNo, $email ) {
     }
 
     if ( $gisc_product->related_post_id() && isset( $_FILES['product-receipt']['tmp_name'] ) && ! $_FILES['product-receipt']['error'] ) {
-        $upload = wp_upload_bits(
-            $_FILES['product-receipt']['name'],
-            null,
-            file_get_contents( $_FILES['product-receipt']['tmp_name'] )
-        );
+        $gisc_product->attach_receipt($_FILES);
 
-        $filename    = $upload['file'];
-        $wp_filetype = wp_check_filetype($filename, null );
-        $attachment  = array(
-            'post_mime_type' => $wp_filetype['type'],
-            'post_title' => sanitize_file_name($filename),
-            'post_content' => '',
-            'post_status' => 'inherit'
-        );
-        $attach_id = wp_insert_attachment( $attachment, $filename, $gisc_product->related_post_id() );
+        // $filename    = $upload['file'];
+        // $wp_filetype = wp_check_filetype($filename, null );
+        // $attachment  = array(
+        //     'post_mime_type' => $wp_filetype['type'],
+        //     'post_title' => sanitize_file_name($filename),
+        //     'post_content' => '',
+        //     'post_status' => 'inherit'
+        // );
+        // $attach_id = wp_insert_attachment( $attachment, $filename, $gisc_product->related_post_id() );
 
-        require_once(ABSPATH . 'wp-admin/includes/image.php');
-        $attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
-        wp_update_attachment_metadata( $attach_id, $attach_data );
-        set_post_thumbnail( $gisc_product->related_post_id(), $attach_id );
+        // require_once(ABSPATH . 'wp-admin/includes/image.php');
+        // $attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
+        // wp_update_attachment_metadata( $attach_id, $attach_data );
+        // set_post_thumbnail( $gisc_product->related_post_id(), $attach_id );
     }
 
-    if ( $gisc_product->related_post_id() ) : ?>
+    if ( $gisc_product->related_post_id() ) :
+        // add_filter( 'wp_mail_content_type', 'wpdocs_set_html_mail_content_type' );
+
+        // $user_id = get_current_user_id();
+        // $user    = get_userdata( $user_id );
+
+        // $firstname = get_user_meta( $user_id, 'first_name', true );
+        // $lastname  = get_user_meta( $user_id, 'last_name' , true );
+        // $tel       = get_user_meta( $user_id, 'billing_phone' , true );
+        // $useremail = $user->user_email;
+
+        // $serailProduct = $serialNo;
+
+        // $headers[] = 'CC: kritsana.phunpian@gmail.com';
+        // $to        = array( 'kolokolo.jack@gmail.com' );
+        // $subject   = 'Serial Number';
+        // $body      = '<p>Serial Number product ' . $serailProduct . '</p> 
+        //     <p>Name : ' . $firstname . ' ' . $lastname . '</p>
+        //     <p>Email : ' . $useremail . '</p>
+        //     <p>Tel : ' . $tel . '</p>';
+
+        // wp_mail( $to, $subject, $body, $headers );
+        ?>
+
         <p class="success-color">
             <?php echo __( 'Register successfully.', 'garminbygis' ); ?>
         </p>
         <?php
+        // Reset content-type to avoid conflicts -- https://core.trac.wordpress.org/ticket/23578
+        // remove_filter( 'wp_mail_content_type', 'wpdocs_set_html_mail_content_type' );
+        // function wpdocs_set_html_mail_content_type() {
+        //     return 'text/html';
+        // }
     endif;
 }
 
@@ -170,7 +194,7 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_e
                         $query = GISC_Product()->get_related_posts( $value['ProductOwnerId'], $user->user_email );
                         $post  = $query->have_posts() ? $query->posts[0] : null;
 
-                        if ( $post && $url = wp_get_attachment_url( get_post_thumbnail_id($post->ID), 'thumbnail' ) ) {
+                        if ( $post && $url = get_post_meta( get_post_thumbnail_id($post->ID), 'gisc_reg_product_receipt_document_url' ) ) {
                             ?>
                             <a href="#receipt-id-<?php echo $value['ProductOwnerId']; ?>">view receipt</a>
                             <?php

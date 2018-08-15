@@ -14,6 +14,11 @@ class GISC_Product {
 	protected $product = null;
 	protected $related_post_id = null;
 
+	const META_PRODUCT_OWNER_EMAIL  = 'gisc_reg_product_product_owner_email';
+	const META_PRODUCT_OWNER_ID     = 'gisc_reg_product_product_owner_id';
+	const META_RECEIPT_DOCUMENT_URL = 'gisc_reg_product_receipt_document_url';
+	const META_SERIAL_NUMBER        = 'gisc_reg_product_serial_number';
+
 	/**
 	 * @return bool
 	 *
@@ -67,16 +72,17 @@ class GISC_Product {
 	public function register( $serialNo, $email ) {
 		$this->product = GISC()->get( 'register_product', array( 'serialNo' => $serialNo, 'Email' => $email ) );
 
-		if ( $this->product['Flag'] >= 0 && $this->product['Flag'] <= 6 ) {
+		if ( ( $this->product['Flag'] >= 0 && $this->product['Flag'] <= 6 ) || $this->product['Flag'] == 99 ) {
 			$post_id = wp_insert_post( array(
 			    'post_title'  => 'GISC Product Receipt, owner id: " ' . $this->product['ProductOwnerId'] . ' ", serial: "' . $this->product['SerialNo'] . '"',
 			    'post_status' => 'publish',
 			    'post_type'   => 'gis_reg_product'
 			) );
 
-			garminbygis_update_post_meta( $post_id, 'gisc_reg_product_product_owner_id', $this->product['ProductOwnerId'] );
-			garminbygis_update_post_meta( $post_id, 'gisc_reg_product_serial_number', $this->product['SerialNo'] );
-			garminbygis_update_post_meta( $post_id, 'gisc_reg_product_product_owner_email', $email );
+			garminbygis_update_post_meta( $post_id, self::META_PRODUCT_OWNER_EMAIL, $email );
+			garminbygis_update_post_meta( $post_id, self::META_PRODUCT_OWNER_ID, $this->product['ProductOwnerId'] );
+			garminbygis_update_post_meta( $post_id, self::META_RECEIPT_DOCUMENT_URL, '' );
+			garminbygis_update_post_meta( $post_id, self::META_SERIAL_NUMBER, $this->product['SerialNo'] );
 
 			$this->related_post_id = $post_id;
 		}
@@ -95,12 +101,12 @@ class GISC_Product {
 			'post_status' => array( 'publish' ),
 			'meta_query'  => array(
 				array(
-					'key'     => 'gisc_reg_product_product_owner_id',
+					'key'     => self::META_PRODUCT_OWNER_ID,
 					'value'   => $productOwnerId,
 					'compare' => 'LIKE'
 				),
 				array(
-					'key'     => 'gisc_reg_product_product_owner_email',
+					'key'     => self::META_PRODUCT_OWNER_EMAIL,
 					'value'   => $email,
 					'compare' => 'LIKE'
 				)
@@ -123,12 +129,12 @@ class GISC_Product {
 			'post_status' => array( 'publish' ),
 			'meta_query'  => array(
 				array(
-					'key'     => 'gisc_reg_product_product_owner_id',
+					'key'     => self::META_PRODUCT_OWNER_ID,
 					'value'   => $productOwnerId,
 					'compare' => 'LIKE'
 				),
 				array(
-					'key'     => 'gisc_reg_product_product_owner_email',
+					'key'     => self::META_PRODUCT_OWNER_EMAIL,
 					'value'   => $email,
 					'compare' => 'LIKE'
 				)
@@ -136,6 +142,19 @@ class GISC_Product {
 		);
 
 		return new WP_Query( $args );
+	}
+
+	/**
+	 * @param array $file of $_FILES
+	 */
+	public function attach_receipt($file) {
+		$upload = wp_upload_bits(
+		    $_FILES['product-receipt']['name'],
+		    null,
+		    file_get_contents( $_FILES['product-receipt']['tmp_name'] )
+		);
+
+		garminbygis_update_post_meta( $this->related_post_id(), self::META_RECEIPT_DOCUMENT_URL, $upload['url'] );
 	}
 
 	/**
