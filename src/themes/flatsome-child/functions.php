@@ -785,3 +785,15 @@ function insert_user_to_gisc_api( $user_id ) {
     );
 }
 add_action( 'user_register', 'insert_user_to_gisc_api', 10, 1 );
+
+function garminbygis_add_google_analytic() { ?>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123918063-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-123918063-1');
+    </script>
+    <?php
+}
+add_action( 'wp_head', 'garminbygis_add_google_analytic', 10 );
