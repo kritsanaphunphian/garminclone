@@ -66,37 +66,18 @@ function register_gisc_product( $serialNo, $email ) {
 if ( isset( $_POST['send-serial'] ) ) {
     register_gisc_product( $_POST['serail-product'], $user->user_email );
 } else if ( isset( $_POST['attach-receipt'] ) ) {
-    $post_id = wp_insert_post( array(
-        'post_title'  => 'GISC Product Receipt, owner id: " ' . $_POST['productOwnerId'] . ' ", serial: "' . $_POST['serialNo'] . '"',
-        'post_status' => 'publish',
-        'post_type'   => 'gis_reg_product'
-    ) );
+    $gisc_product = GISC_Product()->load_related_posts( $_POST['productOwnerId'], $user->user_email );
 
-    garminbygis_update_post_meta( $post_id, 'gisc_reg_product_product_owner_id', $_POST['productOwnerId'] );
-    garminbygis_update_post_meta( $post_id, 'gisc_reg_product_product_owner_email', $user->user_email );
-    garminbygis_update_post_meta( $post_id, 'gisc_reg_product_serial_number', $_POST['serialNo'] );
+    if ( $gisc_product->have_related_posts() ) {
+        // Update
+        $gisc_product->attach_receipt($_FILES);
+    } else {
+        // Create new post
+        $gisc_product->insert_related_post( $_POST['productOwnerId'], $_POST['serialNo'], $user->user_email );
 
-    if ( $post_id && isset( $_FILES['product-receipt']['tmp_name'] ) && ! $_FILES['product-receipt']['error'] ) {
-        $upload = wp_upload_bits(
-            $_FILES['product-receipt']['name'],
-            null,
-            file_get_contents( $_FILES['product-receipt']['tmp_name'] )
-        );
-
-        $filename = $upload['file'];
-        $wp_filetype = wp_check_filetype($filename, null );
-        $attachment = array(
-            'post_mime_type' => $wp_filetype['type'],
-            'post_title' => sanitize_file_name($filename),
-            'post_content' => '',
-            'post_status' => 'inherit'
-        );
-        $attach_id = wp_insert_attachment( $attachment, $filename, $post_id );
-
-        require_once(ABSPATH . 'wp-admin/includes/image.php');
-        $attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
-        wp_update_attachment_metadata( $attach_id, $attach_data );
-        set_post_thumbnail( $post_id, $attach_id );
+        if ( $gisc_product->related_post_id() && isset( $_FILES['product-receipt']['tmp_name'] ) && ! $_FILES['product-receipt']['error'] ) {
+            $gisc_product->attach_receipt($_FILES);
+        }
     }
 } else if ( isset( $_POST['delete-button'] ) ) {
     GISC_Product()->deregister( $_POST['delete-button'], $user->user_email );

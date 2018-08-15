@@ -13,6 +13,7 @@ class GISC_Product {
 
 	protected $product = null;
 	protected $related_post_id = null;
+	protected $related_posts = null;
 
 	const META_PRODUCT_OWNER_EMAIL  = 'gisc_reg_product_product_owner_email';
 	const META_PRODUCT_OWNER_ID     = 'gisc_reg_product_product_owner_id';
@@ -73,18 +74,7 @@ class GISC_Product {
 		$this->product = GISC()->get( 'register_product', array( 'serialNo' => $serialNo, 'Email' => $email ) );
 
 		if ( ( $this->product['Flag'] >= 0 && $this->product['Flag'] <= 6 ) || $this->product['Flag'] == 99 ) {
-			$post_id = wp_insert_post( array(
-			    'post_title'  => 'GISC Product Receipt, owner id: " ' . $this->product['ProductOwnerId'] . ' ", serial: "' . $this->product['SerialNo'] . '"',
-			    'post_status' => 'publish',
-			    'post_type'   => 'gis_reg_product'
-			) );
-
-			garminbygis_update_post_meta( $post_id, self::META_PRODUCT_OWNER_EMAIL, $email );
-			garminbygis_update_post_meta( $post_id, self::META_PRODUCT_OWNER_ID, $this->product['ProductOwnerId'] );
-			garminbygis_update_post_meta( $post_id, self::META_RECEIPT_DOCUMENT_URL, '' );
-			garminbygis_update_post_meta( $post_id, self::META_SERIAL_NUMBER, $this->product['SerialNo'] );
-
-			$this->related_post_id = $post_id;
+			$this->insert_related_post( $this->product['ProductOwnerId'], $this->product['SerialNo'], $email );
 		}
 
 		return $this;
@@ -123,7 +113,24 @@ class GISC_Product {
 		return $result;
 	}
 
-	public function get_related_posts( $productOwnerId, $email ) {
+	public function insert_related_post( $productOwnerId, $serialNo, $userEmail ) {
+		$post_id = wp_insert_post( array(
+		    'post_title'  => 'GISC Product Receipt, owner id: " ' . $productOwnerId . ' ", serial: "' . $serialNo . '"',
+		    'post_status' => 'publish',
+		    'post_type'   => 'gis_reg_product'
+		) );
+
+		garminbygis_update_post_meta( $post_id, self::META_PRODUCT_OWNER_EMAIL, $userEmail );
+		garminbygis_update_post_meta( $post_id, self::META_PRODUCT_OWNER_ID, $productOwnerId );
+		garminbygis_update_post_meta( $post_id, self::META_RECEIPT_DOCUMENT_URL, '' );
+		garminbygis_update_post_meta( $post_id, self::META_SERIAL_NUMBER, $serialNo );
+
+		$this->related_post_id = $post_id;
+
+		return $this;
+	}
+
+	public function load_related_posts( $productOwnerId, $email ) {
 		$args = array(
 			'post_type'   => 'gis_reg_product',
 			'post_status' => array( 'publish' ),
@@ -141,7 +148,25 @@ class GISC_Product {
 			)
 		);
 
-		return new WP_Query( $args );
+		$this->related_posts = new WP_Query( $args );
+
+		if ($this->related_posts->have_posts()) {
+			$this->related_post_id = $this->related_posts->posts[0]->ID;
+		}
+
+		return $this;
+	}
+
+	public function have_related_posts() {
+		return $this->related_posts->have_posts();
+	}
+
+	public function get_related_posts( $productOwnerId = null, $email = null ) {
+		if ( ! is_null( $productOwnerId ) && ! is_null( $email ) ) {
+			$this->load_related_posts( $productOwnerId, $email );
+		}
+
+		return $this->related_posts;
 	}
 
 	/**
@@ -149,9 +174,9 @@ class GISC_Product {
 	 */
 	public function attach_receipt($file) {
 		$upload = wp_upload_bits(
-		    $_FILES['product-receipt']['name'],
-		    null,
-		    file_get_contents( $_FILES['product-receipt']['tmp_name'] )
+			$_FILES['product-receipt']['name'],
+			null,
+			file_get_contents( $_FILES['product-receipt']['tmp_name'] )
 		);
 
 		garminbygis_update_post_meta( $this->related_post_id(), self::META_RECEIPT_DOCUMENT_URL, $upload['url'] );
