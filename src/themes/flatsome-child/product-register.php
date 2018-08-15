@@ -194,14 +194,15 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_e
                         $query = GISC_Product()->get_related_posts( $value['ProductOwnerId'], $user->user_email );
                         $post  = $query->have_posts() ? $query->posts[0] : null;
 
-                        if ( $post && $url = get_post_meta( get_post_thumbnail_id($post->ID), 'gisc_reg_product_receipt_document_url' ) ) {
+                        if ( $post && $url = get_post_meta( $post->ID, 'gisc_reg_product_receipt_document_url' ) ) {
+                            echo do_shortcode('[lightbox id="receipt-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"]<img src="' . $url[0] . '" class="img-responsive" />[/lightbox]');
                             ?>
                             <a href="#receipt-id-<?php echo $value['ProductOwnerId']; ?>">view receipt</a>
+                            <br/>
                             <?php
-                            echo do_shortcode('[lightbox id="receipt-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"]<img src="' . $url . '" class="img-responsive" />[/lightbox]');
-                        } else {
-                            echo do_shortcode('[button text="attach file" link="#attach-to-owner-id-' . $value['ProductOwnerId'] . '"][lightbox id="attach-to-owner-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"]' . sprintf( $receipt_attachment_modal, $value['ProductOwnerId'], $value['SerialNo'] ) . '[/lightbox]');
                         }
+
+                        echo do_shortcode('[button text="attach file" link="#attach-to-owner-id-' . $value['ProductOwnerId'] . '"][lightbox id="attach-to-owner-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"]' . sprintf( $receipt_attachment_modal, $value['ProductOwnerId'], $value['SerialNo'] ) . '[/lightbox]');
                         ?>
                     </td>
 
