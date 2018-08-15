@@ -161,7 +161,11 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_e
                         $post  = $query->have_posts() ? $query->posts[0] : null;
 
                         if ( $post && $url = get_post_meta( $post->ID, 'gisc_reg_product_receipt_document_url' ) ) {
-                            echo do_shortcode('[lightbox id="receipt-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"]<img src="' . $url[0] . '" class="img-responsive" />[/lightbox]');
+                            if ( 'pdf' === pathinfo($url[0])['extension'] ) {
+                                echo do_shortcode('[lightbox id="receipt-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"]The PDF file cannot be rendered. Please click the link to refer to your original file: "<a href="' . $url[0] . '">' . pathinfo($url[0])['filename'] . '</a>"[/lightbox]');
+                            } else {
+                                echo do_shortcode('[lightbox id="receipt-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"]<img src="' . $url[0] . '" class="img-responsive" />[/lightbox]');
+                            }
                             ?>
                             <a href="#receipt-id-<?php echo $value['ProductOwnerId']; ?>">view receipt</a>
                             <br/>
