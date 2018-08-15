@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Flatsome Child\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-10 13:19+0000\n"
-"PO-Revision-Date: 2018-04-10 13:21+0000\n"
+"POT-Creation-Date: 2018-08-15 08:25+0000\n"
+"PO-Revision-Date: 2018-08-15 13:14+0000\n"
 "Last-Translator: GarminByGis <kritsana.phunpian@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -13,119 +13,210 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/"
 
-#: functions.php:8
+#: faq-search.php:10
+msgid "FAQ"
+msgstr ""
+
+#: faq-search.php:36
+msgid "Back to FAQ page"
+msgstr ""
+
+#: functions.php:17 functions.php:19
+msgid "Registered Products"
+msgstr ""
+
+#: functions.php:44
 msgid "You must select a province."
 msgstr "กรุณาระบุจังหวัด"
 
-#: functions.php:9
+#: functions.php:45
 msgid "Identifier / Name field cannot be blank."
 msgstr "กรุณาระบุชื่อสถานที่"
 
-#: functions.php:10 wp-additional-field-account.php:95
+#: functions.php:46 wp-additional-field-account.php:95
 msgid "First name field cannot be blank."
 msgstr "กรุณาระบุชื่อ"
 
-#: functions.php:11 wp-additional-field-account.php:104
+#: functions.php:47 wp-additional-field-account.php:104
 msgid "Last name field cannot be blank."
 msgstr "กรุณาระบุนามสกุล"
 
-#: functions.php:12
+#: functions.php:48
 msgid "Street address field cannot be blank."
 msgstr "กรุณาระบุที่อยู่"
 
-#: functions.php:13
+#: functions.php:49
 msgid "Sub District field cannot be blank."
 msgstr "กรุณาระบุตำบล / แขวง"
 
-#: functions.php:14
+#: functions.php:50
 msgid "District / City field cannot be blank."
 msgstr "กรุณาระบุอำเภอ / เขต"
 
-#: functions.php:15
+#: functions.php:51
 msgid "Postcode field cannot be blank."
 msgstr "กรุณาระบุรหัสไปรษณีย์"
 
-#: functions.php:16
+#: functions.php:52
 msgid "Phone number field cannot be blank."
 msgstr "กรุณาระบุหมายเลขโทรศัพท์"
 
-#: functions.php:17
+#: functions.php:53
 msgid "Email address field cannot be blank."
 msgstr "กรุณาระบุอีเมลล์"
 
-#: functions.php:531
+#: functions.php:514
 msgid "My Address"
 msgstr "ที่อยู่ของฉัน"
 
-#: functions.php:546
+#: functions.php:529
 msgid "Wishlist"
 msgstr "รายการโปรด"
 
-#: functions.php:556
+#: functions.php:539
 msgid "e.g. 111/1 M.1 Soi 1 Silom road."
 msgstr "ต.ย. 111/1 หมู่ 1 ซอย 1 ถนน สีลม"
 
-#: functions.php:557
+#: functions.php:540
 msgid "Sub District"
 msgstr "ตำบล / แขวง"
 
-#: functions.php:558
+#: functions.php:541
 msgid "e.g. Silom"
 msgstr "ต.ย. สีลม"
 
-#: functions.php:559
+#: functions.php:542
 msgid "District / City"
 msgstr "อำเภอ / เขต"
 
-#: functions.php:560
+#: functions.php:543
 msgid "e.g. Bangrak"
 msgstr "ต.ย. บางรัก"
 
-#: functions.php:622
+#: functions.php:605
 msgid "ระดับความปลอดภัยของรหัสผ่าน : ต่ำมาก"
 msgstr ""
 
-#: functions.php:623
+#: functions.php:606
 msgid "ระดับความปลอดภัยของรหัสผ่าน : ต่ำ"
 msgstr ""
 
-#: functions.php:624
+#: functions.php:607
 msgid "ระดับความปลอดภัยของรหัสผ่าน : ปลอดภัย"
 msgstr ""
 
-#: functions.php:625
+#: functions.php:608
 msgid "ระดับความปลอดภัยของรหัสผ่าน : ปลอดภัยมาก"
 msgstr ""
 
-#: functions.php:657
+#: functions.php:640
 msgid ""
 "<strong>Success:</strong> Account created successfully. Please check your "
 "email address to verify account."
 msgstr ""
 
-#: functions.php:673
+#: functions.php:656
 msgid ""
 "<strong>Error:</strong> Invalid verification credentials. Try login to get "
 "new verificaton key."
 msgstr ""
 
-#: functions.php:681
+#: functions.php:664
 msgid "<strong>Success:</strong> Your account is verified. Try login now."
 msgstr ""
 
-#: functions.php:704
+#: functions.php:687
 msgid "Resend Verification Link."
 msgstr ""
 
-#: functions.php:704
+#: functions.php:687
 msgid ""
 "<strong>Error:</strong> Please verify your account before login. "
 "{{resend_verification_link}}"
 msgstr ""
 
-#: functions.php:721
+#: functions.php:704
 msgid "<strong>Success:</strong> Check email for new verification link."
 msgstr ""
+
+#: product-register.php:40
+msgid "Register successfully."
+msgstr "ลงทะเบียนซีเรียลผลิตภัณฑ์"
+
+#: product-register.php:76
+msgid "Register your GARMIN products to be eligible for benefits."
+msgstr "ลงทะเบียนผลิตภัณฑ์ GARMIN ของคุณและรับบริการเพิ่มเติมที่นี่"
+
+#: product-register.php:79
+msgid "Please specify your product's serial number"
+msgstr "กรอกหมายเลขซีเรียลผลิตภัณฑ์ของคุณ"
+
+#: product-register.php:84
+msgid "Receipt (optional)"
+msgstr "รูปภาพใบเสร็จ (optional)"
+
+#: product-register.php:86
+msgid "File extensions supported are:"
+msgstr "ประเภทของไฟล์ที่สามารถอัพโหลดได้"
+
+#: product-register.php:90
+msgctxt "product registration - register"
+msgid "Submit"
+msgstr "ลงทะเบียน"
+
+#: product-register.php:98
+msgid "UPDATE SOFTWARE"
+msgstr "ปรับปรุงซอฟท์แวร์"
+
+#: product-register.php:123
+msgid "Registered Products."
+msgstr "รายการผลิตภัณฑ์ที่ลงทะเบียนแล้ว"
+
+#: product-register.php:127
+msgid "Product's Information"
+msgstr "รายละเอียดผลิตภัณฑ์"
+
+#: product-register.php:128
+msgid "Update"
+msgstr ""
+
+#: product-register.php:129
+msgid "Purchase Date"
+msgstr "วันที่ซื้อสินค้า"
+
+#: product-register.php:130
+msgid "Receipt / Warranty"
+msgstr "แนบไฟล์ใบเสร็จ/ใบรับประกัน"
+
+#: product-register.php:131
+msgid "Delete"
+msgstr "ลบ"
+
+#: product-register.php:145 product-register.php:147
+msgid "Download Map"
+msgstr ""
+
+#: product-register.php:149
+msgid "Buy Map"
+msgstr ""
+
+#: product-register.php:167
+msgid ""
+"The PDF file cannot be rendered. Please click the link to refer to your "
+"original file"
+msgstr ""
+
+#: product-register.php:172
+msgid "view receipt"
+msgstr "ตรวจสอบไฟล์แนบ"
+
+#: product-register.php:177
+msgid "attach file"
+msgstr "แนบไฟล์ใหม่"
+
+#: product-register.php:184
+msgid "Remove"
+msgstr "ลบ"
 
 #: wp-additional-field-account.php:22
 msgctxt "myaccount additional information fields"
@@ -192,25 +283,32 @@ msgid "Tax Information"
 msgstr ""
 
 #: wp-checkbox-field-checkout.php:25 wp-checkbox-field-checkout.php:85
-#: wp-checkbox-field-checkout.php:88
+#: wp-checkbox-field-checkout.php:88 woocommerce/emails/email-addresses.php:66
 msgctxt "additional checkout fields"
 msgid "Tax Id"
 msgstr ""
 
 #: wp-checkbox-field-checkout.php:36 wp-checkbox-field-checkout.php:89
+#: woocommerce/emails/email-addresses.php:69
 msgctxt "additional checkout fields"
 msgid "Head Office/Branch"
 msgstr ""
 
 #: wp-checkbox-field-checkout.php:84 wp-checkbox-field-checkout.php:87
+#: woocommerce/emails/email-addresses.php:60
 msgctxt "additional checkout fields"
 msgid "Yes"
 msgstr "ใช่"
 
-#: wp-checkbox-field-checkout.php:87
+#: wp-checkbox-field-checkout.php:87 woocommerce/emails/email-addresses.php:61
 msgctxt "additional checkout fields"
 msgid "(For Company)"
 msgstr "(รูปแบบบริษัท)"
+
+#: woocommerce/emails/email-addresses.php:60
+msgctxt "additional checkout fields"
+msgid "No"
+msgstr ""
 
 #: woocommerce/myaccount/account-links.php:36
 msgid "Log out"

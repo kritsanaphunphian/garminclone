@@ -1,0 +1,49 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: GarminByGIS\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-15 13:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: includes/class-product.php:60
+msgid ""
+"Cannot retrieve product's information. Please try again or contact our "
+"support team"
+msgstr ""
+
+#: includes/class-product.php:58
+msgid "Error found, please contact customer service"
+msgstr ""
+
+#. Name of the plugin
+msgid "GarminByGIS"
+msgstr ""
+
+#. Description of the plugin
+msgid "GarminByGIS API Integration plugin"
+msgstr ""
+
+#. Author of the plugin
+msgid "gisc"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://www.garminbygis.com"
+msgstr ""
+
+#: includes/class-product.php:64
+msgid "Serial Number not found."
+msgstr ""
+
+#: includes/class-product.php:62
+msgid "The serial number is already registered."
+msgstr ""
