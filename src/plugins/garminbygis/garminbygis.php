@@ -61,13 +61,15 @@ class GISC {
 		defined( 'GISC_PLUGIN_PATH' ) || define( 'GISC_PLUGIN_PATH', __DIR__ );
 
 		include_once GISC_PLUGIN_PATH . '/includes/class-product.php';
+
+		$this->load_plugin_textdomain();
 	}
 
 	/**
 	 * @since  3.0
 	 */
 	public function load_plugin_textdomain() {
-		load_plugin_textdomain( 'gisc', false, plugin_basename( dirname( __FILE__ ) ) . '/languages/' );
+		load_plugin_textdomain( 'garminbygis' );
 	}
 
 	/**
