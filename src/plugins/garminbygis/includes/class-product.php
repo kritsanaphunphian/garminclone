@@ -26,11 +26,10 @@ class GISC_Product {
 	 * @since  0.1
 	 */
 	public function has_error() {
-		if ( is_null( $this->product ) ) {
-			return true;
-		}
-
-		if ( (int) $this->product['Flag'] > 6 )  {
+		if ( isset( $this->product['Message'] )
+			|| is_null( $this->product )
+			|| ( (int) $this->product['Flag'] > 6 && (int) $this->product['Flag'] != 99 )
+		) {
 			return true;
 		}
 
