@@ -183,6 +183,18 @@ class GISC_Product {
 		garminbygis_update_post_meta( $this->related_post_id(), self::META_RECEIPT_DOCUMENT_URL, $upload['url'] );
 	}
 
+	public function get_data( $field ) {
+		return $this->product[$field];
+	}
+
+	public function get_attachment_receipt() {
+		if ( $attachments = get_post_meta( $this->related_post_id(), 'gisc_reg_product_receipt_document_url' ) ) {
+			return $attachments[0];
+		}
+
+		return null;
+	}
+
 	/**
 	 * The GISC_Product Instance.
 	 *

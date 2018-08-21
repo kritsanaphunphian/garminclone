@@ -1,6 +1,38 @@
 <?php
 $user = get_userdata( get_current_user_id() );
 
+function send_product_registration_email( $user, $product ) {
+    $firstname   = get_user_meta( get_current_user_id(), 'first_name', true );
+    $lastname    = get_user_meta( get_current_user_id(), 'last_name', true );
+    $phonenumber = get_user_meta( get_current_user_id(), 'billing_phone', true );
+
+    $attachment  = str_replace( get_site_url() . '/', '', $product->get_attachment_receipt());
+    $attachment  = realpath($attachment);
+
+    $headers     = array(
+        'Content-Type: text/html; charset=UTF-8',
+        'Bcc: store.gpssociety@cdg.co.th',
+        'Bcc: on-usa.s@cdg.co.th',
+        'Bcc: ipatt.su@gmail.com'
+    );
+    $to          = $user->user_email;
+    $subject     = 'Garmin by GIS. Product Registration';
+    $body        = '
+    <h1>Product Registration</h1>
+    <p>
+        <strong>Customer ID:</strong> ' . $product->get_data('ProductOwnerId') . '
+        <br/>
+        <br/>
+        <strong>Name:</strong> ' . $firstname . ' ' . $lastname . '
+        <br/><strong>Buy Date:</strong> ' . $product->get_data('BuyDate') . '
+        <br/><strong>Product:</strong> ' . $product->get_data('ProductName') . '
+        <br/><strong>Serial:</strong> ' . $product->get_data('SerialNo') . '
+        <br/><strong>Email:</strong> ' . $user->user_email . '
+    </p>';
+
+    wp_mail( $to, $subject, $body, $headers, array( $attachment ) );
+}
+
 function register_gisc_product( $serialNo, $email ) {
     $gisc_product = GISC_Product()->register( $serialNo, $email );
     if ( $gisc_product->has_error() ) {
@@ -12,17 +44,24 @@ function register_gisc_product( $serialNo, $email ) {
         $gisc_product->attach_receipt($_FILES);
     }
 
-    if ( $gisc_product->related_post_id() ) :
+    if ( $gisc_product->related_post_id() ) {
+        return $gisc_product;
+    }
+
+    return false;
+}
+
+if ( isset( $_POST['send-serial'] ) ) {
+    $gisc_product = register_gisc_product( $_POST['serail-product'], $user->user_email );
+
+    if ( $gisc_product ) :
+        send_product_registration_email( $user, $gisc_product );
         ?>
         <p class="success-color">
             <?php echo __( 'Register successfully.', 'garminbygis' ); ?>
         </p>
         <?php
     endif;
-}
-
-if ( isset( $_POST['send-serial'] ) ) {
-    register_gisc_product( $_POST['serail-product'], $user->user_email );
 } else if ( isset( $_POST['attach-receipt'] ) ) {
     $gisc_product = GISC_Product()->load_related_posts( $_POST['serialNo'], $user->user_email );
 
@@ -37,6 +76,8 @@ if ( isset( $_POST['send-serial'] ) ) {
             $gisc_product->attach_receipt($_FILES);
         }
     }
+
+    send_product_registration_email( $user, $gisc_product );
 } else if ( isset( $_POST['delete-button'] ) ) {
     GISC_Product()->deregister( $_POST['productOwnerId'], $_POST['delete-button'], $user->user_email );
 
