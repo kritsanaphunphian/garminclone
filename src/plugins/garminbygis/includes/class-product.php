@@ -84,7 +84,7 @@ class GISC_Product {
 	/**
 	 * @since  0.1
 	 */
-	public function deregister( $productOwnerId, $email ) {
+	public function deregister( $productOwnerId, $serialNo, $email ) {
 		$result = GISC()->get( 'remove_registed_product', array( 'productOwnerId' => $productOwnerId, 'Email' => $email ) );
 
 		$args = array(
@@ -92,8 +92,8 @@ class GISC_Product {
 			'post_status' => array( 'publish' ),
 			'meta_query'  => array(
 				array(
-					'key'     => self::META_PRODUCT_OWNER_ID,
-					'value'   => $productOwnerId,
+					'key'     => self::META_SERIAL_NUMBER,
+					'value'   => $serialNo,
 					'compare' => 'LIKE'
 				),
 				array(
@@ -116,7 +116,7 @@ class GISC_Product {
 
 	public function insert_related_post( $productOwnerId, $serialNo, $userEmail ) {
 		$post_id = wp_insert_post( array(
-		    'post_title'  => 'GISC Product Receipt, owner id: " ' . $productOwnerId . ' ", serial: "' . $serialNo . '"',
+		    'post_title'  => 'GISC Product Receipt, serial: "' . $serialNo . '", email: " ' . $userEmail . ' "',
 		    'post_status' => 'publish',
 		    'post_type'   => 'gis_reg_product'
 		) );
@@ -131,14 +131,14 @@ class GISC_Product {
 		return $this;
 	}
 
-	public function load_related_posts( $productOwnerId, $email ) {
+	public function load_related_posts( $serialNo, $email ) {
 		$args = array(
 			'post_type'   => 'gis_reg_product',
 			'post_status' => array( 'publish' ),
 			'meta_query'  => array(
 				array(
-					'key'     => self::META_PRODUCT_OWNER_ID,
-					'value'   => $productOwnerId,
+					'key'     => self::META_SERIAL_NUMBER,
+					'value'   => $serialNo,
 					'compare' => 'LIKE'
 				),
 				array(
@@ -162,9 +162,9 @@ class GISC_Product {
 		return $this->related_posts->have_posts();
 	}
 
-	public function get_related_posts( $productOwnerId = null, $email = null ) {
-		if ( ! is_null( $productOwnerId ) && ! is_null( $email ) ) {
-			$this->load_related_posts( $productOwnerId, $email );
+	public function get_related_posts( $serialNo = null, $email = null ) {
+		if ( ! is_null( $serialNo ) && ! is_null( $email ) ) {
+			$this->load_related_posts( $serialNo, $email );
 		}
 
 		return $this->related_posts;

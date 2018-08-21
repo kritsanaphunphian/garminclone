@@ -24,7 +24,7 @@ function register_gisc_product( $serialNo, $email ) {
 if ( isset( $_POST['send-serial'] ) ) {
     register_gisc_product( $_POST['serail-product'], $user->user_email );
 } else if ( isset( $_POST['attach-receipt'] ) ) {
-    $gisc_product = GISC_Product()->load_related_posts( $_POST['productOwnerId'], $user->user_email );
+    $gisc_product = GISC_Product()->load_related_posts( $_POST['serialNo'], $user->user_email );
 
     if ( $gisc_product->have_related_posts() ) {
         // Update
@@ -38,7 +38,7 @@ if ( isset( $_POST['send-serial'] ) ) {
         }
     }
 } else if ( isset( $_POST['delete-button'] ) ) {
-    GISC_Product()->deregister( $_POST['delete-button'], $user->user_email );
+    GISC_Product()->deregister( $_POST['productOwnerId'], $_POST['delete-button'], $user->user_email );
 
     wp_redirect( get_permalink() . 'register-product' );
     exit();
@@ -135,7 +135,7 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_e
 
                     <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-receipt" data-title="Receipt">
                         <?php
-                        $query = GISC_Product()->get_related_posts( $value['ProductOwnerId'], $user->user_email );
+                        $query = GISC_Product()->get_related_posts( $value['SerialNo'], $user->user_email );
                         $post  = $query->have_posts() ? $query->posts[0] : null;
 
                         if ( $post && $url = get_post_meta( $post->ID, 'gisc_reg_product_receipt_document_url' ) ) {
@@ -156,8 +156,8 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_e
 
                     <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-delete" data-title="">
                         <form class="garminbygis-form-registered-product-list" name="frm" method="post" action="#" enctype="multipart/form-data">
-                            <input type="hidden" name="form-delete" />
-                            <button class="button" type="submit" name="delete-button" value="<?php echo $value['ProductOwnerId']; ?>" onClick="return confirm( 'Are you sure you want to remove this product?' )"><?php echo __( 'Remove', 'garminbygis' ); ?></button>
+                            <input type="hidden" name="productOwnerId" value="<?php echo $value['ProductOwnerId']; ?>" />
+                            <button class="button" type="submit" name="delete-button" value="<?php echo $value['SerialNo']; ?>" onClick="return confirm( 'Are you sure you want to remove this product?' )"><?php echo __( 'Remove', 'garminbygis' ); ?></button>
                         </form>
                     </td>
                 </tr>
