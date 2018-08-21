@@ -1,6 +1,38 @@
 <?php
 $user = get_userdata( get_current_user_id() );
 
+function send_product_registration_email( $user, $product ) {
+    $firstname   = get_user_meta( get_current_user_id(), 'first_name', true );
+    $lastname    = get_user_meta( get_current_user_id(), 'last_name', true );
+    $phonenumber = get_user_meta( get_current_user_id(), 'billing_phone', true );
+
+    $attachment  = str_replace( get_site_url() . '/', '', $product->get_attachment_receipt());
+    $attachment  = realpath($attachment);
+
+    $headers     = array(
+        'Content-Type: text/html; charset=UTF-8',
+        'Bcc: store.gpssociety@cdg.co.th',
+        'Bcc: on-usa.s@cdg.co.th',
+        'Bcc: ipatt.su@gmail.com'
+    );
+    $to          = $user->user_email;
+    $subject     = 'Garmin by GIS. Product Registration';
+    $body        = '
+    <h1>Product Registration</h1>
+    <p>
+        <strong>Customer ID:</strong> ' . $product->get_data('ProductOwnerId') . '
+        <br/>
+        <br/>
+        <strong>Name:</strong> ' . $firstname . ' ' . $lastname . '
+        <br/><strong>Buy Date:</strong> ' . $product->get_data('BuyDate') . '
+        <br/><strong>Product:</strong> ' . $product->get_data('ProductName') . '
+        <br/><strong>Serial:</strong> ' . $product->get_data('SerialNo') . '
+        <br/><strong>Email:</strong> ' . $user->user_email . '
+    </p>';
+
+    wp_mail( $to, $subject, $body, $headers, array( $attachment ) );
+}
+
 function register_gisc_product( $serialNo, $email ) {
     $gisc_product = GISC_Product()->register( $serialNo, $email );
     if ( $gisc_product->has_error() ) {
@@ -12,19 +44,26 @@ function register_gisc_product( $serialNo, $email ) {
         $gisc_product->attach_receipt($_FILES);
     }
 
-    if ( $gisc_product->related_post_id() ) :
+    if ( $gisc_product->related_post_id() ) {
+        return $gisc_product;
+    }
+
+    return false;
+}
+
+if ( isset( $_POST['send-serial'] ) ) {
+    $gisc_product = register_gisc_product( $_POST['serail-product'], $user->user_email );
+
+    if ( $gisc_product ) :
+        send_product_registration_email( $user, $gisc_product );
         ?>
         <p class="success-color">
             <?php echo __( 'Register successfully.', 'garminbygis' ); ?>
         </p>
         <?php
     endif;
-}
-
-if ( isset( $_POST['send-serial'] ) ) {
-    register_gisc_product( $_POST['serail-product'], $user->user_email );
 } else if ( isset( $_POST['attach-receipt'] ) ) {
-    $gisc_product = GISC_Product()->load_related_posts( $_POST['productOwnerId'], $user->user_email );
+    $gisc_product = GISC_Product()->load_related_posts( $_POST['serialNo'], $user->user_email );
 
     if ( $gisc_product->have_related_posts() ) {
         // Update
@@ -37,8 +76,10 @@ if ( isset( $_POST['send-serial'] ) ) {
             $gisc_product->attach_receipt($_FILES);
         }
     }
+
+    send_product_registration_email( $user, $gisc_product );
 } else if ( isset( $_POST['delete-button'] ) ) {
-    GISC_Product()->deregister( $_POST['delete-button'], $user->user_email );
+    GISC_Product()->deregister( $_POST['productOwnerId'], $_POST['delete-button'], $user->user_email );
 
     wp_redirect( get_permalink() . 'register-product' );
     exit();
@@ -55,7 +96,7 @@ if ( isset( $_POST['send-serial'] ) ) {
 
         <p class="form-row form-row-first">
             <label><?php echo __( 'Receipt (optional)', 'garminbygis' ); ?></label>
-            <input id="product-receipt" type="file" name="product-receipt" accept=".png,.jpg,.gif,.pdf, image/png,image/vnd.sealedmedia.softseal-jpg,image/vnd.sealedmedia.softseal-gif,application/vnd.sealedmedia.softseal-pdf">
+            <input id="product-receipt" type="file" name="product-receipt" accept=".png,.jpg,.gif,.pdf,image/jpg,image/jpeg,image/png,image/vnd.sealedmedia.softseal-jpg,image/vnd.sealedmedia.softseal-gif,application/vnd.sealedmedia.softseal-pdf,application/pdf">
             <br/><em><small><?php echo __( 'File extensions supported are:', 'garminbygis' ); ?> pdf, jpg, png, gif, bmp</small></em>
         </p>
 
@@ -79,12 +120,15 @@ $receipt_attachment_modal = '
         <div class="garminbygis-product-registration-form">
             <p class="form-row form-row-first">
                 <label>Receipt</label>
-                <input id="product-receipt" type="file" name="product-receipt" accept=".png,.jpg,.gif,.pdf, image/png,image/vnd.sealedmedia.softseal-jpg,image/vnd.sealedmedia.softseal-gif,application/vnd.sealedmedia.softseal-pdf">
+                <input id="product-receipt" type="file" name="product-receipt" accept=".png,.jpg,.gif,.pdf,image/jpg,image/jpeg,image/png,image/vnd.sealedmedia.softseal-jpg,image/vnd.sealedmedia.softseal-gif,application/vnd.sealedmedia.softseal-pdf,application/pdf">
             </p>
             <p class="form-row form-row-last garminbygis-form-row-submit-button">
                 <input type="submit" value="Submit" name="attach-receipt" id="attach-receipt">
             </p>
             <div class="clear"></div>
+            <div>
+                <em><small>' . __( "File extensions supported are:", "garminbygis" ) . ' pdf, jpg, png, gif, bmp</small></em>
+            </div>
         </div>
     </form>';
 ?>
@@ -132,12 +176,12 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_e
 
                     <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-receipt" data-title="Receipt">
                         <?php
-                        $query = GISC_Product()->get_related_posts( $value['ProductOwnerId'], $user->user_email );
+                        $query = GISC_Product()->get_related_posts( $value['SerialNo'], $user->user_email );
                         $post  = $query->have_posts() ? $query->posts[0] : null;
 
                         if ( $post && $url = get_post_meta( $post->ID, 'gisc_reg_product_receipt_document_url' ) ) {
                             if ( 'pdf' === pathinfo($url[0])['extension'] ) {
-                                echo do_shortcode('[lightbox id="receipt-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"] ' . __( 'The PDF file cannot be rendered. Please click the link to refer to your original file', 'garminbygis' ) . ': "<a href="' . $url[0] . '">' . pathinfo($url[0])['filename'] . '</a>"[/lightbox]');
+                                echo do_shortcode('[lightbox id="receipt-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"] ' . __( 'The PDF file cannot be rendered. Please click the link to refer to your original file', 'garminbygis' ) . ': "<a href="' . $url[0] . '" target="_blank">' . pathinfo($url[0])['filename'] . '</a>"[/lightbox]');
                             } else {
                                 echo do_shortcode('[lightbox id="receipt-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"]<img src="' . $url[0] . '" class="img-responsive" />[/lightbox]');
                             }
@@ -153,8 +197,8 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_e
 
                     <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-delete" data-title="">
                         <form class="garminbygis-form-registered-product-list" name="frm" method="post" action="#" enctype="multipart/form-data">
-                            <input type="hidden" name="form-delete" />
-                            <button class="button" type="submit" name="delete-button" value="<?php echo $value['ProductOwnerId']; ?>" onClick="return confirm( 'Are you sure you want to remove this product?' )"><?php echo __( 'Remove', 'garminbygis' ); ?></button>
+                            <input type="hidden" name="productOwnerId" value="<?php echo $value['ProductOwnerId']; ?>" />
+                            <button class="button" type="submit" name="delete-button" value="<?php echo $value['SerialNo']; ?>" onClick="return confirm( 'Are you sure you want to remove this product?' )"><?php echo __( 'Remove', 'garminbygis' ); ?></button>
                         </form>
                     </td>
                 </tr>
