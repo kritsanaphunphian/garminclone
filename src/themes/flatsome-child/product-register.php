@@ -55,7 +55,7 @@ if ( isset( $_POST['send-serial'] ) ) {
 
         <p class="form-row form-row-first">
             <label><?php echo __( 'Receipt (optional)', 'garminbygis' ); ?></label>
-            <input id="product-receipt" type="file" name="product-receipt" accept=".png,.jpg,.gif,.pdf, image/png,image/vnd.sealedmedia.softseal-jpg,image/vnd.sealedmedia.softseal-gif,application/vnd.sealedmedia.softseal-pdf">
+            <input id="product-receipt" type="file" name="product-receipt" accept=".png,.jpg,.gif,.pdf,image/jpg,image/jpeg,image/png,image/vnd.sealedmedia.softseal-jpg,image/vnd.sealedmedia.softseal-gif,application/vnd.sealedmedia.softseal-pdf,application/pdf">
             <br/><em><small><?php echo __( 'File extensions supported are:', 'garminbygis' ); ?> pdf, jpg, png, gif, bmp</small></em>
         </p>
 
@@ -79,12 +79,15 @@ $receipt_attachment_modal = '
         <div class="garminbygis-product-registration-form">
             <p class="form-row form-row-first">
                 <label>Receipt</label>
-                <input id="product-receipt" type="file" name="product-receipt" accept=".png,.jpg,.gif,.pdf, image/png,image/vnd.sealedmedia.softseal-jpg,image/vnd.sealedmedia.softseal-gif,application/vnd.sealedmedia.softseal-pdf">
+                <input id="product-receipt" type="file" name="product-receipt" accept=".png,.jpg,.gif,.pdf,image/jpg,image/jpeg,image/png,image/vnd.sealedmedia.softseal-jpg,image/vnd.sealedmedia.softseal-gif,application/vnd.sealedmedia.softseal-pdf,application/pdf">
             </p>
             <p class="form-row form-row-last garminbygis-form-row-submit-button">
                 <input type="submit" value="Submit" name="attach-receipt" id="attach-receipt">
             </p>
             <div class="clear"></div>
+            <div>
+                <em><small>' . __( "File extensions supported are:", "garminbygis" ) . ' pdf, jpg, png, gif, bmp</small></em>
+            </div>
         </div>
     </form>';
 ?>
@@ -137,7 +140,7 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_e
 
                         if ( $post && $url = get_post_meta( $post->ID, 'gisc_reg_product_receipt_document_url' ) ) {
                             if ( 'pdf' === pathinfo($url[0])['extension'] ) {
-                                echo do_shortcode('[lightbox id="receipt-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"] ' . __( 'The PDF file cannot be rendered. Please click the link to refer to your original file', 'garminbygis' ) . ': "<a href="' . $url[0] . '">' . pathinfo($url[0])['filename'] . '</a>"[/lightbox]');
+                                echo do_shortcode('[lightbox id="receipt-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"] ' . __( 'The PDF file cannot be rendered. Please click the link to refer to your original file', 'garminbygis' ) . ': "<a href="' . $url[0] . '" target="_blank">' . pathinfo($url[0])['filename'] . '</a>"[/lightbox]');
                             } else {
                                 echo do_shortcode('[lightbox id="receipt-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"]<img src="' . $url[0] . '" class="img-responsive" />[/lightbox]');
                             }
