@@ -131,6 +131,17 @@ $receipt_attachment_modal = '
             </div>
         </div>
     </form>';
+
+$buymap_modal = '
+    <div id="buymap-modal-wrapper container">
+        <div class="row">
+            <div class="col medium-6 small-12">Postal</div>
+            <div class="col medium-6 small-12">Digital</div>
+        </div>
+    </div>
+';
+
+echo '[lightbox id="buymap-modal" width="600px" padding="20px"]' . $buymap_modal . '[/lightbox]';
 ?>
 
 <?php
@@ -163,7 +174,7 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_e
                         <?php elseif ( (int) $value['Flag'] >= 1 && (int) $value['Flag'] <= 6 ): ?>
                             <a href="#" class="button primary"><?php echo __( 'Download Map', 'garminbygis' ); ?></a>
                         <?php elseif ( (int) $value['Flag'] === 0 ): ?>
-                            <a href="#" class="button primary"><?php echo __( 'Buy Map', 'garminbygis' ); ?></a>
+                            <?php echo do_shortcode('[button text="' . __( 'Buy Map', 'garminbygis' ) . '" link="#buymap-modal"]'); ?>
                         <?php else: ?>
                             -
                         <?php endif; ?>
