@@ -198,7 +198,7 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_e
                     <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-delete" data-title="">
                         <form class="garminbygis-form-registered-product-list" name="frm" method="post" action="#" enctype="multipart/form-data">
                             <input type="hidden" name="productOwnerId" value="<?php echo $value['ProductOwnerId']; ?>" />
-                            <button class="button" type="submit" name="delete-button" value="<?php echo $value['SerialNo']; ?>" onClick="return confirm( 'Are you sure you want to remove this product?' )"><?php echo __( 'Remove', 'garminbygis' ); ?></button>
+                            <button class="button" type="submit" name="delete-button" value="<?php echo $value['SerialNo']; ?>" onClick="return confirm( '<?php echo __( "Are you sure you want to remove this product?", "garminbygis" ); ?>' )"><?php echo __( 'Remove', 'garminbygis' ); ?></button>
                         </form>
                     </td>
                 </tr>
