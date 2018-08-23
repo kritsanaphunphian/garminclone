@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Flatsome Child\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-15 08:25+0000\n"
-"PO-Revision-Date: 2018-08-15 13:14+0000\n"
+"POT-Creation-Date: 2018-08-22 18:26+0000\n"
+"PO-Revision-Date: 2018-08-22 18:26+0000\n"
 "Last-Translator: GarminByGis <kritsana.phunpian@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -139,82 +139,86 @@ msgstr ""
 msgid "<strong>Success:</strong> Check email for new verification link."
 msgstr ""
 
-#: product-register.php:40
+#: product-register.php:61
 msgid "Register successfully."
 msgstr "ลงทะเบียนซีเรียลผลิตภัณฑ์"
 
-#: product-register.php:76
+#: product-register.php:90
 msgid "Register your GARMIN products to be eligible for benefits."
 msgstr "ลงทะเบียนผลิตภัณฑ์ GARMIN ของคุณและรับบริการเพิ่มเติมที่นี่"
 
-#: product-register.php:79
+#: product-register.php:93
 msgid "Please specify your product's serial number"
 msgstr "กรอกหมายเลขซีเรียลผลิตภัณฑ์ของคุณ"
 
-#: product-register.php:84
+#: product-register.php:98
 msgid "Receipt (optional)"
 msgstr "รูปภาพใบเสร็จ (optional)"
 
-#: product-register.php:86
+#: product-register.php:100 product-register.php:130
 msgid "File extensions supported are:"
-msgstr "ประเภทของไฟล์ที่สามารถอัพโหลดได้"
+msgstr "กรุณาแนบไฟล์ประเภทดังต่อไปนี้เท่านั้น"
 
-#: product-register.php:90
+#: product-register.php:104
 msgctxt "product registration - register"
 msgid "Submit"
 msgstr "ลงทะเบียน"
 
-#: product-register.php:98
+#: product-register.php:112
 msgid "UPDATE SOFTWARE"
 msgstr "ปรับปรุงซอฟท์แวร์"
 
-#: product-register.php:123
+#: product-register.php:140
 msgid "Registered Products."
 msgstr "รายการผลิตภัณฑ์ที่ลงทะเบียนแล้ว"
 
-#: product-register.php:127
+#: product-register.php:144
 msgid "Product's Information"
 msgstr "รายละเอียดผลิตภัณฑ์"
 
-#: product-register.php:128
+#: product-register.php:145
 msgid "Update"
 msgstr ""
 
-#: product-register.php:129
+#: product-register.php:146
 msgid "Purchase Date"
 msgstr "วันที่ซื้อสินค้า"
 
-#: product-register.php:130
+#: product-register.php:147
 msgid "Receipt / Warranty"
 msgstr "แนบไฟล์ใบเสร็จ/ใบรับประกัน"
 
-#: product-register.php:131
+#: product-register.php:148
 msgid "Delete"
 msgstr "ลบ"
 
-#: product-register.php:145 product-register.php:147
+#: product-register.php:162 product-register.php:164
 msgid "Download Map"
 msgstr ""
 
-#: product-register.php:149
+#: product-register.php:166
 msgid "Buy Map"
 msgstr ""
 
-#: product-register.php:167
+#: product-register.php:184
 msgid ""
 "The PDF file cannot be rendered. Please click the link to refer to your "
 "original file"
 msgstr ""
 
-#: product-register.php:172
+#: product-register.php:189
 msgid "view receipt"
 msgstr "ตรวจสอบไฟล์แนบ"
 
-#: product-register.php:177
+#: product-register.php:194
 msgid "attach file"
 msgstr "แนบไฟล์ใหม่"
 
-#: product-register.php:184
+#: product-register.php:201
+msgid "Are you sure you want to remove this product?"
+msgstr "ต้องการลบข้อมูล?"
+
+#: product-register.php:201
 msgid "Remove"
 msgstr "ลบ"
 
