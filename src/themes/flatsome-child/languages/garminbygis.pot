@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Flatsome Child\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-15 08:25+0000\n"
+"POT-Creation-Date: 2018-08-22 18:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -140,82 +140,86 @@ msgstr ""
 msgid "<strong>Success:</strong> Check email for new verification link."
 msgstr ""
 
-#: product-register.php:40
+#: product-register.php:61
 msgid "Register successfully."
 msgstr ""
 
-#: product-register.php:76
+#: product-register.php:90
 msgid "Register your GARMIN products to be eligible for benefits."
 msgstr ""
 
-#: product-register.php:79
+#: product-register.php:93
 msgid "Please specify your product's serial number"
 msgstr ""
 
-#: product-register.php:84
+#: product-register.php:98
 msgid "Receipt (optional)"
 msgstr ""
 
-#: product-register.php:86
+#: product-register.php:100 product-register.php:130
 msgid "File extensions supported are:"
 msgstr ""
 
-#: product-register.php:90
+#: product-register.php:104
 msgctxt "product registration - register"
 msgid "Submit"
 msgstr ""
 
-#: product-register.php:98
+#: product-register.php:112
 msgid "UPDATE SOFTWARE"
 msgstr ""
 
-#: product-register.php:123
+#: product-register.php:140
 msgid "Registered Products."
 msgstr ""
 
-#: product-register.php:127
+#: product-register.php:144
 msgid "Product's Information"
 msgstr ""
 
-#: product-register.php:128
+#: product-register.php:145
 msgid "Update"
 msgstr ""
 
-#: product-register.php:129
+#: product-register.php:146
 msgid "Purchase Date"
 msgstr ""
 
-#: product-register.php:130
+#: product-register.php:147
 msgid "Receipt / Warranty"
 msgstr ""
 
-#: product-register.php:131
+#: product-register.php:148
 msgid "Delete"
 msgstr ""
 
-#: product-register.php:145 product-register.php:147
+#: product-register.php:162 product-register.php:164
 msgid "Download Map"
 msgstr ""
 
-#: product-register.php:149
+#: product-register.php:166
 msgid "Buy Map"
 msgstr ""
 
-#: product-register.php:167
+#: product-register.php:184
 msgid ""
 "The PDF file cannot be rendered. Please click the link to refer to your "
 "original file"
 msgstr ""
 
-#: product-register.php:172
+#: product-register.php:189
 msgid "view receipt"
 msgstr ""
 
-#: product-register.php:177
+#: product-register.php:194
 msgid "attach file"
 msgstr ""
 
-#: product-register.php:184
+#: product-register.php:201
+msgid "Are you sure you want to remove this product?"
+msgstr ""
+
+#: product-register.php:201
 msgid "Remove"
 msgstr ""
 
