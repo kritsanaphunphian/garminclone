@@ -296,8 +296,7 @@ function seed_confirm_banks( $orderid ) {
 		<div id="seed-confirm-banks" class="seed-confirm-banks">	
 			<p class="instructions"><?php echo $bacs_settings->instructions;?></p>
 			<h2><?php esc_html_e( 'Our Bank Details', 'seed-confirm' ); ?></h2>
-			<h3><?php esc_html_e( 'Account : GIS Co.,Ltd. (Current account)', 'seed-confirm' ); ?></h3>
-
+			
 			<table class="table table-responsive _heading" width="100%">
 				<thead>
 					<tr>
