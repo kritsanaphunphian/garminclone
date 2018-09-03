@@ -195,6 +195,10 @@ class GISC_Product {
 		return null;
 	}
 
+	public function create_buymap_order( $params ) {
+		return GISC()->get( 'create_buymap_order', $params );
+	}
+
 	/**
 	 * The GISC_Product Instance.
 	 *

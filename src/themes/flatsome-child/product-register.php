@@ -8,7 +8,7 @@ function add_product_map_to_cart( $type ) {
     if ( 'digital' == $type ) {
         WC()->cart->add_to_cart( '12916' );
     } elseif ( 'physical' == $type ) {
-        WC()->cart->add_to_cart( '12916' );
+        WC()->cart->add_to_cart( '12920' );
     }
 }
 
@@ -64,6 +64,7 @@ function register_gisc_product( $serialNo, $email ) {
 
 if ( isset( $_GET['action'] ) && 'buymap' == $_GET['action'] ) {
     add_product_map_to_cart( $_GET['type'] );
+    add_user_meta( get_current_user_id(), 'current_buymap', $_GET['serial'] );
     wp_redirect( home_url( 'cart' ) );
 }
 

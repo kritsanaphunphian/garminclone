@@ -65,7 +65,6 @@ class GISC {
 		defined( 'GISC_PLUGIN_VERSION' ) || define( 'GISC_PLUGIN_VERSION', $this->version );
 		defined( 'GISC_PLUGIN_PATH' ) || define( 'GISC_PLUGIN_PATH', __DIR__ );
 
-		include_once GISC_PLUGIN_PATH . '/includes/class-product-map.php';
 		include_once GISC_PLUGIN_PATH . '/includes/class-product.php';
 
 		$this->load_plugin_textdomain();
@@ -181,7 +180,7 @@ class GISC {
 	 * @param string $email
 	 * @param string $password
 	 */
-	public function api_create_buy_map_order() {
+	public function api_create_buymap_order() {
 		$this->set_endpoint( 'ProductRegistration/UpdateBuyMapServiceKBankDateOrderIdEmail' );
 		$this->set_required_parameters( array( 'serialNo', 'email', 'amount', 'payment', 'delivery', 'buyDate', 'orderId' ) );
 	}

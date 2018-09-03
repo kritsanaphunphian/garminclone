@@ -797,3 +797,39 @@ function garminbygis_add_google_analytic() { ?>
     <?php
 }
 add_action( 'wp_head', 'garminbygis_add_google_analytic', 10 );
+
+
+function create_gis_buy_map_order( $order_id ) {
+    if ( ! $order_id ) {
+        return;
+    }
+
+    // Getting an instance of the order object
+    $order = wc_get_order( $order_id );
+
+    if( ! $order->is_paid() ) {
+        return;
+    }
+
+    $delivery;
+    $items = $order->get_items();
+    foreach ($items as $key => $item) {
+        $product = $item->get_product();
+        $delivery = ( '12920' == $product->get_ID() ? 1 : 3 );
+        break;
+    }
+
+    $serial = get_user_meta( get_current_user_id(), 'current_buymap', true );
+    delete_user_meta( get_current_user_id(), 'current_buymap' );
+
+    $gisc_product_map = GISC_Product()->create_buymap_order( array( 
+        'serialNo' => $serial,
+        'email'    => $order->billing_email,
+        'amount'   => (int) $order->get_total(),
+        'payment'  => ( 'kasikorn' == $order->get_payment_method() ? 2 : 1 ),
+        'delivery' => $delivery,
+        'buyDate'  => $order->order_date,
+        'orderId'  => $order_id
+    ) );
+}
+add_action('woocommerce_thankyou', 'create_gis_buy_map_order', 10, 1);
