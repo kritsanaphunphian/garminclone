@@ -165,6 +165,15 @@ class GISC {
 	}
 
 	/**
+	 * @param string $email
+	 * @param string $password
+	 */
+	public function api_create_buy_map_order() {
+		$this->set_endpoint( 'ProductRegistration/UpdateBuyMapServiceKBankDateOrderIdEmail' );
+		$this->set_required_parameters( array( 'serialNo', 'email', 'amount', 'payment', 'delivery', 'buyDate', 'orderId' ) );
+	}
+
+	/**
 	 * @param string $endpoint
 	 */
 	protected function set_endpoint( $endpoint ) {
