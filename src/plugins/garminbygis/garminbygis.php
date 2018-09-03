@@ -32,6 +32,11 @@ class GISC {
 	protected $api_server = 'http://garminuat.cdg.co.th:94/api';
 
 	/**
+	 * @var string  Download map server url.
+	 */
+	protected $download_map_server = 'http://garminuat.cdg.co.th:88/Main/_Th/Member_login_Commerce.aspx';
+
+	/**
 	 * @var string  API endpoint.
 	 */
 	protected $endpoint = '';
@@ -89,6 +94,13 @@ class GISC {
 		}
 
 		return self::$the_instance;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function get_download_map_server() {
+		return $this->download_map_server;
 	}
 
 	public function get( $api_name, $params ) {
@@ -162,6 +174,15 @@ class GISC {
 	public function api_update_customer_password() {
 		$this->set_endpoint( 'Customer/ChangePasswordGarminCustomerCommerce' );
 		$this->set_required_parameters( array( 'Email', 'Password', 'Passwordenc' ) );
+	}
+
+	/**
+	 * @param string $email
+	 * @param string $password
+	 */
+	public function api_create_buymap_order() {
+		$this->set_endpoint( 'ProductRegistration/UpdateBuyMapServiceKBankDateOrderIdEmail' );
+		$this->set_required_parameters( array( 'serialNo', 'email', 'amount', 'payment', 'delivery', 'buyDate', 'orderId' ) );
 	}
 
 	/**

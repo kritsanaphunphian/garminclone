@@ -1,5 +1,16 @@
 <?php
-$user = get_userdata( get_current_user_id() );
+global $wp;
+
+$user        = get_userdata( get_current_user_id() );
+$current_url = home_url( add_query_arg( array(), $wp->request ) );
+
+function add_product_map_to_cart( $type ) {
+    if ( 'digital' == $type ) {
+        WC()->cart->add_to_cart( '12916' );
+    } elseif ( 'physical' == $type ) {
+        WC()->cart->add_to_cart( '12920' );
+    }
+}
 
 function send_product_registration_email( $user, $product ) {
     $firstname   = get_user_meta( get_current_user_id(), 'first_name', true );
@@ -50,6 +61,13 @@ function register_gisc_product( $serialNo, $email ) {
 
     return false;
 }
+
+if ( isset( $_GET['action'] ) && 'buymap' == $_GET['action'] ) {
+    add_product_map_to_cart( $_GET['type'] );
+    add_user_meta( get_current_user_id(), 'current_buymap', $_GET['serial'] );
+    wp_redirect( home_url( 'cart' ) );
+}
+
 
 if ( isset( $_POST['send-serial'] ) ) {
     $gisc_product = register_gisc_product( $_POST['serail-product'], $user->user_email );
@@ -131,6 +149,21 @@ $receipt_attachment_modal = '
             </div>
         </div>
     </form>';
+
+$buymap_modal = '
+    <div id="buymap-modal-wrapper container">
+        <h3 class="text-center">' . __( 'Please, choose for your shipping.', 'garminbygis' ) . '</h3>
+        <h4 class="text-center">' . __( 'choose shipping following below.', 'garminbygis' ) . '</h4>
+        <p class="text-center">' . __( 'One-time Map Package 450 baht.', 'garminbygis' ) . '</p>
+        <div class="row">
+            <div class="col medium-6 small-12 text-center"><a href="' . $current_url . '?action=buymap&type=digital&serial=%s">Download</a></div>
+            <div class="col medium-6 small-12 text-center"><a href="' . $current_url . '?action=buymap&type=physical&serial=%s">Shipping</a></div>
+        </div>
+    </div>
+';
+
+$download_modal = '<iframe src="#" name="downloadmap" width="100%" height="600"></iframe>';
+echo do_shortcode( '[lightbox id="download-modal" width="600px" padding="20px"]' . $download_modal . '[/lightbox]' );
 ?>
 
 <?php
@@ -161,9 +194,10 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_e
                         <?php if ( (int) $value['Flag'] === 3 ): ?>
                             <a href="http://www.garmin.co.th/mapupdate/" class="button primary"><?php echo __( 'Download Map', 'garminbygis' ); ?></a>
                         <?php elseif ( (int) $value['Flag'] >= 1 && (int) $value['Flag'] <= 6 ): ?>
-                            <a href="#" class="button primary"><?php echo __( 'Download Map', 'garminbygis' ); ?></a>
+                            <a data-downloadmapurl="<?php echo GISC()->get_download_map_server(); ?>?val=uploadmap&username=<?php echo $user->user_email; ?>&userpass=<?php echo $user->user_pass; ?>&product_iden=<?php echo $value['ProductIdentifiedId']; ?>" href="#download-modal" class="iframeit button primary"><?php echo __( 'Download Map', 'garminbygis' ); ?></a>
                         <?php elseif ( (int) $value['Flag'] === 0 ): ?>
-                            <a href="#" class="button primary"><?php echo __( 'Buy Map', 'garminbygis' ); ?></a>
+                            <?php echo do_shortcode( '[lightbox id="buymap-modal" width="600px" padding="20px"]' . sprintf( $buymap_modal, $value['SerialNo'], $value['SerialNo'] ) . '[/lightbox]' ); ?>
+                            <?php echo '[button text="' . __( 'Buy Map', 'garminbygis' ) . '" link="#buymap-modal"]'; ?>
                         <?php else: ?>
                             -
                         <?php endif; ?>
@@ -221,6 +255,12 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_e
             e.preventDefault();
         }
     };
+
+    jQuery('.iframeit').click(function(event) {
+        event.preventDefault();
+        var theSrc = jQuery(event.target).data('downloadmapurl');
+        jQuery('iframe[name="downloadmap"]').attr('src',theSrc);
+    });
 </script>
 
 <style>
