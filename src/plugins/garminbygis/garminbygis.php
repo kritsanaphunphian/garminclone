@@ -32,6 +32,11 @@ class GISC {
 	protected $api_server = 'http://garminuat.cdg.co.th:94/api';
 
 	/**
+	 * @var string  Download map server url.
+	 */
+	protected $download_map_server = 'http://garminuat.cdg.co.th:88/Main/_Th/Member_login_Commerce.aspx';
+
+	/**
 	 * @var string  API endpoint.
 	 */
 	protected $endpoint = '';
@@ -60,6 +65,7 @@ class GISC {
 		defined( 'GISC_PLUGIN_VERSION' ) || define( 'GISC_PLUGIN_VERSION', $this->version );
 		defined( 'GISC_PLUGIN_PATH' ) || define( 'GISC_PLUGIN_PATH', __DIR__ );
 
+		include_once GISC_PLUGIN_PATH . '/includes/class-product-map.php';
 		include_once GISC_PLUGIN_PATH . '/includes/class-product.php';
 
 		$this->load_plugin_textdomain();
@@ -89,6 +95,13 @@ class GISC {
 		}
 
 		return self::$the_instance;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function get_download_map_server() {
+		return $this->download_map_server;
 	}
 
 	public function get( $api_name, $params ) {
