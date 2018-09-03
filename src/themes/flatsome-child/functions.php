@@ -815,7 +815,7 @@ function create_gis_buy_map_order( $order_id ) {
     $items = $order->get_items();
     foreach ($items as $key => $item) {
         $product = $item->get_product();
-        $delivery = ( '12920' == $product->get_ID() ? 1 : 3 );
+        $delivery = ( '13577' == $product->get_ID() ? 1 : 3 );
         break;
     }
 

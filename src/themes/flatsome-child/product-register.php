@@ -6,9 +6,9 @@ $current_url = home_url( add_query_arg( array(), $wp->request ) );
 
 function add_product_map_to_cart( $type ) {
     if ( 'digital' == $type ) {
-        WC()->cart->add_to_cart( '12916' );
+        WC()->cart->add_to_cart( '13576' );
     } elseif ( 'physical' == $type ) {
-        WC()->cart->add_to_cart( '12920' );
+        WC()->cart->add_to_cart( '13577' );
     }
 }
 
