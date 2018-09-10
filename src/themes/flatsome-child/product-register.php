@@ -127,7 +127,7 @@ if ( isset( $_POST['send-serial'] ) ) {
 </form>
 
 <div class="action-update-software-button">
-    <a href="https://www.garmin.com/th-TH/software/express" class="button primary"><?php echo __( 'UPDATE SOFTWARE', 'garminbygis' ); ?></a>
+    <a href="https://www.garmin.com/th-TH/software/express" target="_blank" class="button primary"><?php echo __( 'UPDATE SOFTWARE', 'garminbygis' ); ?></a>
 </div>
 
 <?php
