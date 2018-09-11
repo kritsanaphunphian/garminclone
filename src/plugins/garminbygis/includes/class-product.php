@@ -19,6 +19,7 @@ class GISC_Product {
 	const META_PRODUCT_OWNER_ID     = 'gisc_reg_product_product_owner_id';
 	const META_RECEIPT_DOCUMENT_URL = 'gisc_reg_product_receipt_document_url';
 	const META_SERIAL_NUMBER        = 'gisc_reg_product_serial_number';
+	const META_IS_MAP_PURCHASED     = 'gisc_reg_product_is_map_purchased';
 
 	/**
 	 * @return bool
@@ -125,6 +126,7 @@ class GISC_Product {
 		garminbygis_update_post_meta( $post_id, self::META_PRODUCT_OWNER_ID, $productOwnerId );
 		garminbygis_update_post_meta( $post_id, self::META_RECEIPT_DOCUMENT_URL, '' );
 		garminbygis_update_post_meta( $post_id, self::META_SERIAL_NUMBER, $serialNo );
+		garminbygis_update_post_meta( $post_id, self::META_IS_MAP_PURCHASED, 'no' );
 
 		$this->related_post_id = $post_id;
 

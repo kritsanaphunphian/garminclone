@@ -831,5 +831,10 @@ function create_gis_buy_map_order( $order_id ) {
         'buyDate'  => $order->order_date,
         'orderId'  => $order_id
     ) );
+
+    // Recognize buy-map action
+    $user         = get_userdata( get_current_user_id() );
+    $gisc_product = GISC_Product()->load_related_posts( $serial, $user->user_email );
+    garminbygis_update_post_meta( $gisc_product->related_post_id(), GISC_Product::META_IS_MAP_PURCHASED, 'yes' );
 }
 add_action('woocommerce_thankyou', 'create_gis_buy_map_order', 10, 1);
