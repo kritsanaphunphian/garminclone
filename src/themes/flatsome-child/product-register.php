@@ -156,8 +156,18 @@ $buymap_modal = '
         <h4 class="text-center">' . __( 'choose shipping following below.', 'garminbygis' ) . '</h4>
         <p class="text-center">' . __( 'One-time Map Package 450 baht.', 'garminbygis' ) . '</p>
         <div class="row">
-            <div class="col medium-6 small-12 text-center"><a href="' . $current_url . '?action=buymap&type=digital&serial=%s">Download</a></div>
-            <div class="col medium-6 small-12 text-center"><a href="' . $current_url . '?action=buymap&type=physical&serial=%s">Shipping</a></div>
+            <div class="col medium-6 small-12 text-center">
+                <a href="' . $current_url . '?action=buymap&type=digital&serial=%s">
+                    <img src="' . get_template_directory_uri() . '-child/assets/images/ic-download-s.svg' . '" class="img-responsive icon" /><br />
+                    Download
+                </a>
+            </div>
+            <div class="col medium-6 small-12 text-center">
+                <a href="' . $current_url . '?action=buymap&type=physical&serial=%s">
+                    <img src="' . get_template_directory_uri() . '-child/assets/images/ic-logistic.svg' . '" class="img-responsive icon" /><br />
+                    Shipping
+                </a>
+            </div>
         </div>
     </div>
 ';
@@ -323,6 +333,14 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_e
 .action-update-software-button {
     margin-bottom: 1em;
     text-align: right;
+}
+
+#buymap-modal img {
+    border-radius: 50%;
+    border: 1px solid #005395;
+    padding: 2rem;
+    width: 50%;
+    margin-bottom: 1rem;
 }
 </style>
 
