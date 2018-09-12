@@ -127,7 +127,7 @@ if ( isset( $_POST['send-serial'] ) ) {
 </form>
 
 <div class="action-update-software-button">
-    <a href="https://www.garmin.com/th-TH/software/express" class="button primary"><?php echo __( 'UPDATE SOFTWARE', 'garminbygis' ); ?></a>
+    <a href="https://www.garmin.com/th-TH/software/express" target="_blank" class="button primary"><?php echo __( 'UPDATE SOFTWARE', 'garminbygis' ); ?></a>
 </div>
 
 <?php
@@ -156,8 +156,18 @@ $buymap_modal = '
         <h4 class="text-center">' . __( 'choose shipping following below.', 'garminbygis' ) . '</h4>
         <p class="text-center">' . __( 'One-time Map Package 450 baht.', 'garminbygis' ) . '</p>
         <div class="row">
-            <div class="col medium-6 small-12 text-center"><a href="' . $current_url . '?action=buymap&type=digital&serial=%s">Download</a></div>
-            <div class="col medium-6 small-12 text-center"><a href="' . $current_url . '?action=buymap&type=physical&serial=%s">Shipping</a></div>
+            <div class="col medium-6 small-12 text-center">
+                <a href="' . $current_url . '?action=buymap&type=digital&serial=%s">
+                    <img src="' . get_template_directory_uri() . '-child/assets/images/ic-download-s.svg' . '" class="img-responsive icon" /><br />
+                    Download
+                </a>
+            </div>
+            <div class="col medium-6 small-12 text-center">
+                <a href="' . $current_url . '?action=buymap&type=physical&serial=%s">
+                    <img src="' . get_template_directory_uri() . '-child/assets/images/ic-logistic.svg' . '" class="img-responsive icon" /><br />
+                    Shipping
+                </a>
+            </div>
         </div>
     </div>
 ';
@@ -196,8 +206,20 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_e
                         <?php elseif ( (int) $value['Flag'] >= 1 && (int) $value['Flag'] <= 6 ): ?>
                             <a data-downloadmapurl="<?php echo GISC()->get_download_map_server(); ?>?val=uploadmap&username=<?php echo $user->user_email; ?>&userpass=<?php echo $user->user_pass; ?>&product_iden=<?php echo $value['ProductIdentifiedId']; ?>" href="#download-modal" class="iframeit button primary"><?php echo __( 'Download Map', 'garminbygis' ); ?></a>
                         <?php elseif ( (int) $value['Flag'] === 0 ): ?>
-                            <?php echo do_shortcode( '[lightbox id="buymap-modal" width="600px" padding="20px"]' . sprintf( $buymap_modal, $value['SerialNo'], $value['SerialNo'] ) . '[/lightbox]' ); ?>
-                            <?php echo '[button text="' . __( 'Buy Map', 'garminbygis' ) . '" link="#buymap-modal"]'; ?>
+                            <?php
+                            $gisc_product          = GISC_Product()->load_related_posts( $value['SerialNo'], $user->user_email );
+                            $meta_is_map_purchased = get_post_meta( $gisc_product->related_post_id(), GISC_Product::META_IS_MAP_PURCHASED );
+                            $is_map_purchased      = is_array( $meta_is_map_purchased ) ? $meta_is_map_purchased[0] : 'no';
+
+                            if ( 'yes' == $is_map_purchased ) : ?>
+                                <?php $warning_message = __( 'The purchase order of this product already exits.', 'garminbygis' ); ?>
+                                <a onClick="alert('<?php echo $warning_message; ?>');" target="_self" class="button primary"><span>Buy Map</span></a>
+                            <?php else: ?>
+                                <?php
+                                echo do_shortcode( '[lightbox id="buymap-modal" width="600px" padding="20px"]' . sprintf( $buymap_modal, $value['SerialNo'], $value['SerialNo'] ) . '[/lightbox]' );
+                                echo '[button text="' . __( 'Buy Map', 'garminbygis' ) . '" link="#buymap-modal"]';
+                                ?>
+                            <?php endif; ?>
                         <?php else: ?>
                             -
                         <?php endif; ?>
@@ -311,6 +333,14 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_e
 .action-update-software-button {
     margin-bottom: 1em;
     text-align: right;
+}
+
+#buymap-modal img {
+    border-radius: 50%;
+    border: 1px solid #005395;
+    padding: 2rem;
+    width: 50%;
+    margin-bottom: 1rem;
 }
 </style>
 
