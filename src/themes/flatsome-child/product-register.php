@@ -340,7 +340,7 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_e
 #buymap-modal img {
     border-radius: 50%;
     border: 1px solid #005395;
-    padding: 2rem;
+    padding: 2.5rem;
     width: 50%;
     margin-bottom: 1rem;
 }
