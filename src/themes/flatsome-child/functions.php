@@ -807,16 +807,16 @@ function create_gis_buy_map_order( $order_id ) {
     // Getting an instance of the order object
     $order = wc_get_order( $order_id );
 
-    if( ! $order->is_paid() ) {
-        return;
-    }
-
     $delivery;
     $items = $order->get_items();
     foreach ($items as $key => $item) {
         $product = $item->get_product();
         $delivery = ( '13577' == $product->get_ID() ? 1 : 3 );
         break;
+    }
+
+    if ( '12916' != $product->get_ID() && '12920' != $product->get_ID() ) {
+        return;
     }
 
     $serial = get_user_meta( get_current_user_id(), 'current_buymap', true );
