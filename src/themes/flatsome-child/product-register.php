@@ -202,7 +202,7 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_e
 
                     <td class="woocommerce-gisc-registered-product-table__cell woocommerce-gisc-registered-product-table__cell-product-update" data-title="Update">
                         <?php if ( (int) $value['Flag'] === 3 ): ?>
-                            <a href="http://www.garmin.co.th/mapupdate/" class="button primary"><?php echo __( 'Download Map', 'garminbygis' ); ?></a>
+                            <a href="http://www.garmin.co.th/mapupdate/" target="_blank" class="button primary"><?php echo __( 'Download Map', 'garminbygis' ); ?></a>
                         <?php elseif ( (int) $value['Flag'] >= 1 && (int) $value['Flag'] <= 6 ): ?>
                             <a data-downloadmapurl="<?php echo GISC()->get_download_map_server(); ?>?val=uploadmap&username=<?php echo $user->user_email; ?>&userpass=<?php echo $user->user_pass; ?>&product_iden=<?php echo $value['ProductIdentifiedId']; ?>" href="#download-modal" class="iframeit button primary"><?php echo __( 'Download Map', 'garminbygis' ); ?></a>
                         <?php elseif ( (int) $value['Flag'] === 0 ): ?>
@@ -237,12 +237,14 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_e
 
                         if ( $post && $url = get_post_meta( $post->ID, 'gisc_reg_product_receipt_document_url' ) ) {
                             if ( 'pdf' === pathinfo($url[0])['extension'] ) {
-                                echo do_shortcode('[lightbox id="receipt-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"] ' . __( 'The PDF file cannot be rendered. Please click the link to refer to your original file', 'garminbygis' ) . ': "<a href="' . $url[0] . '" target="_blank">' . pathinfo($url[0])['filename'] . '</a>"[/lightbox]');
+                                echo '<a href="' . $url[0] . '" target="_blank">' . __( 'view receipt', 'garminbygis' ) . '</a>';
                             } else {
                                 echo do_shortcode('[lightbox id="receipt-id-' . $value['ProductOwnerId'] . '" width="600px" padding="20px"]<img src="' . $url[0] . '" class="img-responsive" />[/lightbox]');
+                                ?>
+                                <a href="#receipt-id-<?php echo $value['ProductOwnerId']; ?>"><?php echo __( 'view receipt', 'garminbygis' ); ?></a>
+                                <?php
                             }
                             ?>
-                            <a href="#receipt-id-<?php echo $value['ProductOwnerId']; ?>"><?php echo __( 'view receipt', 'garminbygis' ); ?></a>
                             <br/>
                             <?php
                         }
@@ -338,7 +340,7 @@ $items = GISC()->get( 'list_registered_product', array( 'Email' => $user->user_e
 #buymap-modal img {
     border-radius: 50%;
     border: 1px solid #005395;
-    padding: 2rem;
+    padding: 2.5rem;
     width: 50%;
     margin-bottom: 1rem;
 }
