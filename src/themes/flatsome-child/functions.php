@@ -815,7 +815,7 @@ function create_gis_buy_map_order( $order_id ) {
         break;
     }
 
-    if ( '12916' != $product->get_ID() && '12920' != $product->get_ID() ) {
+    if ( '13576' != $product->get_ID() && '13577' != $product->get_ID() ) {
         return;
     }
 
