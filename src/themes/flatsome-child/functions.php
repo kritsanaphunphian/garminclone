@@ -838,3 +838,14 @@ function create_gis_buy_map_order( $order_id ) {
     garminbygis_update_post_meta( $gisc_product->related_post_id(), GISC_Product::META_IS_MAP_PURCHASED, 'yes' );
 }
 add_action('woocommerce_thankyou', 'create_gis_buy_map_order', 10, 1);
+
+function garminbygis_woocommerce_cart_item_name( $name ) {
+    $cart = WC()->cart->get_cart();
+    $serial = get_user_meta( get_current_user_id(), 'current_buymap', true );
+    if ( ! $serial ) {
+        return $name;
+    }
+
+    return $name . '<br/><small>Serial No:' . $serial . '</small>';
+}
+add_filter( 'woocommerce_cart_item_name', 'garminbygis_woocommerce_cart_item_name' );
