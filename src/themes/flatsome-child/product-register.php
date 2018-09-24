@@ -15,7 +15,9 @@ function add_product_map_to_cart( $type ) {
 function send_product_registration_email( $user, $product ) {
     $firstname   = get_user_meta( get_current_user_id(), 'first_name', true );
     $lastname    = get_user_meta( get_current_user_id(), 'last_name', true );
+    $fullname    = $firstname . ' ' . $lastname;
     $phonenumber = get_user_meta( get_current_user_id(), 'billing_phone', true );
+    $buyingdate  = new DateTime( 'now', new DateTimeZone( 'Asia/Bangkok' ) );
 
     $attachment  = str_replace( get_site_url() . '/', '', $product->get_attachment_receipt());
     $attachment  = realpath($attachment);
@@ -31,14 +33,15 @@ function send_product_registration_email( $user, $product ) {
     $body        = '
     <h1>Product Registration</h1>
     <p>
-        <strong>Customer ID:</strong> ' . $product->get_data('ProductOwnerId') . '
+        <strong>Date/Time:</strong> ' . $buyingdate->format('d/m/Y H:i:s A' ) . '
         <br/>
         <br/>
-        <strong>Name:</strong> ' . $firstname . ' ' . $lastname . '
+        <strong>Name:</strong> ' . ( !empty( $fullname ) ? $fullname : '-' ) . '
         <br/><strong>Buy Date:</strong> ' . $product->get_data('BuyDate') . '
         <br/><strong>Product:</strong> ' . $product->get_data('ProductName') . '
         <br/><strong>Serial:</strong> ' . $product->get_data('SerialNo') . '
         <br/><strong>Email:</strong> ' . $user->user_email . '
+        <br/><strong>Mobile:</strong> ' . ( !empty( $phonenumber ) ? $phonenumber : '-' ) . '
     </p>';
 
     wp_mail( $to, $subject, $body, $headers, array( $attachment ) );

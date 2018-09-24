@@ -807,16 +807,16 @@ function create_gis_buy_map_order( $order_id ) {
     // Getting an instance of the order object
     $order = wc_get_order( $order_id );
 
-    if( ! $order->is_paid() ) {
-        return;
-    }
-
     $delivery;
     $items = $order->get_items();
     foreach ($items as $key => $item) {
         $product = $item->get_product();
         $delivery = ( '13577' == $product->get_ID() ? 1 : 3 );
         break;
+    }
+
+    if ( '12916' != $product->get_ID() && '12920' != $product->get_ID() ) {
+        return;
     }
 
     $serial = get_user_meta( get_current_user_id(), 'current_buymap', true );
@@ -838,3 +838,14 @@ function create_gis_buy_map_order( $order_id ) {
     garminbygis_update_post_meta( $gisc_product->related_post_id(), GISC_Product::META_IS_MAP_PURCHASED, 'yes' );
 }
 add_action('woocommerce_thankyou', 'create_gis_buy_map_order', 10, 1);
+
+function garminbygis_woocommerce_cart_item_name( $name ) {
+    $cart = WC()->cart->get_cart();
+    $serial = get_user_meta( get_current_user_id(), 'current_buymap', true );
+    if ( ! $serial ) {
+        return $name;
+    }
+
+    return $name . '<br/><small>Serial No:' . $serial . '</small>';
+}
+add_filter( 'woocommerce_cart_item_name', 'garminbygis_woocommerce_cart_item_name' );
