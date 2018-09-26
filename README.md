@@ -8,7 +8,7 @@
 
 ## Installation Instruction
 
-1. Download the [**2018-01-25 backup**](https://www.dropbox.com/s/pbxyddncnc3u3fw/ec2-13-250-123-237.ap-southeast-1.compute.amazonaws.com-20180125-100217-264.wpress?dl=0) file.
+1. Download the [**2018-01-25 backup**] file.
 
 2. Download and install **WordPress** (as normal). [WordPress v4.8.5](https://wordpress.org/wordpress-4.8.5.zip) is preferred at the time this document has been written.
 
@@ -17,11 +17,11 @@
 
 4. Next, install **All-in-One WP Migration** plugin ([All-in-One WP Migration v6.62](https://downloads.wordpress.org/plugin/all-in-one-wp-migration.6.62.zip) is preferred at the time this document has been written).
 
-5. Once done, install [**All-in-One WP Migration Unlimited Extension v2.10**](https://drive.google.com/file/d/19WUso5GyPIlcLOXpRuvkWB-qfHH9lYee/view?usp=sharing). This will allow you to be able to upload a large file during the 'import the backup file' step at All-in-One WP Migration plugin.
+5. Once done, install [**All-in-One WP Migration Unlimited Extension v2.10**]. This will allow you to be able to upload a large file during the 'import the backup file' step at All-in-One WP Migration plugin.
 
 6. Well, going to **All-in-One WP Migration > Import** page. Choose your backup file (file from step [1]) to import, then wait (quite long...)
 
-7. After all of the steps above, now, you should be able to see the website with the whole data from the backup site. Also, the admin account will be set to: `username: user`, `password: 5jWpP1pR3C1D` (please do reset password again once you first log in to the admin account).
+7. After all of the steps above, now, you should be able to see the website with the whole data from the backup site. Also, the admin account will be set to: ... (please do reset password again once you first log in to the admin account).
 
 8. Copy `web.config` from this repo paste to a root folder of your website (for Windows Server with IIS 10, it should be located at `C:\inetpub\wwwroot`).
 
